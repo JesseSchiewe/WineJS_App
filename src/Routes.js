@@ -1,6 +1,6 @@
-import React, {Fragment} from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Link, Redirect, Route } from "react-router-dom"
+import React from 'react';
+//import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from "react-router-dom"
 //import './Slider.css';
 import './App.css';
 import App from './App';

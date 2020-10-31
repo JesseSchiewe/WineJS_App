@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import { Link } from "react-router-dom";
-import {auth} from "./Firebase";
+//import {auth} from "./Firebase";
 
 export default function Home() {
     return(

@@ -15,11 +15,11 @@ import UserProvider, { UserContext } from "./providers/UserProvider";
 // const [snapshots, loading, error] = useList(wineRef );
 
 export const ReviewResult = () => {
-    const reviewData = {};
+    //const reviewData = {};
     const user = useContext(UserContext);
-    const {displayName, email} = user;
+    //const {displayName, email} = user;
 
-    const [reviewScores, setReviewScores] = useState({})
+    //const [reviewScores, setReviewScores] = useState({})
 
     // const [ Balance , setBalance ] = useState(snapshot.val().Balance);
     // const [ BalanceNotes, setBalanceNotes ] = useState(snapshot.val().BalanceNotes);
@@ -92,7 +92,7 @@ export const ReviewResult = () => {
     var dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
     var dbWineNames = '/users/' + user.uid + "/"
 
-    var Answer = props => <select>{props.map((x,y) => <option key={y}>{x}</option>)}</select>;
+    //var Answer = props => <select>{props.map((x,y) => <option key={y}>{x}</option>)}</select>;
 
     // var refdata = firebase.database().ref(dbpathref);
     //     ref.once("value")
@@ -101,7 +101,7 @@ export const ReviewResult = () => {
     //         var childKey = snapshot.child().key; // "last"
     // });
 
-    const [winesList, setWinesList] = useState([]);   
+    //const [winesList, setWinesList] = useState([]);   
     
     // function updateWinesList() {
     //     let ref = firebase.database().ref(dbWineNames);
@@ -165,8 +165,8 @@ export const ReviewResult = () => {
     }
 
 
-    const [theArray, setTheArray] = useState([]);
-    const addArrayItem = (newArrayItem) => setTheArray(state => [...state, newArrayItem]);
+    // const [theArray, setTheArray] = useState([]);
+    // const addArrayItem = (newArrayItem) => setTheArray(state => [...state, newArrayItem]);
 
     function SetWineArray() {
         var returnArr = [];
@@ -189,28 +189,23 @@ export const ReviewResult = () => {
     //console.log(test)
 
 
-    // let winenameList = test.map((winename, index) => {
-        
+    // let winenameList = test.map((winename, index) => {        
     //     console.log(winename)
-
     //     return (            
     //         <option key={winename.key} value={winename.key}>{winename.key}</option>
     //     );
     // }, this);
 
-    let winenameList = test.map((winename, index) => {
-        
-        console.log(winename)
-
-        return (            
-            <option key={winename.key} value={winename.key}>{winename.key}</option>
-        );
-    }, this);
+    // let winenameList = test.map((winename, index) => {        
+    //     console.log(winename)
+    //     return (            
+    //         <option key={winename.key} value={winename.key}>{winename.key}</option>
+    //     );
+    // }, this);
 
 
     function setReviewData() {
-        {firebase.database().ref(dbpathref).on('value', (snapshot) => {
-            //console.log(snapshot)
+        firebase.database().ref(dbpathref).on('value', (snapshot) => {
             setBalance(snapshot.val().Balance);
             setBalanceNotes(snapshot.val().BalanceNotes);
             setFlavorCharacteristics(snapshot.val().FlavorCharacteristics);
@@ -226,7 +221,7 @@ export const ReviewResult = () => {
             setTotal(snapshot.val().Total);
             setVintage(snapshot.val().Vintage);
             setWineName1(snapshot.val().WineName);
-        })};
+        });
         alert("getting review data")
     }
     
@@ -256,12 +251,12 @@ export const ReviewResult = () => {
     //     // ...
     // });
 
-    function getReview() {
-        firebase.database().ref("/users/" + user.uid).on('value', function (snapshot) {
-            //console.log(snapshotToArray(snapshot));
-            var reviewData = snapshotToArray(snapshot);
-        });
-    }
+    // function getReview() {
+    //     firebase.database().ref("/users/" + user.uid).on('value', function (snapshot) {
+    //         //console.log(snapshotToArray(snapshot));
+    //         var reviewData = snapshotToArray(snapshot);
+    //     });
+    // }
 
     var wineNamesList = {};
     function getWineNamesList() {
@@ -272,14 +267,14 @@ export const ReviewResult = () => {
     }
 
 
-    const [wineNameOptions, setWineNameOptions] = useState([]);
+    //const [wineNameOptions, setWineNameOptions] = useState([]);
 
     // firebase.database().ref(dbWineNames).on('value', function(snapshot) {
     //     console.log(snapshotToArray(snapshot));
     // });
 
-    var wineRef = firebase.database().ref("/users/");
-    const [snapshots, loading, error] = useList(wineRef );
+    //var wineRef = firebase.database().ref("/users/");
+    //const [snapshots, loading, error] = useList(wineRef );
 
     function snapshotToArray(snapshot) {
         var returnArr = [];
@@ -295,22 +290,22 @@ export const ReviewResult = () => {
     };
 
 
-    var test2 = [];
-    function SetShowResultsArray() {
-        var returnResArr= [];       
-            firebase.database().ref(dbpathref).on('value', (snapshot) => {
-                //returnResArr = snapshotToArray(snapshot);
-                snapshot.forEach(function (childSnapshot) {
-                    returnResArr = snapshotToArray(snapshot);
-                    //returnResArr.push({ label:childSnapshot.key, value:childSnapshot.key});  
-                    //returnArr.push(item);                               
-                    //console.log(item)
-                });                
-            });        
-        test2 = returnResArr        
-        return returnResArr
-        console.log(test2)
-    }
+    // var test2 = [];
+    // function SetShowResultsArray() {
+    //     var returnResArr= [];       
+    //         firebase.database().ref(dbpathref).on('value', (snapshot) => {
+    //             //returnResArr = snapshotToArray(snapshot);
+    //             snapshot.forEach(function (childSnapshot) {
+    //                 returnResArr = snapshotToArray(snapshot);
+    //                 //returnResArr.push({ label:childSnapshot.key, value:childSnapshot.key});  
+    //                 //returnArr.push(item);                               
+    //                 //console.log(item)
+    //             });                
+    //         });        
+    //     test2 = returnResArr        
+    //     return returnResArr
+    //     console.log(test2)
+    // }
     
     return(
         <Fragment>
@@ -320,7 +315,6 @@ export const ReviewResult = () => {
                 </div>
                 <form>
                     <Select options={ test } isSearchable={true} onChange={e => handleChange(e.value)} />
-                    {/* {showScores(reviewData)} */}
                 </form>
                 <div>
                     <reviewresults>

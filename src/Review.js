@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useContext } from 'react';
+import React, {useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import useToggle from './useToggle';
 import {Redirect} from 'react-router-dom';
@@ -23,13 +23,13 @@ export default function Review() {
     totalValue = 50 + totalValue
   } 
 
-  const [isOn, toggleIsOn] = useToggle();
+  //const [isOn, toggleIsOn] = useToggle();
 
-  let valueAll = ""
+  //let valueAll = ""
   let sampleData = ""
 
   const user = useContext(UserContext);
-  const {displayName, email} = user;
+  //const {displayName, email} = user;
 
   const [hideNoseNotes, toggleNoseNotes] = useToggle();
   const [hideIntenseNotes, toggleIntenseNotes] = useToggle();
@@ -38,7 +38,7 @@ export default function Review() {
   const [hideLenNotes, toggleLenNotes] = useToggle();
 
   const [toResults, setToResults] = useState(false);
-  var database = firebase.database();
+  //var database = firebase.database();
 
 //   function writeToDatabase(userId, data) {
 //     firebase.database().ref('users/' + userId + '/' + data.WineName).set({
@@ -52,15 +52,15 @@ export default function Review() {
     });
   }
 
-  function readDatabase() {
-    return firebase.database().ref('/users/').once('value').then(function(snapshot) {
-        var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    });
-  }
+  // function readDatabase() {
+  //   return firebase.database().ref('/users/').once('value').then(function(snapshot) {
+  //       var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+  //   });
+  // }
 
-  const readAllDatabase = () => {
-    return firebase.database().ref('users/jds007/')
-  };
+  // const readAllDatabase = () => {
+  //   return firebase.database().ref('users/jds007/')
+  // };
 
   function onSubmit(data) {
     alert("Successfully submitted form");
@@ -68,9 +68,9 @@ export default function Review() {
     setToResults(true)
   }
 
-  function updateTextInput(val,changeID) {
-    document.getElementById(changeID).value=val;
-  }
+  // function updateTextInput(val,changeID) {
+  //   document.getElementById(changeID).value=val;
+  // }
 
   console.log(errors);
 
@@ -83,9 +83,6 @@ export default function Review() {
         <div className="WineJS Wine Review">
             <h1>WineJS Review</h1>
         </div>
-
-
-        {console.log(user.uid)}
 
         {toResults ? <Redirect to={{ pathname:"/reviewresult", state: { data: sampleData }}} /> : null}
             
