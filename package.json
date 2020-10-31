@@ -1,8 +1,7 @@
 {
-  "name": "my-app",
+  "name": "winejs",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "dependencies": {
     "axios": "^0.20.0",
     "firebase": "^7.24.0",
