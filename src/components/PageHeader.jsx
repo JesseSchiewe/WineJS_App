@@ -1,9 +1,9 @@
 import React, {Fragment, useContext, useState, useRef} from 'react';
-import Select from 'react-select'
-import { Link } from "react-router-dom";
-import {auth} from "../Firebase";
+//import Select from 'react-select'
+//import { Link } from "react-router-dom";
+//import {auth} from "../Firebase";
 import { UserContext } from '../providers/UserProvider';
-import Review from '../Review';
+//import Review from '../Review';
 import HeaderSignedIn from './Header_SignedIn';
 import HeaderSignedOut from './Header_SignedOut';
 

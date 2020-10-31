@@ -19,8 +19,8 @@ import outputForm from "./OutputForm";
 //import FirebaseContext from './Firebase';
 import AppAuth from "./AppAuth";
 import Review from "./Review";
-import Application from "./Components/Application";
-import UserProvider from "./providers/UserProvider";
+//import Application from "./Components/Application";
+//import UserProvider from "./providers/UserProvider";
 
 
 import AuthService from "./services/auth.service";

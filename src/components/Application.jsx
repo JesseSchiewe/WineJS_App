@@ -3,7 +3,6 @@ import React, {useContext} from "react";
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from "react-router-dom";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import UserProvider from "../providers/UserProvider";
 import ProfilePage from "./ProfilePage";
 import { UserContext } from '../providers/UserProvider';
 import PasswordReset from "./PasswordReset";
@@ -20,7 +19,7 @@ import {ReviewResult} from '../ReviewResult';
 //import outputForm from "../OutputForm";
 import Review from "../Review";
 import Home from '../Home';
-import NotFoundPage from "./NotFoundPage";
+//import NotFoundPage from "./NotFoundPage";
 import PageHeader from './PageHeader';
 
 function Application() {

@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 //import { Link } from "@reach/router";
 import { Link } from "react-router-dom";
 import { signInWithGoogle } from "../Firebase";
-import { auth, generateUserDocument } from "../Firebase";
+import { auth } from "../Firebase";
 
 const SignIn = () => {
     const [email, setEmail] = useState('');

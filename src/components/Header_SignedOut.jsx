@@ -1,9 +1,9 @@
 import React, {Fragment, useContext, useState, useRef} from 'react';
-import Select from 'react-select'
+//import Select from 'react-select'
 import { Link } from "react-router-dom";
-import {auth} from "../Firebase";
+//import {auth} from "../Firebase";
 import { UserContext } from '../providers/UserProvider';
-import Review from '../Review';
+//import Review from '../Review';
 
 export default function HeaderSignedOut() {
     const user = useContext(UserContext);

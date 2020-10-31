@@ -1,11 +1,11 @@
 import React, {useState, useCallback} from 'react';
 import { useForm } from 'react-hook-form';
-import outputForm from './OutputForm';
+//import outputForm from './OutputForm';
 import useToggle from './useToggle';
 import {Redirect} from 'react-router-dom';
 import './index.js';
 //import {Routes} from './Routes';
-import {db} from './Config';
+//import {db} from './Config';
 //import {Firebase} from './Config';
 import firebase from 'firebase';
 

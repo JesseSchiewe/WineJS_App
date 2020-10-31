@@ -1,16 +1,13 @@
 import React, {Fragment, useContext, useState, useRef} from 'react';
-import Select from 'react-select'
 import { Link } from "react-router-dom";
 import {auth} from "../Firebase";
 import { UserContext } from '../providers/UserProvider';
-import Review from '../Review';
-
 
 //Burger Styles
 //import React, { useState, useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { useOnClickOutside } from '../hooks';
-import { GlobalStyles } from '../Style/Burger/global';
+//import { GlobalStyles } from '../Style/Burger/global';
 import { theme } from '../theme';
 import { default as Burger } from './Burger';
 import { default as Menu } from './Menu';
