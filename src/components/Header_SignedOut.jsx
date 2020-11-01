@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 //import Select from 'react-select'
 import { Link } from "react-router-dom";
 //import {auth} from "../Firebase";
-import { UserContext } from '../providers/UserProvider';
+//import { UserContext } from '../providers/UserProvider';
 //import Review from '../Review';
 
 export default function HeaderSignedOut() {

@@ -1,12 +1,12 @@
-import React, {Fragment, useContext, useEffect, useState} from 'react';
+import React, {Fragment, useContext, useState} from 'react';
 import Select from 'react-select'
 //import { useForm } from 'react-hook-form';
 //import App from './App';
 import firebase from 'firebase';
 import './index.js';
-import outputForm from './OutputForm';
-import { useList, useListKeys } from "react-firebase-hooks/database"
-import UserProvider, { UserContext } from "./providers/UserProvider";
+//import outputForm from './OutputForm';
+//import { useList, useListKeys } from "react-firebase-hooks/database"
+import { UserContext } from "./providers/UserProvider";
 
 //import firestore from './Firebase'
 //import firebase from "firebase/app";
@@ -258,13 +258,13 @@ export const ReviewResult = () => {
     //     });
     // }
 
-    var wineNamesList = {};
-    function getWineNamesList() {
-        firebase.database().ref("/users/" + user.uid).on('value', function (snapshot) {
-            //console.log(snapshotToArray(snapshot));
-            wineNamesList = snapshotToArray(snapshot);
-        });
-    }
+    // var wineNamesList = {};
+    // function getWineNamesList() {
+    //     firebase.database().ref("/users/" + user.uid).on('value', function (snapshot) {
+    //         //console.log(snapshotToArray(snapshot));
+    //         wineNamesList = snapshotToArray(snapshot);
+    //     });
+    // }
 
 
     //const [wineNameOptions, setWineNameOptions] = useState([]);
