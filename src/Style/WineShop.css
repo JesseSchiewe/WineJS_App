@@ -309,7 +309,13 @@ h1 {
     margin-left: 2em;
     width: 15em;
     height: 2em;
-    opacity: 80%;
+    opacity: 90%;
+  }
+
+  .signupfieldBOLD {
+    margin-left: 2em;
+    width: 15em;
+    height: 2em;
   }
 
   .profilepagesignout {
