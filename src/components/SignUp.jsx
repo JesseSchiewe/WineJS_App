@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {signInWithGoogle} from "../Firebase";
 import { auth, generateUserDocument } from "../Firebase";
+import { Redirect } from 'react-router-dom';
+
+const [toHome, setToHome] = useState(false);
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +17,7 @@ const SignUp = () => {
     try{
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       generateUserDocument(user, {displayName});
+      setToHome(true)
     }
     catch(error){
       setError('Error Signing up with email and password');
@@ -91,6 +95,7 @@ const SignUp = () => {
             {error}
           </div>
           )}
+          {toHome ? <Redirect to={{ pathname:"/" }} /> : null}
           <h2>or</h2>
           <button
             className="bg-red-500 hover:bg-red-600 w-full py-2 text-white " onClick={signInWithGoogle}

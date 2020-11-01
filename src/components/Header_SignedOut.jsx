@@ -11,6 +11,13 @@ export default function HeaderSignedOut() {
 
     return(
         <div>
+            <div className="SiteHeader"> 
+                Not Signed In
+                <Link to="/">
+                    <a className="bn39" href="/"><span className="bn39span" >Sign In</span></a>
+                </Link>
+            </div> 
+
             <div className="Version">
                 Version: {Version}
             </div>
@@ -25,13 +32,6 @@ export default function HeaderSignedOut() {
                     <button type="menubutton" className="headerbutton" >About</button>
                 </Link>
             </div>
-
-            <div className="SiteHeader"> 
-                Not Signed In
-                <Link to="/">
-                    <a className="bn39" href="/"><span className="bn39span" >Sign In</span></a>
-                </Link>
-            </div> 
             <p/>
         </div>
     )

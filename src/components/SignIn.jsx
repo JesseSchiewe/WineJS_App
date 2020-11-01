@@ -4,6 +4,9 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { signInWithGoogle } from "../Firebase";
 import { auth } from "../Firebase";
+import { Redirect } from 'react-router-dom';
+
+const [toHome, setToHome] = useState(false);
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -16,6 +19,7 @@ const SignIn = () => {
           setError("Error signing in with password and email!");
           console.error("Error signing in with password and email", error);
         });
+        setToHome(true);
     };
 
       const onChangeHandler = (event) => {
@@ -68,6 +72,7 @@ const SignIn = () => {
           <div className="error" >
             {error !== null && <div>{error}</div>}
           </div>
+          {toHome ? <Redirect to={{ pathname:"/" }} /> : null}
           <h2>or</h2>
           <button className="GoogleSignIn" onClick={signInWithGoogle}>
             Sign in with Google
