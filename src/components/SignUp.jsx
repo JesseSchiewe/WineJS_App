@@ -5,7 +5,7 @@ import {signInWithGoogle} from "../Firebase";
 import { auth, generateUserDocument } from "../Firebase";
 import { Redirect } from 'react-router-dom';
 
-const [toHome, setToHome] = useState(false);
+
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -37,6 +37,7 @@ const SignUp = () => {
       setDisplayName(value);
     }
   };
+  const [toHome, setToHome] = useState(false);
   return (
     <div>
       <h1>Sign Up</h1>

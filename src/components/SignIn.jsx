@@ -6,32 +6,34 @@ import { signInWithGoogle } from "../Firebase";
 import { auth } from "../Firebase";
 import { Redirect } from 'react-router-dom';
 
-const [toHome, setToHome] = useState(false);
+
 
 const SignIn = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState(null);
-    
-    const signInWithEmailAndPasswordHandler = (event, email, password) => {
-        event.preventDefault();
-        auth.signInWithEmailAndPassword(email, password).catch(error => {
-          setError("Error signing in with password and email!");
-          console.error("Error signing in with password and email", error);
-        });
-        setToHome(true);
-    };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  
+  const signInWithEmailAndPasswordHandler = (event, email, password) => {
+      event.preventDefault();
+      auth.signInWithEmailAndPassword(email, password).catch(error => {
+        setError("Error signing in with password and email!");
+        console.error("Error signing in with password and email", error);
+      });
+      setToHome(true);
+  };
 
-      const onChangeHandler = (event) => {
-          const {name, value} = event.currentTarget;
+  const onChangeHandler = (event) => {
+      const {name, value} = event.currentTarget;
 
-          if(name === 'userEmail') {
-              setEmail(value);
-          }
-          else if(name === 'userPassword'){
-            setPassword(value);
-          }
-      };
+      if(name === 'userEmail') {
+          setEmail(value);
+      }
+      else if(name === 'userPassword'){
+        setPassword(value);
+      }
+  };
+  
+  const [toHome, setToHome] = useState(false);
 
   return (
     <div className="mt-8">
