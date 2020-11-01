@@ -1,24 +1,27 @@
-import React, { useState } from "react";
-//import { Link } from "@reach/router";
+import React, { useState, useContext } from "react";
+import { auth } from "../firebase";
+//import { UserContext } from "../providers/UserProvider";
 import { Link } from "react-router-dom";
-import { auth } from "../Firebase";
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");
   const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
   const [error, setError] = useState(null);
+
   const onChangeHandler = event => {
     const { name, value } = event.currentTarget;
+
     if (name === "userEmail") {
       setEmail(value);
     }
   };
+
   const sendResetEmail = event => {
     event.preventDefault();
     auth
       .sendPasswordResetEmail(email)
       .then(() => {
-        setEmailHasBeenSent(true);
+          setEmailHasBeenSent(true);
         setTimeout(() => {setEmailHasBeenSent(false)}, 3000);
       })
       .catch(() => {
@@ -51,17 +54,21 @@ const PasswordReset = () => {
             id="userEmail"
             value={email}
             placeholder="Input your email"
-            onChange={sendResetEmail}
+            onChange={onChangeHandler}
             className="mb-3 w-full px-1 py-2"
           />
           <button
             className="w-full bg-blue-400 text-white py-3"
+            onClick={event => {
+              sendResetEmail(event);
+            }}
           >
             Send me a reset link
           </button>
         </form>
+
         <Link
-         to ="/"
+          to="/"
           className="my-2 text-blue-700 hover:text-blue-800 text-center block"
         >
           &larr; back to sign in page
@@ -70,4 +77,5 @@ const PasswordReset = () => {
     </div>
   );
 };
+
 export default PasswordReset;

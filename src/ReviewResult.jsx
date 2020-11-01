@@ -276,18 +276,18 @@ export const ReviewResult = () => {
     //var wineRef = firebase.database().ref("/users/");
     //const [snapshots, loading, error] = useList(wineRef );
 
-    function snapshotToArray(snapshot) {
-        var returnArr = [];
+    // function snapshotToArray(snapshot) {
+    //     var returnArr = [];
     
-        snapshot.forEach(function(childSnapshot) {
-            var item = childSnapshot.val();
-            item.key = childSnapshot.key;
+    //     snapshot.forEach(function(childSnapshot) {
+    //         var item = childSnapshot.val();
+    //         item.key = childSnapshot.key;
     
-            returnArr.push(item);
-        });
+    //         returnArr.push(item);
+    //     });
     
-        return returnArr;
-    };
+    //     return returnArr;
+    // };
 
 
     // var test2 = [];
