@@ -7,6 +7,9 @@ yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
 
+# Build Folder
+build/
+
 # Firebase cache
 .firebase/
 
@@ -64,3 +67,4 @@ build/Release
 
 # dotenv environment variables file
 .env
+

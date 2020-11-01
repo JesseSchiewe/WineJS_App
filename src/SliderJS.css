@@ -197,6 +197,12 @@ body {
         opacity: 90%;
     }
 
+    .Version {
+      text-align: left;
+      font-size: 50%;
+      font-family: "Dosis", Helvetica, Arial, sans-serif; 
+    }
+
     h1 {
         font-weight: 100;
         color: #000066;

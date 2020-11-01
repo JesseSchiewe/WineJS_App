@@ -14,7 +14,6 @@ export default function PageHeader() {
     return(
         user ?
             HeaderSignedIn()
-
         :
             HeaderSignedOut()
     )

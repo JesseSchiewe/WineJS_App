@@ -4,12 +4,16 @@ import { Link } from "react-router-dom";
 //import {auth} from "../Firebase";
 //import { UserContext } from '../providers/UserProvider';
 //import Review from '../Review';
+import { Version } from './Application';
 
 export default function HeaderSignedOut() {
     //const user = useContext(UserContext);
 
     return(
         <div>
+            <div className="Version">
+                Version: {Version}
+            </div>
             <div className="SiteMenu">                               
                 <Link to="/home">
                     <button type="menubutton" className="headerbutton" >Home</button>
