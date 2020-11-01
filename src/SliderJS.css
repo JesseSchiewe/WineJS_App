@@ -109,7 +109,7 @@ body {
     transition: 0.3s all;
     transform: translateY(3px);
     border: 1px solid transparent;
-    opacity: 0.8;
+    /* opacity: 0.8; */
     }
 
     button[type="menubutton"] {
@@ -194,7 +194,7 @@ body {
     .sitepages {
         
         width: 20%;
-        opacity: 90%;
+        /* opacity: 90%; */
     }
 
     .Version {

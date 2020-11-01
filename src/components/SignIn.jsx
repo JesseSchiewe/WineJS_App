@@ -40,7 +40,7 @@ const SignIn = () => {
           <p/>
           <input
             type="email"
-            className="signupfieldBOLD"
+            className="signupfield"
             name="userEmail"
             value = {email}
             placeholder="E.g: BobTest@gmail.com"
