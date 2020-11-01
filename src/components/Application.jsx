@@ -22,7 +22,7 @@ import Home from '../Home';
 //import NotFoundPage from "./NotFoundPage";
 import PageHeader from './PageHeader';
 
-export const Version = "1.0.0"
+export const Version = "1.0.1"
 
 function Application() {
   const user = useContext(UserContext);
