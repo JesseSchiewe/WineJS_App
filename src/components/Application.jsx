@@ -21,9 +21,9 @@ import Review from "../Review";
 import Home from '../Home';
 //import NotFoundPage from "./NotFoundPage";
 import PageHeader from './PageHeader';
-import packageJson from '{root-dir}/package.json';
+//import packageJson from '/package.json';
 
-export const Version = packageJson.version;
+export const Version = process.env.REACT_APP_VERSION;
 
 function Application() {
   const user = useContext(UserContext);
