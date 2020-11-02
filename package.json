@@ -1,6 +1,6 @@
 {
   "name": "winejs",
-  "version": "0.1.0",
+  "version": "1.0.4",
   "private": true,
   "dependencies": {
     "axios": "^0.20.0",
@@ -19,6 +19,8 @@
     "validator": "^13.1.17"
   },
   "scripts": {
+    "generate-build-version": "node generate-build-version",
+    "prebuild": "npm run generate-build-version",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

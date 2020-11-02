@@ -21,42 +21,91 @@ import Review from "../Review";
 import Home from '../Home';
 //import NotFoundPage from "./NotFoundPage";
 import PageHeader from './PageHeader';
+import packageJson from '{root-dir}/packageJson';
+import CacheBuster from "../CacheBuster";
+global.appVersion = packageJson.version
 
-export const Version = "1.0.3"
+export const Version = global.appVersion
 
 function Application() {
   const user = useContext(UserContext);
+
   return (
-    user ?
-      <Router>
-        {/* <Switch> */}
-          <Route path="/" component={PageHeader} />
-          <Route path="/" exact component={Home} />
-          <Route path="/home" exact component={Home} />
-          <Route path="/about" exact component={About} />
-          <Route path="/contact" exact component={Contact} />
-          <Route path="/review" exact component={Review} />
-          <Route path="/reviewresult" exact component={ReviewResult} />
-          <Route path= "/signin" exact component={SignIn} />
-          <Route path= "/signUp" exact component={SignUp} />
-          <Route path= "/passwordreset" exact component={PasswordReset} />
-          <Route path= "/profilepage" exact component={ProfilePage} />    
-          {/* <Route path="*" component={NotFoundPage} /> */}
-        {/* </Switch>      */}
-      </Router>
-    :
-      <Router>
-          <Route path="/" component={PageHeader} />
-          <Route path="/" exact component={SignIn} />
-          <Route path="/home" exact component={Home} />
-          <Route path="/about" exact component={About} />
-          <Route path="/contact" exact component={Contact} />
-          <Route path= "/signin" exact component={SignIn} />
-          <Route path= "/signUp" exact component={SignUp} />
-          <Route path= "/passwordreset" exact component={PasswordReset} />
-      </Router>
+    <CacheBuster>
+      {({ loading, isLatestVersion, refreshCacheAndReload }) => {
+        if (loading) return null;
+        if (!loading && !isLatestVersion) {
+          // You can decide how and when you want to force reload
+          refreshCacheAndReload();
+        }
+
+        return (
+          user ?
+            <Router>
+              {/* <Switch> */}
+                <Route path="/" component={PageHeader} />
+                <Route path="/" exact component={Home} />
+                <Route path="/home" exact component={Home} />
+                <Route path="/about" exact component={About} />
+                <Route path="/contact" exact component={Contact} />
+                <Route path="/review" exact component={Review} />
+                <Route path="/reviewresult" exact component={ReviewResult} />
+                <Route path= "/signin" exact component={SignIn} />
+                <Route path= "/signUp" exact component={SignUp} />
+                <Route path= "/passwordreset" exact component={PasswordReset} />
+                <Route path= "/profilepage" exact component={ProfilePage} />    
+                {/* <Route path="*" component={NotFoundPage} /> */}
+              {/* </Switch>      */}
+            </Router>
+          :
+            <Router>
+                <Route path="/" component={PageHeader} />
+                <Route path="/" exact component={SignIn} />
+                <Route path="/home" exact component={Home} />
+                <Route path="/about" exact component={About} />
+                <Route path="/contact" exact component={Contact} />
+                <Route path= "/signin" exact component={SignIn} />
+                <Route path= "/signUp" exact component={SignUp} />
+                <Route path= "/passwordreset" exact component={PasswordReset} />
+            </Router>
+        );
+      }}
+    </CacheBuster>
   );
 }
+
+
+//   return (
+//     user ?
+//       <Router>
+//         {/* <Switch> */}
+//           <Route path="/" component={PageHeader} />
+//           <Route path="/" exact component={Home} />
+//           <Route path="/home" exact component={Home} />
+//           <Route path="/about" exact component={About} />
+//           <Route path="/contact" exact component={Contact} />
+//           <Route path="/review" exact component={Review} />
+//           <Route path="/reviewresult" exact component={ReviewResult} />
+//           <Route path= "/signin" exact component={SignIn} />
+//           <Route path= "/signUp" exact component={SignUp} />
+//           <Route path= "/passwordreset" exact component={PasswordReset} />
+//           <Route path= "/profilepage" exact component={ProfilePage} />    
+//           {/* <Route path="*" component={NotFoundPage} /> */}
+//         {/* </Switch>      */}
+//       </Router>
+//     :
+//       <Router>
+//           <Route path="/" component={PageHeader} />
+//           <Route path="/" exact component={SignIn} />
+//           <Route path="/home" exact component={Home} />
+//           <Route path="/about" exact component={About} />
+//           <Route path="/contact" exact component={Contact} />
+//           <Route path= "/signin" exact component={SignIn} />
+//           <Route path= "/signUp" exact component={SignUp} />
+//           <Route path= "/passwordreset" exact component={PasswordReset} />
+//       </Router>
+//   );
+// }
 
 // function Application() {
 //     const user = useContext(UserContext);
