@@ -21,9 +21,9 @@ import Review from "../Review";
 import Home from '../Home';
 //import NotFoundPage from "./NotFoundPage";
 import PageHeader from './PageHeader';
-import packageJson from '{root-dir}/packageJson'
+import packageJson from '{root-dir}/package.json';
 
-export const Version = packageJson.Version
+export const Version = packageJson.version;
 
 function Application() {
   const user = useContext(UserContext);
