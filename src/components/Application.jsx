@@ -24,7 +24,7 @@ import PageHeader from './PageHeader';
 //import packageJson from '/package.json';
 
 export const Version = process.env.REACT_APP_VERSION;
-export const ManualVersion = "1.0.5";
+export const ManualVersion = "1.0.6";
 
 function Application() {
   const user = useContext(UserContext);
