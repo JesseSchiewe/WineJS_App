@@ -192,6 +192,21 @@ input[type='text-center'] {
     vertical-align: top;
 }
 
+.ResultText {
+    font-weight: 400;
+    color: darkblue;
+    border-color: grey;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-left: 10%;
+    margin-right: 5%;
+    width: 90%;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-align: left;
+    vertical-align: top;
+}
+
 
 input[type="number"] {
     font-weight: 400;

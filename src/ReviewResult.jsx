@@ -158,9 +158,7 @@ export const ReviewResult = () => {
 
     function handleChange(e){
         wineReviewName = e;
-        alert(e);
         dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
-        alert(dbpathref)
         setReviewData()        
     }
 
@@ -323,22 +321,34 @@ export const ReviewResult = () => {
                         <h2>Vintage: {Vintage}</h2>
                         <h2>Total: {Total}</h2>
                         <h2>TastingNotes:</h2>
-                        {TastingNotes}
+                        <div className="ResultText">
+                            {TastingNotes} 
+                        </div>
                         <h2>Nose Intensity: {NoseIntensity}</h2>
                         <h2>Nose Intensity Notes:</h2>
-                        {NoseIntensityNotes}
+                        <div className="ResultText">
+                            {NoseIntensityNotes}
+                        </div>
                         <h2>Flavor Intensity: {FlavorIntensity}</h2>
                         <h2>Flavor Intensity Notes:</h2>
-                        {FlavorIntensityNotes}
+                        <div className="ResultText">
+                            {FlavorIntensityNotes}
+                        </div>
                         <h2>FlavorCharacteristics: {FlavorCharacteristics}</h2>
                         <h2>FlavorCharacteristicsNotes:</h2>
-                        {FlavorCharacteristicsNotes}
+                        <div className="ResultText">
+                            {FlavorCharacteristicsNotes}
+                        </div>
                         <h2>Balance: {Balance}</h2>
                         <h2>Balance Notes:</h2>
-                        {BalanceNotes}
+                        <div className="ResultText">
+                            {BalanceNotes}
+                        </div>
                         <h2>Length: {Length}</h2>
                         <h2>Length Notes:</h2>
-                        {LengthNotes}
+                        <div className="ResultText">
+                            {LengthNotes}
+                        </div>
                     </reviewresults>
                 </div>               
             </div>
