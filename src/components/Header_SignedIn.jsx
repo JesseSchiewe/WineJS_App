@@ -2,7 +2,7 @@ import React, {Fragment, useContext, useState, useRef} from 'react';
 import { Link } from "react-router-dom";
 import {auth} from "../Firebase";
 import { UserContext } from '../providers/UserProvider';
-import { Version } from './Application';
+import { Version, ManualVersion } from './Application';
 
 //Burger Styles
 //import React, { useState, useRef } from 'react';
@@ -29,7 +29,7 @@ export default function HeaderSignedIn() {
     return(
         <div className="SiteMenu">
             <div className="Version">
-                Version: {Version}
+                Version: {ManualVersion} {Version}
             </div>
 
             <ThemeProvider theme={theme}>

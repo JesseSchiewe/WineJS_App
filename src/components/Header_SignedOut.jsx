@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 //import {auth} from "../Firebase";
 //import { UserContext } from '../providers/UserProvider';
 //import Review from '../Review';
-import { Version } from './Application';
+import { Version, ManualVersion } from './Application';
 
 export default function HeaderSignedOut() {
     //const user = useContext(UserContext);
@@ -19,7 +19,7 @@ export default function HeaderSignedOut() {
             </div> 
 
             <div className="Version">
-                Version: {Version}
+                Version: {ManualVersion} {Version}
             </div>
             <div className="SiteMenu">                               
                 <Link to="/home">
