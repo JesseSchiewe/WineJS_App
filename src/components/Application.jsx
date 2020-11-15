@@ -7,9 +7,9 @@ import ProfilePage from "./ProfilePage";
 import { UserContext } from '../providers/UserProvider';
 import PasswordReset from "./PasswordReset";
 
-//import '../App.css';
-import '../Style/WineShop.css';
-import '../SliderJS.css';
+import '../Style/App.css';
+//import '../Style/WineShop.css';
+//import '../SliderJS.css';
 
 import '../useToggle';
 import '../OutputForm';
@@ -24,7 +24,7 @@ import PageHeader from './PageHeader';
 //import packageJson from '/package.json';
 
 export const Version = process.env.REACT_APP_VERSION;
-export const ManualVersion = "1.0.7";
+export const ManualVersion = "1.0.8";
 
 function Application() {
   const user = useContext(UserContext);

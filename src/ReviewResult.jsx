@@ -25,6 +25,10 @@ export const ReviewResult = () => {
     const [ Total, setTotal ] = useState();
     const [ Vintage, setVintage ] = useState();
     const [ WineName1, setWineName1 ] = useState();
+    const [ ReviewDate, setReviewDate ] = useState();
+    const [ ActualPrice, setActualPrice ] = useState();
+    const [ WineValue, setWineValue ] = useState();
+
 
     var wineReviewName = "Wine4"
     var dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
@@ -71,6 +75,9 @@ export const ReviewResult = () => {
             setTotal(snapshot.val().Total);
             setVintage(snapshot.val().Vintage);
             setWineName1(snapshot.val().WineName);
+            setReviewDate(snapshot.val().ReviewDate);
+            setActualPrice(snapshot.val().ActualPrice);
+            setWineValue(snapshot.val().WineValue);
         });
     }
 
@@ -92,11 +99,14 @@ export const ReviewResult = () => {
                             <h1>Wine Name: {WineName1}</h1>
                             <h2>Producer: {Producer}</h2>
                             <h2>Vintage: {Vintage}</h2>
+                            <h2>Review Date: {ReviewDate}</h2>
                             <h2>Total: {Total}</h2>
                             <h2>TastingNotes:</h2>
                             <div className="ResultText">
                                 {TastingNotes} 
                             </div>
+                            <h2>Actual Price: {ActualPrice}</h2>
+                            <h2>Perceived Value: {WineValue}</h2>
                             <h2>Nose Intensity: {NoseIntensity}</h2>
                             <h2>Nose Intensity Notes:</h2>
                             <div className="ResultText">

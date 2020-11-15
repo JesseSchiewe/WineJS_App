@@ -27,7 +27,8 @@ body {
     border-color: slategray;
     border-width: 2px;
     margin-left: 10%;
-    margin-top: -8%;
+    margin-top: -7%;
+    margin-bottom: 6%;
     outline: 1px;
   }
   input[type="range"]::-webkit-slider-thumb {
@@ -73,10 +74,13 @@ body {
         color:black;
         background-color: palevioletred;
         font-family: sans-serif;
-        margin: 1em;
-        margin-top: 2em;
-        margin-left: 15%;
-        padding: 1px;
+        margin: 0em;
+        margin-top: 0em;
+        margin-left: 25%;
+        padding: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: .6em;
     }
     
     .error {
@@ -91,6 +95,7 @@ body {
     text-transform: uppercase;
     border: none;
     margin-top: 10px;
+    margin-bottom: 50px;
     padding: 15px;
     font-size: 30px;
     width: 100%;
