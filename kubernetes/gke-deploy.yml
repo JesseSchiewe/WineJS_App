@@ -5,6 +5,9 @@ metadata:
     app: winejs-db
   name: winejs-db
   namespace: default
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  IMAGE: image
 spec:
   replicas: 1
   selector:
