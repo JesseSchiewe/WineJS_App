@@ -31,7 +31,7 @@ spec:
         app: winejs-db
     spec:
       containers:
-      - image: gcr.io/winejs-db/image:v1.0.6
+      - image: gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
         imagePullPolicy: IfNotPresent
         name: image
         resources: {}
