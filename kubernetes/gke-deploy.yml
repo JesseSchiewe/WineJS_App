@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: winejs-db
+  name: winejs-db
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: winejs-db
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: winejs-db
+    spec:
+      containers:
+        - image: gcr.io/winejs-db/github.com/jesseschiewe/winejs_app
+          imagePullPolicy: IfNotPresent
+          name: image
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: winejs-db
+  name: winejs-db-service
+  namespace: default
+spec:
+  clusterIP: 10.8.3.203
+  externalTrafficPolicy: Cluster
+  ports:
+    - nodePort: 32498
+      port: 80
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: winejs-db
+  sessionAffinity: None
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: winejs-db
+  name: winejs-db
+  namespace: default
+spec:
+  clusterIP: 10.8.8.45
+  externalTrafficPolicy: Cluster
+  ports:
+    - nodePort: 30200
+      port: 80
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: winejs-db
+  sessionAffinity: None
+  type: LoadBalancer
