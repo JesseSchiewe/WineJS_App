@@ -3,18 +3,12 @@ import { Link } from "react-router-dom";
 import {auth} from "../Firebase";
 import { UserContext } from '../providers/UserProvider';
 import { Version, ManualVersion } from './Application';
-
-//Burger Styles
-//import React, { useState, useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { useOnClickOutside } from '../hooks';
-//import { GlobalStyles } from '../Style/Burger/global';
 import { theme } from '../theme';
 import { default as Burger } from './Burger';
 import { default as Menu } from './Menu';
 import FocusLock from 'react-focus-lock';
-//End Burger Styles
-
 
 export default function HeaderSignedIn() {
     const user = useContext(UserContext);

@@ -1,16 +1,12 @@
 import React from 'react';
-//import Select from 'react-select'
 import { Link } from "react-router-dom";
-//import {auth} from "../Firebase";
-//import { UserContext } from '../providers/UserProvider';
-//import Review from '../Review';
 import { Version, ManualVersion } from './Application';
 
 export default function HeaderSignedOut() {
     //const user = useContext(UserContext);
 
     return(
-        <div>
+        <div className="SiteMenu" >
             <div className="SiteHeader"> 
                 Not Signed In
                 <Link to="/">

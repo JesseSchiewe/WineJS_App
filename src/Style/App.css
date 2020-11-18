@@ -301,7 +301,7 @@ h1 {
     text-decoration: none;
     width: 5em;
     z-index: 2;
-    margin-top: 0em;
+    margin-top: .3em;
     margin-left: .5em;
   }
   
@@ -535,7 +535,7 @@ body {
         padding: 0em;
         margin: 0em;
         margin-right: 2%;
-        margin-top: .5em;
+        margin-top: 0em;
     }
 
     .SiteMenu {
@@ -582,7 +582,9 @@ body {
 
     h1 {
         font-weight: 100;
-        color: #000066;
+        /* color: #000066; */
+        color: white;
+        text-shadow: 2px 2px #000066;
         margin-top: 0px;
         font-size: 250%;
         font-family: "Dosis", Helvetica, Arial, sans-serif; 
