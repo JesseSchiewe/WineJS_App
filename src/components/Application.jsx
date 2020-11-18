@@ -1,30 +1,22 @@
 import React, {useContext} from "react";
-//import { Router } from "@reach/router";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import ProfilePage from "./ProfilePage";
 import { UserContext } from '../providers/UserProvider';
 import PasswordReset from "./PasswordReset";
-
 import '../Style/App.css';
-//import '../Style/WineShop.css';
-//import '../SliderJS.css';
-
 import '../useToggle';
 import '../OutputForm';
 import {About} from '../About.js';
 import {Contact} from '../Contact.js';
 import {ReviewResult} from '../ReviewResult';
-//import outputForm from "../OutputForm";
 import Review from "../Review";
 import Home from '../Home';
-//import NotFoundPage from "./NotFoundPage";
 import PageHeader from './PageHeader';
-//import packageJson from '/package.json';
 
 export const Version = process.env.REACT_APP_VERSION;
-export const ManualVersion = "1.0.8";
+export const ManualVersion = "1.0.9";
 
 function Application() {
   const user = useContext(UserContext);

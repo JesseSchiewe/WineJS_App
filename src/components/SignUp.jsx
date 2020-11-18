@@ -92,12 +92,14 @@ const SignUp = () => {
           Sign up
           </button>
           {error !== null && (
-          <div className="error">
-            {error}
-          </div>
+            <div className="error">
+              {error}
+            </div>
           )}
           {toHome ? <Redirect to={{ pathname:"/" }} /> : null}
-          <h2>or</h2>
+          <h2>
+            or
+          </h2>
           <button
             className="bg-red-500 hover:bg-red-600 w-full py-2 text-white " onClick={signInWithGoogle}
           >

@@ -2,19 +2,13 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    /* height: 100vh; */
-    /* background: url(two_wine_glasses.WEBP) no-repeat 50% 50%; */
-    /* background: url(two_wine_glasses.WEBP); */
     background-size: cover;
-    /* overflow: hidden; */
     margin: 0;
     padding: 0;
     width: 100%;
-    /* height: 100vh; */
-    /* background: url(/src/Style/two_wine_glasses.WEBP) ; */
-    background: url(two_wine_glasses.WEBP);
+    background: url(vineyard.WEBP);
     background-size: cover;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .outline {
