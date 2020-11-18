@@ -5,9 +5,6 @@ metadata:
     app: winejs-db
   name: winejs-db
   namespace: default
-env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  IMAGE: image
 spec:
   replicas: 1
   selector:
@@ -24,7 +21,7 @@ spec:
         app: winejs-db
     spec:
       containers:
-        - image: gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
+        - image: gcr.io/winejs-db/image:$GITHUB_SHA
           imagePullPolicy: IfNotPresent
           name: image
 ---
