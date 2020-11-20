@@ -23,6 +23,7 @@ env:
   GKE_ZONE: us-central1-c   # TODO: update to cluster zone
   DEPLOYMENT_NAME: winejs-db  # TODO: update to deployment name
   IMAGE: image
+  GITHUB_SHA: $GITHUB_SHA
 
 jobs:
   setup-build-publish-deploy:
