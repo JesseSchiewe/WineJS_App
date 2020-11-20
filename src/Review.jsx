@@ -61,15 +61,16 @@ export default function Review() {
 
   return (
     <UserProvider>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="WineJS Wine Review">
-              <h1>WineJS Review</h1>
-          </div>
+      <div className="ReviewPage" >
+        <form className="reviewform" onSubmit={handleSubmit(onSubmit)}>
           
+          
+          <h1>WineJS Review</h1>          
           <textarea type="small" name="ReviewDate" hideit="true" value={today} ref={register} />
-          
+                    
           {toResults ? <Redirect to={{ pathname:"/reviewresult", state: { data: sampleData }}} /> : null}
-              
+
+          <div className="formbackground" >    
           <h2>Producer</h2>
           <input type="text" placeholder="Producer" name="Producer" ref={register} />
 
@@ -158,7 +159,6 @@ export default function Review() {
           <div class="value">{totalValue}</div>
           <input type="hidden" id="Total" name="Total" defaultValue={totalValue} ref={register}/>
 
-
           <button type="button" className="infobutton" onClick={togglePurchase} value="" >Purchase Info</button>
           <h2>
             {hidePurchase ? "" : "How much DID you pay?"}
@@ -173,7 +173,9 @@ export default function Review() {
           <textarea name="TastingNotes" ref={register} />
 
           <input type="submit" onClick={handleSubmit(onSubmit)} />
-        </form>
+          </div>
+        </form>     
+      </div>
     </UserProvider>
   );
 }
