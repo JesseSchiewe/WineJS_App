@@ -21,7 +21,7 @@ spec:
         app: winejs-db
     spec:
       containers:
-        - image: gcr.io/winejs-db/image:${{GITHUB_SHA}}
+        - image: gcr.io/winejs-db/image:latest
           imagePullPolicy: Always
           name: image
 ---
