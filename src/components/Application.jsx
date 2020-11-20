@@ -16,7 +16,7 @@ import Home from '../Home';
 import PageHeader from './PageHeader';
 
 export const Version = process.env.REACT_APP_VERSION;
-export const ManualVersion = "1.1.1";
+export const ManualVersion = "1.1.2";
 
 function Application() {
   const user = useContext(UserContext);

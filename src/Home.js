@@ -6,7 +6,7 @@ export default function Home() {
     return(
         <Fragment>
             <div className="Home">
-                <h1>Home Page</h1>
+                <h1>Home</h1>
                 <p/>
                 <h2>You must be signed in to access the Review and Review Results pages.</h2>
                 <div className="standardText" >
