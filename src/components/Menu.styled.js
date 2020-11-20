@@ -6,9 +6,11 @@ export const StyledMenu = styled.nav`
   justify-content: center;
   background: ${({ theme }) => theme.primaryLight};
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
-  height: 95%;
+  height: 100%;
+  z-index: 2;
   text-align: left;
-  padding: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -19,7 +21,7 @@ export const StyledMenu = styled.nav`
   a {
     font-size: 2rem;
     text-transform: uppercase;
-    padding: 1.3rem 0;
+    padding: 1.4rem 0;
     font-weight: bold;
     letter-spacing: 0.3rem;
     color: ${({ theme }) => theme.primaryDark};

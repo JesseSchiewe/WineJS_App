@@ -67,10 +67,11 @@ export default function Review() {
           
           <h1>WineJS Review</h1>          
           <textarea type="small" name="ReviewDate" hideit="true" value={today} ref={register} />
-                    
-          {toResults ? <Redirect to={{ pathname:"/reviewresult", state: { data: sampleData }}} /> : null}
+          
+          <div className="formbackground" >
 
-          <div className="formbackground" >    
+          {toResults ? <Redirect to={{ pathname:"/reviewresult", state: { data: sampleData }}} /> : null}
+    
           <h2>Producer</h2>
           <input type="text" placeholder="Producer" name="Producer" ref={register} />
 

@@ -1,11 +1,7 @@
 import React, {Fragment, useContext, useState} from 'react';
 import Select from 'react-select'
-//import { useForm } from 'react-hook-form';
-//import App from './App';
 import firebase from 'firebase';
 import './index.js';
-//import outputForm from './OutputForm';
-//import { useList, useListKeys } from "react-firebase-hooks/database"
 import { UserContext } from "./providers/UserProvider";
 
 export const ReviewResult = () => {
@@ -88,7 +84,7 @@ export const ReviewResult = () => {
                     <h1>Results</h1>
                 </div>
                 <form>
-                    <Select options={ test } isSearchable={true} onChange={e => handleChange(e.value)} />
+                    <Select options={ test } className="selectBox" isSearchable={true} onChange={e => handleChange(e.value)} />
                 </form>
 
                 {/* {ShowReview} */}
@@ -101,7 +97,7 @@ export const ReviewResult = () => {
                             <h2>Vintage: {Vintage}</h2>
                             <h2>Review Date: {ReviewDate}</h2>
                             <h2>Total: {Total}</h2>
-                            <h2>TastingNotes:</h2>
+                            <h2>Tasting Notes:</h2>
                             <div className="ResultText">
                                 {TastingNotes} 
                             </div>
@@ -117,8 +113,8 @@ export const ReviewResult = () => {
                             <div className="ResultText">
                                 {FlavorIntensityNotes}
                             </div>
-                            <h2>FlavorCharacteristics: {FlavorCharacteristics}</h2>
-                            <h2>FlavorCharacteristicsNotes:</h2>
+                            <h2>Flavor Characteristics: {FlavorCharacteristics}</h2>
+                            <h2>Flavor Characteristics Notes:</h2>
                             <div className="ResultText">
                                 {FlavorCharacteristicsNotes}
                             </div>
