@@ -23,7 +23,7 @@ export default function HeaderSignedIn() {
     return(
         <div className="SiteMenu">
             <div className="Version">
-                Version: {ManualVersion} {Version}
+                V: {ManualVersion} {Version}
             </div>
 
             <ThemeProvider theme={theme}>

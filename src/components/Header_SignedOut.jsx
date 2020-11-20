@@ -15,7 +15,7 @@ export default function HeaderSignedOut() {
             </div> 
 
             <div className="Version">
-                Version: {ManualVersion} {Version}
+                V: {ManualVersion} {Version}
             </div>
             <div className="SiteMenu">                               
                 <Link to="/home">
