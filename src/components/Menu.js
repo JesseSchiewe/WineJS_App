@@ -12,27 +12,27 @@ const Menu = ({ open, ...props }) => {
       <a href="/home" tabIndex={tabIndex}>
         <span aria-hidden="true">📩</span>
         Home
-        </a>  
+      </a>  
       <a href="/review" tabIndex={tabIndex}>
         <span aria-hidden="true">&#127863;</span>
         Review
-        </a>  
+      </a>  
       <a href="/reviewresult" tabIndex={tabIndex}>
         <span aria-hidden="true">&#129351;</span>
         Results
-        </a>
+      </a>
       <a href="/profilepage" tabIndex={tabIndex}>
         <span aria-hidden="true">💁🏻‍♂️</span>
         Profile
-        </a>  
+      </a>  
       <a href="/about" tabIndex={tabIndex}>
         <span aria-hidden="true">&#129346;</span>
         About us
-        </a>
+      </a>
       <a href="/contact" tabIndex={tabIndex}>
         <span aria-hidden="true">📩</span>
         Contact
-        </a>
+      </a>
     </StyledMenu>
   )
 }

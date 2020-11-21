@@ -23,30 +23,26 @@ export default function HeaderSignedIn() {
     return(
         <div className="SiteMenu">
             <div className="Version">
-                V: {ManualVersion} {Version}
+                v {ManualVersion} {Version}
             </div>
-
             <ThemeProvider theme={theme}>
-                <>
-                    {/* <GlobalStyles /> */}
-                    <div ref={node}>
-                        <FocusLock disabled={!open}>
-                            <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
-                            <Menu open={open} setOpen={setOpen} id={menuId} />
-                        </FocusLock>
-                    </div>
-                </>
+                {/* <GlobalStyles /> */}
+                <div ref={node}>
+                    <FocusLock disabled={!open}>
+                        <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
+                        <Menu open={open} setOpen={setOpen} id={menuId} />
+                    </FocusLock>
+                </div>
             </ThemeProvider>
             <div className="SiteHeader"> 
-                {/* <a className="UserName">Current User: {user.displayName}</a> */}
                 <Link to="/profilepage">
-                {user.displayName}
-                    {/* <button type="menubutton" className="usernamebutton" >{user.displayName}</button> */}
-                    {/* <button type="menubutton" className="headerbutton" >Contact</button> */}
-                </Link>
-
-
-                <a className="bn39" href="/"><span className="bn39span" onClick = {() => {auth.signOut()}}>Sign Out</span></a>     
+                    {user.displayName}
+                </Link>                
+                <div className="bn39" href="/">
+                    <span className="bn39span" onClick = {() => {auth.signOut()}}>
+                        Sign Out
+                    </span>
+                </div>     
                 {/* <button className="bn39span" onClick = {() => {auth.signOut()}} >Google Sign Out</button>                    */}
                 <p/>
             </div>                         

@@ -75,19 +75,21 @@ const SignIn = () => {
             {error !== null && <div>{error}</div>}
           </div>
           {toHome ? <Redirect to={{ pathname:"/" }} /> : null}
-          <h2>or</h2>
+          <h2>
+            or
+          </h2>
           <button className="GoogleSignIn" onClick={signInWithGoogle}>
             Sign in with Google
           </button>
           <p className="text">
-          Don't have an account?{" "}
-          <Link to="signUp" className="text-blue-500 hover:text-blue-600">
-            Sign up here
-          </Link>{" "}
-          <br />{" "}
-          <Link to = "passwordReset" className="text-blue-500 hover:text-blue-600">
-            Forgot Password?
-          </Link>
+            Don't have an account?{" "}
+            <Link to="signUp" className="text-blue-500 hover:text-blue-600">
+              Sign up here
+            </Link>{" "}
+            <br />{" "}
+            <Link to = "passwordReset" className="text-blue-500 hover:text-blue-600">
+              Forgot Password?
+            </Link>
           </p>
         </form>
 
