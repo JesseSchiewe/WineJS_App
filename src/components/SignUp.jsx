@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 //import { Link } from "@reach/router";
 import { Link } from "react-router-dom";
-import {signInWithGoogle} from "../Firebase";
+//import {signInWithGoogle} from "../Firebase";
 import { auth, generateUserDocument } from "../Firebase";
 import { Redirect } from 'react-router-dom';
 
@@ -97,14 +97,14 @@ const SignUp = () => {
             </div>
           )}
           {toHome ? <Redirect to={{ pathname:"/" }} /> : null}
-          <h2>
+          {/* <h2>
             or
           </h2>
           <button
             className="bg-red-500 hover:bg-red-600 w-full py-2 text-white " onClick={signInWithGoogle}
           >
             Sign In with Google
-          </button>
+          </button> */}
           <p className="text-center my-3">
             Already have an account?{" "}
             <Link to="/" className="text-blue-500 hover:text-blue-600">

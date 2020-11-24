@@ -140,7 +140,7 @@ button:hover {
 input[type='text'] {
   font-weight: 400;
   background: white;
-  /* opacity: 70%; */
+  opacity: .8;
   color: black;
   border-color: grey;
   padding: 10px 15px;
@@ -156,7 +156,7 @@ input[type='text'] {
 input[type='text-center'] {
   font-weight: 400;
   background: white;
-  /* opacity: 90%; */
+  opacity: .9;
   color: black;
   border-color: grey;
   padding: 10px 15px;
@@ -205,7 +205,7 @@ input[type='text-center'] {
 input[type="number"] {
   font-weight: 400;
   background: white;
-  /* opacity: 70%; */
+  opacity: .8;
   color: black;
   border-color: grey;
   padding: 10px 15px;
@@ -221,7 +221,7 @@ input[type="number"] {
 textarea {
   font-weight: 400;
   background: white;
-  /* opacity: 80%; */
+  opacity: .8;
   color: black;
   border-color: grey;
   padding: 10px 15px;
@@ -326,7 +326,7 @@ textarea {
   margin-left: 2em;
   width: 15em;
   height: 2em;
-  /* opacity: 80%; */
+  opacity: .8;
 }
 
 .profilepagesignout {
@@ -474,22 +474,50 @@ input[type="range"]::-webkit-slider-thumb {
   text-transform: uppercase;
   border: none;
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  text-align: center;
   padding: 15px;
   font-size: 30px;
   width: 100%;
   font-weight: 100;
   letter-spacing: 8px;
   }
-
   button[type='submit']:hover,
   input[type='submit']:hover {
   background: #bf1650;
   }
-
   button[type='submit']:active,
   input[type='button']:active,
   input[type='submit']:active {
+  transition: 0.3s all;
+  transform: translateY(3px);
+  border: 1px solid transparent;
+  /* opacity: 0.8; */
+  }
+
+  button[type='delete'],
+  input[type='delete'] {
+  background: crimson;
+  color: black;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding: 15px;
+  text-align: center;
+  font-size: 15px;
+  height: .1em;
+  width: 92.5%;
+  font-weight: 100;
+  letter-spacing: 4px;
+  }
+  button[type='delete']:hover,
+  input[type='delete']:hover {
+  background: red;
+  }
+  button[type='delete']:active,
+  input[type='button']:active,
+  input[type='delete']:active {
   transition: 0.3s all;
   transform: translateY(3px);
   border: 1px solid transparent;
@@ -533,6 +561,12 @@ input[type="range"]::-webkit-slider-thumb {
       text-transform: uppercase;
       border: 2px solid rebeccapurple;
       border-color: rebeccapurple;
+  }
+
+  .FavoriteWines {
+    max-width: 400px;
+    justify-content: center;
+    margin: 0 auto;
   }
   
 
@@ -607,7 +641,7 @@ input[type="range"]::-webkit-slider-thumb {
   }
 
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6, h7 {
       font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
       font-weight: 400;
   }
@@ -624,35 +658,33 @@ input[type="range"]::-webkit-slider-thumb {
       padding-bottom: 10px;
       border-bottom: 1px solid rgb(79, 98, 148);
     }
-    h2 {
-      color:black;
-      margin: 10px auto;
-      /* font-weight: 200; */
-      margin-left: 5%;
-    }
-    
-    h3 {
-      color:black;
-      margin: 10px auto;
-      padding: 2%;
-      /* font-weight: 200; */
-      margin-left: 5%;
-      margin-right: 5%;
-      border-top: 2px dashed silver;
-    }
-    
-    h4 {
-      color:black;
-      border-top: 2px dashed silver;
-      margin: 10px auto;
-      padding: 2%;
-      /* font-weight: 200; */
-      margin-left: 5%;
-      margin-right: 5%;
-      margin-bottom: -5%;
-      font-weight: bold;
-      font-size: 3em;
-    }
+  h2 {
+    color:black;
+    margin: 10px auto;
+    /* font-weight: 200; */
+    margin-left: 5%;
+  }  
+  h3 {
+    color:black;
+    margin: 10px auto;
+    padding: 2%;
+    /* font-weight: 200; */
+    margin-left: 5%;
+    margin-right: 5%;
+    border-top: 2px dashed silver;
+  }  
+  h4 {
+    color:black;
+    border-top: 2px dashed silver;
+    margin: 10px auto;
+    padding: 2%;
+    /* font-weight: 200; */
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: -5%;
+    font-weight: bold;
+    font-size: 3em;
+  }
   h5 {
     color: purple;
     margin: 10px auto;
@@ -664,16 +696,15 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: .8em;
     justify-self: right;
   }
-
   h6 {
       color:black;
-      margin: 10px auto;
-      padding: 2%;
+      margin: 0px auto;
+      /* padding: 1%; */
       /* font-weight: 200; */
       margin-left: 5%;
       margin-right: 5%;
-      margin-bottom: -5%;
+      /* margin-bottom: -5%; */
       font-weight: bold;
-      font-size: 3em;
+      font-size: 2em;
       justify-self: right;
     }

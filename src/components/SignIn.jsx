@@ -2,7 +2,7 @@ import React, {useState} from "react";
 //import ReactDOM from 'react-dom';
 //import { Link } from "@reach/router";
 import { Link } from "react-router-dom";
-import { signInWithGoogle } from "../Firebase";
+//import { signInWithGoogle } from "../Firebase";
 import { auth } from "../Firebase";
 import { Redirect } from 'react-router-dom';
 
@@ -75,12 +75,12 @@ const SignIn = () => {
             {error !== null && <div>{error}</div>}
           </div>
           {toHome ? <Redirect to={{ pathname:"/" }} /> : null}
-          <h2>
+          {/* <h2>
             or
           </h2>
           <button className="GoogleSignIn" onClick={signInWithGoogle}>
             Sign in with Google
-          </button>
+          </button> */}
           <p className="text">
             Don't have an account?{" "}
             <Link to="signUp" className="text-blue-500 hover:text-blue-600">
