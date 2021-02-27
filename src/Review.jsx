@@ -126,6 +126,8 @@ export const Review = () => {
   const [ ActualPrice, setActualPrice ] = useState();
   const [ WineValue, setWineValue ] = useState();
 
+  const [ deleteReviewRef, setDeleteReviewRef ] = useState();
+
   const { register, handleSubmit, errors } = useForm();
 
   let totalValue = (Number(Balance) + Number(Length) + Number(FlavorCharacteristics) + Number(FlavorIntensity) + Number(NoseIntensity))
@@ -134,7 +136,9 @@ export const Review = () => {
   } 
 
   function setReviewData() {
-    firebase.database().ref(dbpathref).on('value', (snapshot) => {
+    firebase.database().ref(dbpathref).on('value', (snapshot) => {        
+        setDeleteReviewRef('users/' + user.uid + "/" + wineReviewName);
+
         setAppellation(snapshot.val().Appellation);
         setBalance(snapshot.val().Balance);
         setBalanceNotes(snapshot.val().BalanceNotes);
@@ -174,13 +178,16 @@ export const Review = () => {
 
   function writeToDatabase(userId, data) {
     // firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + today).set({
+    // alert(ReviewDate);
+    // alert('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + ReviewDate);
     firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + ReviewDate).set({
       data    
     });
   }
 
   function deleteFromDatabase() {
-    var deleteReviewRef = 'users/' + user.uid + '/' + Producer + ' ' + WineName1 + ' ' + ReviewDate
+    // var deleteReviewRef = 'users/' + user.uid + '/' + Producer + ' ' + WineName1 + ' ' + ReviewDate
+    // The deleteReviewRef variable is now created when a review is loaded to prevent the variable changing when you change review scores or data.
     firebase.database().ref(deleteReviewRef).remove();    
   }
 
@@ -190,8 +197,8 @@ export const Review = () => {
     setToResults(true)
   }
 
-  function onUpdate(data) {    
-    // deleteFromDatabase();
+  function onUpdate(data) {
+    deleteFromDatabase();
     writeToDatabase(user.uid,data);
     alert("Successfully updated review");
     window.location.reload();
@@ -286,7 +293,9 @@ export const Review = () => {
 
               {/* {toResults ? <Redirect to={{ pathname:"/reviewresult", state: { data: sampleData }}} /> : null} */}
               {toResults ? <Redirect to={{ pathname:"/reviewresult" }} /> : null}
-        
+
+              <input type="hidden" id="ReviewDate" name="ReviewDate" defaultValue={ReviewDate} ref={register}/>
+                      
               <h2>Producer</h2>
               <input type="text" placeholder="Who makes the wine?" defaultValue={Producer} name="Producer" ref={register} />
 
