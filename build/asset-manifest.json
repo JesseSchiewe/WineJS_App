@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.51fb7d3c.chunk.css",
-    "main.js": "/static/js/main.d0ada438.chunk.js",
-    "main.js.map": "/static/js/main.d0ada438.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.433d26c8.js",
-    "runtime-main.js.map": "/static/js/runtime-main.433d26c8.js.map",
-    "static/js/2.4220384a.chunk.js": "/static/js/2.4220384a.chunk.js",
-    "static/js/2.4220384a.chunk.js.map": "/static/js/2.4220384a.chunk.js.map",
+    "main.css": "/static/css/main.1be0d91d.chunk.css",
+    "main.js": "/static/js/main.abc46db3.chunk.js",
+    "main.js.map": "/static/js/main.abc46db3.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6517d077.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6517d077.js.map",
+    "static/js/2.918115bc.chunk.js": "/static/js/2.918115bc.chunk.js",
+    "static/js/2.918115bc.chunk.js.map": "/static/js/2.918115bc.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.51fb7d3c.chunk.css.map": "/static/css/main.51fb7d3c.chunk.css.map",
-    "static/js/2.4220384a.chunk.js.LICENSE.txt": "/static/js/2.4220384a.chunk.js.LICENSE.txt",
-    "static/media/WineShop.css": "/static/media/two_wine_glasses.4d947fb0.WEBP"
+    "static/css/main.1be0d91d.chunk.css.map": "/static/css/main.1be0d91d.chunk.css.map",
+    "static/js/2.918115bc.chunk.js.LICENSE.txt": "/static/js/2.918115bc.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/WineSunset.d0b780a9.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.433d26c8.js",
-    "static/js/2.4220384a.chunk.js",
-    "static/css/main.51fb7d3c.chunk.css",
-    "static/js/main.d0ada438.chunk.js"
+    "static/js/runtime-main.6517d077.js",
+    "static/js/2.918115bc.chunk.js",
+    "static/css/main.1be0d91d.chunk.css",
+    "static/js/main.abc46db3.chunk.js"
   ]
 }

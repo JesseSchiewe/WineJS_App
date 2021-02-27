@@ -1,7 +1,7 @@
-import React, {useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import useToggle from './useToggle';
-import {useLocation, Redirect} from 'react-router-dom';
+import { useLocation, Redirect } from 'react-router-dom';
 import firebase from 'firebase';
 import UserProvider, { UserContext } from "./providers/UserProvider";
 import Select from 'react-select'
@@ -45,6 +45,7 @@ export const Review = () => {
 
 
   const [hideFavorites, toggleHideFavorites] = useToggle();
+  const [hideTopFlavorCharacteristics, toggleHideTopFlavorCharacteristics] = useToggle();  
   var dbWineNamesWI = '/users/' + user.uid + "/"
   var querywi = firebase.database().ref(dbWineNamesWI).orderByKey();
 
@@ -69,6 +70,9 @@ export const Review = () => {
   // const [hideReview, toggleHideReview] = useToggle(hideReviewToggleStart);
   //const [hideReview, setHideReview] = useState(hideReviewToggleStart);
   //console.log(hideReview)
+
+  const date = new Date();
+  const today = (date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear()
   
   var wineitems = [];
   function SetWineArrayItems() {
@@ -77,7 +81,8 @@ export const Review = () => {
           snapshotWI.forEach(function (childSnapshotWI) {
               var wName = childSnapshotWI.key 
               var wTotal = childSnapshotWI.child("data").child("Total").val();
-              returnArrWineItems.push({ wine:wName, total:wTotal });
+              var wFlavorCharacteristics = childSnapshotWI.child("data").child("FlavorCharacteristics").val();
+              returnArrWineItems.push({ wine:wName, total:wTotal, flavorcharacteristics:wFlavorCharacteristics });
           });                
       });
       wineitems = returnArrWineItems
@@ -93,6 +98,15 @@ export const Review = () => {
       setTopRated(sorted);
   };
 
+  const [topFlavorCharacteristics, setTopFlavorCharacteristics] = useState(wineitems);
+  const sortByTopFlavorCharacteristicsScore = () => {
+      const sorted = [...topFlavorCharacteristics].sort((a, b) => {
+          return  b.flavorcharacteristics - a.flavorcharacteristics;
+      });
+      setTopFlavorCharacteristics(sorted);
+  };
+
+  const [ Appellation, setAppellation ] = useState();
   const [ Balance , setBalance ] = useState(0);
   const [ BalanceNotes, setBalanceNotes ] = useState();
   const [ FlavorCharacteristics, setFlavorCharacteristics ] = useState(0);
@@ -108,7 +122,7 @@ export const Review = () => {
   //const [ Total, setTotal ] = useState();
   const [ Vintage, setVintage ] = useState();
   const [ WineName1, setWineName1 ] = useState();
-  const [ ReviewDate, setReviewDate ] = useState();
+  const [ ReviewDate, setReviewDate ] = useState(today);
   const [ ActualPrice, setActualPrice ] = useState();
   const [ WineValue, setWineValue ] = useState();
 
@@ -120,26 +134,27 @@ export const Review = () => {
   } 
 
   function setReviewData() {
-      firebase.database().ref(dbpathref).on('value', (snapshot) => {
-          setBalance(snapshot.val().Balance);
-          setBalanceNotes(snapshot.val().BalanceNotes);
-          setFlavorCharacteristics(snapshot.val().FlavorCharacteristics);
-          setFlavorCharacteristicsNotes(snapshot.val().FlavorCharacteristicsNotes);
-          setFlavorIntensity(snapshot.val().FlavorIntensity);
-          setFlavorIntensityNotes(snapshot.val().FlavorIntensityNotes);
-          setLength(snapshot.val().Length);
-          setLengthNotes(snapshot.val().LengthNotes);
-          setNoseIntensity(snapshot.val().NoseIntensity);
-          setNoseIntensityNotes(snapshot.val().NoseIntensityNotes);
-          setProducer(snapshot.val().Producer);
-          setTastingNotes(snapshot.val().TastingNotes);
-          //setTotal(snapshot.val().Total);
-          setVintage(snapshot.val().Vintage);
-          setWineName1(snapshot.val().WineName);
-          setReviewDate(snapshot.val().ReviewDate);
-          setActualPrice(snapshot.val().ActualPrice);
-          setWineValue(snapshot.val().WineValue);
-      });
+    firebase.database().ref(dbpathref).on('value', (snapshot) => {
+        setAppellation(snapshot.val().Appellation);
+        setBalance(snapshot.val().Balance);
+        setBalanceNotes(snapshot.val().BalanceNotes);
+        setFlavorCharacteristics(snapshot.val().FlavorCharacteristics);
+        setFlavorCharacteristicsNotes(snapshot.val().FlavorCharacteristicsNotes);
+        setFlavorIntensity(snapshot.val().FlavorIntensity);
+        setFlavorIntensityNotes(snapshot.val().FlavorIntensityNotes);
+        setLength(snapshot.val().Length);
+        setLengthNotes(snapshot.val().LengthNotes);
+        setNoseIntensity(snapshot.val().NoseIntensity);
+        setNoseIntensityNotes(snapshot.val().NoseIntensityNotes);
+        setProducer(snapshot.val().Producer);
+        setTastingNotes(snapshot.val().TastingNotes);
+        //setTotal(snapshot.val().Total);
+        setVintage(snapshot.val().Vintage);
+        setWineName1(snapshot.val().WineName);
+        setReviewDate(snapshot.val().ReviewDate);
+        setActualPrice(snapshot.val().ActualPrice);
+        setWineValue(snapshot.val().WineValue);
+    });
   }
 
   const [hideNoseNotes, toggleNoseNotes] = useToggle();
@@ -156,11 +171,10 @@ export const Review = () => {
 
   const [toResults, setToResults] = useState(false);
 
-  const date = new Date();
-  const today = (date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear()
 
   function writeToDatabase(userId, data) {
-    firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + today).set({
+    // firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + today).set({
+    firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + ReviewDate).set({
       data    
     });
   }
@@ -173,6 +187,14 @@ export const Review = () => {
   function onSubmit(data) {
     alert("Successfully submitted form");
     writeToDatabase(user.uid,data);
+    setToResults(true)
+  }
+
+  function onUpdate(data) {    
+    // deleteFromDatabase();
+    writeToDatabase(user.uid,data);
+    alert("Successfully updated review");
+    window.location.reload();
     setToResults(true)
   }
 
@@ -210,6 +232,29 @@ export const Review = () => {
               );
           })}
 
+        <div className="TopFlavorCharacteristics" hidden={hideResults} >
+          <button type="button" onClick={() => {sortByTopFlavorCharacteristicsScore(); toggleHideTopFlavorCharacteristics()}} >Show/hide Top Flavor Characteristics</button>
+            {hideTopFlavorCharacteristics ? "" : (
+              <div>
+                <h6>
+                  Top Flavor Characteristics
+                </h6>
+                <p/>
+              </div>
+            )}
+          {hideTopFlavorCharacteristics ? "" : topFlavorCharacteristics.map((wineitem, i) => {
+              return (
+                <div>
+                  <h7 key={i}>
+                    {/* {wineitem.total} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => handleChange(wineitem.wine)} >{wineitem.wine} </b> */}
+                    {/* {wineitem.total} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); toggleHideFavorites() }} >{wineitem.wine} </b> */}
+                    {wineitem.flavorcharacteristics} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); toggleHideTopFlavorCharacteristics(); setHideReview(false) }} >{wineitem.wine} </b>
+                  </h7>
+                </div>
+              );
+          })}
+        </div>
+
           <p/>
           <form>
               <Select options={ test } className="selectBox" isSearchable={true} onChange={e => {handleChange(e.value); setHideReview(false)} } />
@@ -243,14 +288,17 @@ export const Review = () => {
               {toResults ? <Redirect to={{ pathname:"/reviewresult" }} /> : null}
         
               <h2>Producer</h2>
-              <input type="text" placeholder="Producer" defaultValue={Producer} name="Producer" ref={register} />
+              <input type="text" placeholder="Who makes the wine?" defaultValue={Producer} name="Producer" ref={register} />
+
+              <h2>Appellation</h2>
+              <input type="text" placeholder="Where is the wine from? Ex: Napa Valley" name="Appellation" defaultValue={Appellation} ref={register} />
 
               <h2>Wine Name</h2>
               <input type="text" placeholder="Wine Name" defaultValue={WineName1} name="WineName" ref={register({required: "Wine Name is Required", maxLength: 100})} />
               {errors.WineName && <p>{errors.WineName.message}</p> }
 
               <h2>Vintage</h2>
-              <input type="number" placeholder="Vintage" name="Vintage" defaultValue={Vintage} ref={register({min: 1900,max: 2030})} />
+              <input type="number" placeholder="Year" name="Vintage" defaultValue={Vintage} ref={register({min: 1900,max: 2030})} />
 
               <h3>Nose Intensity
                 <button type="button" className="infobutton" onClick={toggleNoseInfo} onSubmit="" >info</button>
@@ -299,7 +347,7 @@ export const Review = () => {
                 <button type="button" className="infobutton" onClick={toggleBalanceInfo} onSubmit="" >info</button>
                   <div>
                     <h5>
-                      {hideBalanceInfo ? "" : "Does the wine have a good balance of acidity, tannin, sweetness? Is any one flavor overly dominant?"}
+                      {hideBalanceInfo ? "" : "Does the wine have a good balance of acidity, tannin (bitterness), sweetness? Is any one flavor overly dominant?"}
                     </h5>
                   </div>
               </h3>
@@ -340,12 +388,11 @@ export const Review = () => {
               <h2>Tasting Notes</h2>
               <textarea name="TastingNotes" defaultValue={TastingNotes} ref={register} >{{TastingNotes}.tostring}</textarea>
               
-
-              {hideResults ?  
-                <input type="submit" onClick={handleSubmit(onSubmit)} />                
+              {hideResults ?
+                <input type="submit" onClick={handleSubmit(onSubmit)} />
                 :
                 <div>
-                  <input type="submit" value="Update" onClick={handleSubmit(onSubmit)} />
+                  <input type="submit" value="Update" onClick={handleSubmit(onUpdate)} />
                   <p/>
                   {/* <input type="delete" value="Delete Review" onClick={handleSubmit(onDelete)} /> */}
                   

@@ -81,6 +81,7 @@ export const ReviewResult = () => {
     }
 
     const [hideFavorites, toggleHideFavorites] = useToggle();
+    const [hideFlavorCharacteristics, toggleHideFlavorCharacteristics] = useToggle();
     var dbWineNamesWI = '/users/' + user.uid + "/"
     var querywi = firebase.database().ref(dbWineNamesWI).orderByKey();
 
@@ -108,6 +109,14 @@ export const ReviewResult = () => {
         setTopRated(sorted);
     };
 
+    const [topFlavorCharacteristics, setTopFlavorCharacteristics] = useState(wineitems);
+    const sortByFlavorCharacteristicsScore = () => {
+        const sorted = [...topFlavorCharacteristics].sort((a, b) => {
+            return  b.flavorcharacteristics - a.flavorcharacteristics;
+        });
+        setTopFlavorCharacteristics(sorted);
+    };
+
     return(
         <Fragment>
             <div>
@@ -119,15 +128,35 @@ export const ReviewResult = () => {
                 {() => {sortByScore(); toggleHideFavorites()}}
 
                 <button type="button" onClick={() => {sortByScore(); toggleHideFavorites()}} >Show/hide Top Rated Wines</button>
-                    {hideFavorites ? "" : (
+                {hideFavorites ? "" : (
                         <div>
                             <h6>
-                                Favorite Wines
+                                Favorite Wines 1
                             </h6>
                         </div>
                     )
                 }
                 {hideFavorites ? "" : topRated.map((wineitem, i) => {
+                    return (
+                        <div>
+                            <h6 key={i}>
+                                {wineitem.total} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => handleChange(wineitem.wine)} >{wineitem.wine} </b>
+                            </h6>;
+                        </div>
+                    );
+                })}
+
+                {() => {sortByFlavorCharacteristicsScore(); toggleHideFlavorCharacteristics()}}
+                <button type="button" onClick={() => {sortByFlavorCharacteristicsScore(); toggleHideFlavorCharacteristics()}} >Show/hide Flavor Characteristics</button>
+                {hideFlavorCharacteristics ? "" : (
+                        <div>
+                            <h6>
+                                Top Flavor Characteristics Score
+                            </h6>
+                        </div>
+                    )
+                }
+                {hideFlavorCharacteristics ? "" : topRated.map((wineitem, i) => {
                     return (
                         <div>
                             <h6 key={i}>
