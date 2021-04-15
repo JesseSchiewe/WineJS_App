@@ -628,6 +628,12 @@ input[type="range"]::-webkit-slider-thumb {
       font-size: 14px;
   }
 
+  .selectedFlavors {
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: .6em;
+  }
+
   .sitepages {
       
       width: 20%;

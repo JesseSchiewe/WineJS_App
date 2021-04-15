@@ -4,7 +4,13 @@ import useToggle from './useToggle';
 import { useLocation, Redirect } from 'react-router-dom';
 import firebase from 'firebase';
 import UserProvider, { UserContext } from "./providers/UserProvider";
-import Select from 'react-select'
+import Select from 'react-select';
+import { useEffect } from 'react';
+//import { RedWineDarkFruit,RedWineRedFruit,RedWineSpice,RedWineHerbs,RedWineSecondary,RedWineFlower,RedWineOak } from './components/WineFlavors';
+//import { RedWineFlavorSelector } from './components/WineFlavorSelectBox';
+import { RedWineFlavorOptions } from './components/WineFlavors';
+import { formatGroupLabel, colorStyles } from './components/WineFlavorSelectBox';
+//import DataGrid from 'react-data-grid';
 //import './index.js';
 //import {Routes} from './Routes';
 //import {db} from './Config';
@@ -16,7 +22,7 @@ export const Review = () => {
   const user = useContext(UserContext);
 
   const RunType = useLocation().pathname;
-  console.log(RunType);
+  //console.log(RunType);
 
   var wineReviewName = ""
   var dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
@@ -32,20 +38,20 @@ export const Review = () => {
   }
 
   function SetWineArray() {
-      var returnArr = [];         
-        query.once("value").then(function (snapshot) {
-            snapshot.forEach(function (childSnapshot) {
-                returnArr.push({ label:childSnapshot.key, value:childSnapshot.key});  
-            });
+    var returnArr = [];         
+      query.once("value").then(function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            returnArr.push({ label:childSnapshot.key, value:childSnapshot.key});  
         });
-      test = returnArr
-      return returnArr
+      });
+    test = returnArr
+    return returnArr
   }
   SetWineArray()
 
-
-  const [hideFavorites, toggleHideFavorites] = useToggle();
-  const [hideTopFlavorCharacteristics, toggleHideTopFlavorCharacteristics] = useToggle();  
+  const [hideSortedResults, setHideSortedResults] = useState(true); 
+  //const [hideFavorites, toggleHideFavorites] = useToggle();
+  //const [hideTopFlavorCharacteristics, toggleHideTopFlavorCharacteristics] = useToggle();  
   var dbWineNamesWI = '/users/' + user.uid + "/"
   var querywi = firebase.database().ref(dbWineNamesWI).orderByKey();
 
@@ -73,43 +79,117 @@ export const Review = () => {
 
   const date = new Date();
   const today = (date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear()
+
+  const wineSortCategories = [
+    "ActualPrice",
+    "Appellation",
+    "Balance",
+    "FlavorCharacteristics",
+    "FlavorIntensity",
+    "Length",
+    "NoseIntensity",
+    "Producer",
+    "ReviewDate",
+    "Total",
+    "Vintage",
+    "WineName",
+    "WineValue"
+  ];
   
+  // var wineitems = [];
+  // function SetWineArrayItems() {
+  //     var returnArrWineItems = [];         
+  //     querywi.once("value").then(function (snapshotWI) {
+  //         snapshotWI.forEach(function (childSnapshotWI) {
+  //             var wName = childSnapshotWI.key 
+  //             var wTotal = childSnapshotWI.child("data").child("Total").val();
+  //             var wFlavorCharacteristics = childSnapshotWI.child("data").child("FlavorCharacteristics").val();
+  //             returnArrWineItems.push({ wine:wName, total:wTotal, flavorcharacteristics:wFlavorCharacteristics });
+  //         });                
+  //     });
+  //     wineitems = returnArrWineItems
+  //     return returnArrWineItems
+  // }
+  // SetWineArrayItems()
+              
+  
+  //const [ currentItem, setCurrentItem ] = useState([])
+  //const [ categoryItem, setCategoryItem ] = useState("")
+  //setCurrentItem(currentItem => currentItem.concat(categoryItem))
+
+
+  // var wineitems = [];
+  // function SetWineArrayItems() {                
+  //   var returnArrWineItems = []; 
+  //   var itemList = "";        
+  //   querywi.once("value").then(function (snapshotWI) {
+  //     snapshotWI.forEach(function (childSnapshotWI) {
+  //       var wName = childSnapshotWI.key 
+  //       itemList = ({ wine:wName })
+  //       wineSortCategories.forEach(function getCategoryData(category) {
+  //         var currentValue = childSnapshotWI.child("data").child(category).val();  
+  //         itemList = ({ ...itemList,[category]:currentValue})
+  //       });
+  //       wineitems.push({ ...itemList })
+  //       returnArrWineItems.push({ ...itemList })
+  //     });            
+  //     // console.log(returnArrWineItems)
+  //     console.log(wineitems)
+  //   });
+  // }
+  //SetWineArrayItems()
+  // useEffect(() => {
+  //   SetWineArrayItems();
+  // }, []); 
+  // useEffect(() => {
+  //   SetWineArrayItems();
+  // }, []); 
+
   var wineitems = [];
-  function SetWineArrayItems() {
-      var returnArrWineItems = [];         
+  function SetWineArrayItems() { 
+    useEffect(() => {
+      var returnArrWineItems = []; 
+      var itemList = "";        
       querywi.once("value").then(function (snapshotWI) {
-          snapshotWI.forEach(function (childSnapshotWI) {
-              var wName = childSnapshotWI.key 
-              var wTotal = childSnapshotWI.child("data").child("Total").val();
-              var wFlavorCharacteristics = childSnapshotWI.child("data").child("FlavorCharacteristics").val();
-              returnArrWineItems.push({ wine:wName, total:wTotal, flavorcharacteristics:wFlavorCharacteristics });
-          });                
+        snapshotWI.forEach(function (childSnapshotWI) {
+          var wName = childSnapshotWI.key 
+          itemList = ({ wine:wName })
+          wineSortCategories.forEach(function getCategoryData(category) {
+            var currentValue = childSnapshotWI.child("data").child(category).val();  
+            itemList = ({ ...itemList,[category]:currentValue})
+          });
+          wineitems.push({ ...itemList })
+          returnArrWineItems.push({ ...itemList })
+        });
+        //console.log(wineitems)
       });
-      wineitems = returnArrWineItems
-      return returnArrWineItems
+    }, []);
   }
+
   SetWineArrayItems()
 
-  const [topRated, setTopRated] = useState(wineitems);
-  const sortByScore = () => {
-      const sorted = [...topRated].sort((a, b) => {
-          return  b.total - a.total;
-      });
-      setTopRated(sorted);
+  const sortOptions = wineSortCategories.map((category) =>
+    ({label:category,value:category})
+  );
+
+  const [sortedReviews, setSortedReviews] = useState(wineitems);
+  function sortResults(sortColumn) {
+    const sorted = [...sortedReviews].sort((a, b) => {
+      return b[sortColumn] - a[sortColumn]
+    });
+    setSortedReviews(sorted);
   };
 
-  const [topFlavorCharacteristics, setTopFlavorCharacteristics] = useState(wineitems);
-  const sortByTopFlavorCharacteristicsScore = () => {
-      const sorted = [...topFlavorCharacteristics].sort((a, b) => {
-          return  b.flavorcharacteristics - a.flavorcharacteristics;
-      });
-      setTopFlavorCharacteristics(sorted);
-  };
+  const [ SortByCategory, setSortByCategory ] = useState("Total");
 
   const [ Appellation, setAppellation ] = useState();
   const [ Balance , setBalance ] = useState(0);
   const [ BalanceNotes, setBalanceNotes ] = useState();
   const [ FlavorCharacteristics, setFlavorCharacteristics ] = useState(0);
+
+  //const [ Flavors, setFlavors ] = useState();
+  const [ selectedFlavors, setselectedFlavors ] = useState([]);
+
   const [ FlavorCharacteristicsNotes, setFlavorCharacteristicsNotes ] = useState();
   const [ FlavorIntensity, setFlavorIntensity ] = useState(0);
   const [ FlavorIntensityNotes, setFlavorIntensityNotes ] = useState();
@@ -137,27 +217,28 @@ export const Review = () => {
 
   function setReviewData() {
     firebase.database().ref(dbpathref).on('value', (snapshot) => {        
-        setDeleteReviewRef('users/' + user.uid + "/" + wineReviewName);
+      setDeleteReviewRef('users/' + user.uid + "/" + wineReviewName);
 
-        setAppellation(snapshot.val().Appellation);
-        setBalance(snapshot.val().Balance);
-        setBalanceNotes(snapshot.val().BalanceNotes);
-        setFlavorCharacteristics(snapshot.val().FlavorCharacteristics);
-        setFlavorCharacteristicsNotes(snapshot.val().FlavorCharacteristicsNotes);
-        setFlavorIntensity(snapshot.val().FlavorIntensity);
-        setFlavorIntensityNotes(snapshot.val().FlavorIntensityNotes);
-        setLength(snapshot.val().Length);
-        setLengthNotes(snapshot.val().LengthNotes);
-        setNoseIntensity(snapshot.val().NoseIntensity);
-        setNoseIntensityNotes(snapshot.val().NoseIntensityNotes);
-        setProducer(snapshot.val().Producer);
-        setTastingNotes(snapshot.val().TastingNotes);
-        //setTotal(snapshot.val().Total);
-        setVintage(snapshot.val().Vintage);
-        setWineName1(snapshot.val().WineName);
-        setReviewDate(snapshot.val().ReviewDate);
-        setActualPrice(snapshot.val().ActualPrice);
-        setWineValue(snapshot.val().WineValue);
+      setAppellation(snapshot.val().Appellation);
+      setBalance(snapshot.val().Balance);
+      setBalanceNotes(snapshot.val().BalanceNotes);
+      setFlavorCharacteristics(snapshot.val().FlavorCharacteristics);
+      setFlavorCharacteristicsNotes(snapshot.val().FlavorCharacteristicsNotes);
+      setFlavorIntensity(snapshot.val().FlavorIntensity);
+      setFlavorIntensityNotes(snapshot.val().FlavorIntensityNotes);
+      setLength(snapshot.val().Length);
+      setLengthNotes(snapshot.val().LengthNotes);
+      setNoseIntensity(snapshot.val().NoseIntensity);
+      setNoseIntensityNotes(snapshot.val().NoseIntensityNotes);
+      setProducer(snapshot.val().Producer);
+      setselectedFlavors(snapshot.val().Flavors);
+      setTastingNotes(snapshot.val().TastingNotes);
+      //setTotal(snapshot.val().Total);
+      setVintage(snapshot.val().Vintage);
+      setWineName1(snapshot.val().WineName);
+      setReviewDate(snapshot.val().ReviewDate);
+      setActualPrice(snapshot.val().ActualPrice);
+      setWineValue(snapshot.val().WineValue);
     });
   }
 
@@ -175,19 +256,13 @@ export const Review = () => {
 
   const [toResults, setToResults] = useState(false);
 
-
   function writeToDatabase(userId, data) {
-    // firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + today).set({
-    // alert(ReviewDate);
-    // alert('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + ReviewDate);
     firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + ReviewDate).set({
       data    
     });
   }
 
   function deleteFromDatabase() {
-    // var deleteReviewRef = 'users/' + user.uid + '/' + Producer + ' ' + WineName1 + ' ' + ReviewDate
-    // The deleteReviewRef variable is now created when a review is loaded to prevent the variable changing when you change review scores or data.
     firebase.database().ref(deleteReviewRef).remove();    
   }
 
@@ -210,7 +285,6 @@ export const Review = () => {
     window.location.reload();
     alert("Successfully deleted review.")
   }
-  // console.log(errors);
 
   return (
     <UserProvider>
@@ -218,65 +292,47 @@ export const Review = () => {
 
         {/* {hideResults ? "Hide" : "Show"} */}
         <div className="FavoriteWines" hidden={hideResults} >
-          <button type="button" onClick={() => {sortByScore(); toggleHideFavorites()}} >Show/hide Top Rated Wines</button>
-            {hideFavorites ? "" : (
-              <div>
-                <h6>
-                  Favorite Wines
-                </h6>
-                <p/>
-              </div>
-            )}
-          {hideFavorites ? "" : topRated.map((wineitem, i) => {
-              return (
-                <div>
-                  <h7 key={i}>
-                    {/* {wineitem.total} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => handleChange(wineitem.wine)} >{wineitem.wine} </b> */}
-                    {/* {wineitem.total} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); toggleHideFavorites() }} >{wineitem.wine} </b> */}
-                    {wineitem.total} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); toggleHideFavorites(); setHideReview(false) }} >{wineitem.wine} </b>
-                  </h7>
-                </div>
-              );
-          })}
 
-        <div className="TopFlavorCharacteristics" hidden={hideResults} >
-          <button type="button" onClick={() => {sortByTopFlavorCharacteristicsScore(); toggleHideTopFlavorCharacteristics()}} >Show/hide Top Flavor Characteristics</button>
-            {hideTopFlavorCharacteristics ? "" : (
+          <div className="SortedResults" hidden={hideResults} >
+            <button type="button" onClick={() => {sortResults(SortByCategory); setHideSortedResults(!hideSortedResults); setHideReview(true)}} >Show/Hide Favorite Wines</button>
+
+            {hideSortedResults ? "" : (
+              <form>
+                {/* <Select options={ sortOptions } className="selectBox" isSearchable={true} onChange={() => {sortResults("total"); toggleHideSortedResults()}}   /> */}
+                <Select options={ sortOptions } className="selectBox" placeholder="Sort By" isSearchable={true} onChange={(e) => {sortResults(e.value); setSortByCategory(e.value) }}   />
+              </form>
+            )}
+            {hideSortedResults ? "" : (
               <div>
-                <h6>
-                  Top Flavor Characteristics
-                </h6>
+                <h7>
+                  Sorted by {SortByCategory}
+                </h7>
                 <p/>
               </div>
             )}
-          {hideTopFlavorCharacteristics ? "" : topFlavorCharacteristics.map((wineitem, i) => {
-              return (
-                <div>
-                  <h7 key={i}>
-                    {/* {wineitem.total} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => handleChange(wineitem.wine)} >{wineitem.wine} </b> */}
-                    {/* {wineitem.total} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); toggleHideFavorites() }} >{wineitem.wine} </b> */}
-                    {wineitem.flavorcharacteristics} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); toggleHideTopFlavorCharacteristics(); setHideReview(false) }} >{wineitem.wine} </b>
-                  </h7>
-                </div>
-              );
-          })}
-        </div>
+            {hideSortedResults ? "" : sortedReviews.map((wineitem, i) => {
+                return (
+                  <div>
+                    <h7 key={i}>
+                      {wineitem[SortByCategory]} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); setHideSortedResults(true) ; setHideReview(false) }} >{wineitem.wine} </b>
+                    </h7>
+                  </div>
+                );
+            })}
+          </div>
 
           <p/>
           <form>
-              <Select options={ test } className="selectBox" isSearchable={true} onChange={e => {handleChange(e.value); setHideReview(false)} } />
+            <h6>
+              {/* Select Review */}
+            </h6>
+            <Select options={ test } className="selectBox" isSearchable={true} placeholder="Select Review" onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } />
           </form>
         </div>
-        
 
-        {/* </div><div className="ReviewPage" hidden={WineName1 ? false : true } > */}
         <div className="ReviewPage" hidden={hideReview} >
           <form className="reviewform" onSubmit={handleSubmit(onSubmit)}>          
-            
-                      
-            {/* <input type="text" name="ReviewDate" hideit="false" value={today} ref={register} /> */}
             <div className="formbackground" >
-
               {hideResults ? (
                 <div>
                   <h1>WineJS Review</h1>                  
@@ -325,11 +381,11 @@ export const Review = () => {
 
               <h3>Flavor Intensity
                 <button type="button" className="infobutton" onClick={toggleFlavorIntensityInfo} onSubmit="" >info</button>
-                  <div>
-                    <h5>
-                      {hideFlavorIntensityInfo ? "" : "How strong does the wine taste?"}
-                    </h5>
-                  </div>
+                <div>
+                  <h5>
+                    {hideFlavorIntensityInfo ? "" : "How strong does the wine taste?"}
+                  </h5>
+                </div>
               </h3>
               <div class="value">{FlavorIntensity}</div>
               <input type="range" id="FlavorIntensity" name="FlavorIntensity" min="1" max="10" defaultValue="0" value={FlavorIntensity} onChange={e => setFlavorIntensity(e.target.value)} ref={register} />
@@ -339,26 +395,50 @@ export const Review = () => {
 
               <h3>Flavor Characteristics
                 <button type="button" className="infobutton" onClick={toggleFlavorCharacteristicsInfo} onSubmit="" >info</button>
-                  <div>
-                    <h5>
-                      {hideFlavorCharacteristicsInfo ? "" : "Do you like the way the wine tastes?"}
-                    </h5>
-                  </div>
-              </h3>
+                <div>
+                  <h5>
+                    {hideFlavorCharacteristicsInfo ? "" : "Do you like the way the wine tastes?"}
+                  </h5>
+                </div>
+              </h3>              
               {/* <input type="range" id="FlavorCharacteristics" name="FlavorCharacteristics" min="0" max="25" defaultValue="0" onChange={e => updateTextInput(e.target.value,'FlavorScore')} ref={register} /> */}
               <div class="value">{FlavorCharacteristics}</div>
               <input type="range" id="FlavorCharacteristics" name="FlavorCharacteristics" min="1" max="25" defaultValue="0" value={FlavorCharacteristics} onChange={e => setFlavorCharacteristics(e.target.value)} ref={register} />
               <button type="button" onClick={toggleCharNotes} value="" >Show/hide notes</button>
               <textarea type="small" name="FlavorCharacteristicsNotes" defaultValue={FlavorCharacteristicsNotes} hideit={hideCharNotes ? "true" : "false"} ref={register} />
+              {/* {hideCharNotes ? "" : RedWineFlavorSelector()} */}
+
+              <div name="FlavorSelector" hidden={hideCharNotes ? true : false} ref={register} >
+                <input type="hidden" id="Flavors" name="Flavors" defaultValue={selectedFlavors} ref={register}/>
+
+                <div class="selectedFlavors">
+                  Selected Flavors: {selectedFlavors}
+                </div>
+
+                <Select
+                  closeMenuOnSelect={false}
+                  isMulti        
+                  name="redWineFlavorSelector"
+                  placeholder="Flavor Selector"
+                  options={RedWineFlavorOptions}
+                  formatGroupLabel={formatGroupLabel}
+                  defaultValue={selectedFlavors}
+                  onChange={e => {
+                    setselectedFlavors(Array.isArray(e) ? e.map(x => x.value) : [])
+                    //console.log(selectedFlavors)
+                  }}                  
+                  styles={colorStyles}
+                />                     
+              </div>
               {errors.FlavorCharacteristics && <p>Value must be at least 1</p> }
 
               <h3>Balance
                 <button type="button" className="infobutton" onClick={toggleBalanceInfo} onSubmit="" >info</button>
-                  <div>
-                    <h5>
-                      {hideBalanceInfo ? "" : "Does the wine have a good balance of acidity, tannin (bitterness), sweetness? Is any one flavor overly dominant?"}
-                    </h5>
-                  </div>
+                <div>
+                  <h5>
+                    {hideBalanceInfo ? "" : "Does the wine have a good balance of acidity, tannin (bitterness), sweetness? Is any one flavor overly dominant?"}
+                  </h5>
+                </div>
               </h3>
               <div class="value">{Balance}</div>
               <input type="range" id="Balance" name="Balance" min="1" max="5" defaultValue="0" value={Balance} onChange={e => setBalance(e.target.value)} ref={register} />
@@ -368,11 +448,11 @@ export const Review = () => {
 
               <h3>Length
                 <button type="button" className="infobutton" onClick={toggleLengthInfo} onSubmit="" >info</button>
-                  <div>
-                    <h5>
-                      {hideLengthInfo ? "" : "How long does the wine flavor remain after taking a sip?"}
-                    </h5>
-                  </div>
+                <div>
+                  <h5>
+                    {hideLengthInfo ? "" : "How long does the wine flavor remain after taking a sip?"}
+                  </h5>
+                </div>
               </h3>
               <div class="value">{Length}</div>
               <input type="range" id="Length" name="Length" min="1" max="5" defaultValue="0" value={Length} onChange={e => setLength(e.target.value)} ref={register} />

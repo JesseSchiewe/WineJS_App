@@ -1,9 +1,9 @@
 {
   "name": "winejs",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "private": true,
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "chokidar": "^3.4.3",
     "core-js": "^3.7.0",
     "firebase": "^7.24.0",
@@ -17,6 +17,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
     "react-select": "^3.1.0",
+    "react-table": "^7.6.3",
     "react-validation": "^3.0.7",
     "resolve-url": "^0.2.1",
     "router": "^1.3.5",
