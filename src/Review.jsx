@@ -189,6 +189,7 @@ export const Review = () => {
 
   //const [ Flavors, setFlavors ] = useState();
   const [ selectedFlavors, setselectedFlavors ] = useState([]);
+  const [ selectedAromas, setselectedAromas ] = useState([]);
 
   const [ FlavorCharacteristicsNotes, setFlavorCharacteristicsNotes ] = useState();
   const [ FlavorIntensity, setFlavorIntensity ] = useState(0);
@@ -231,6 +232,7 @@ export const Review = () => {
       setNoseIntensity(snapshot.val().NoseIntensity);
       setNoseIntensityNotes(snapshot.val().NoseIntensityNotes);
       setProducer(snapshot.val().Producer);
+      setselectedAromas(snapshot.val().Aromas);
       setselectedFlavors(snapshot.val().Flavors);
       setTastingNotes(snapshot.val().TastingNotes);
       //setTotal(snapshot.val().Total);
@@ -377,6 +379,29 @@ export const Review = () => {
               <input type="range" id="NoseIntensity" name="NoseIntensity" min="1" max="5" defaultValue="0" value={NoseIntensity} onChange={e => setNoseIntensity(e.target.value)} ref={register} />
               <button type="button" onClick={toggleNoseNotes} value="" >Show/hide notes</button>
               <textarea type="small" name="NoseIntensityNotes" defaultValue={NoseIntensityNotes} hideit={hideNoseNotes ? "true" : "false"} ref={register} />
+              <div name="AromaSelector" hidden={hideNoseNotes ? true : false} >
+                <input type="hidden" id="Aromas" name="Aromas" defaultValue={selectedAromas} ref={register}/>
+
+                <div class="selectedAromas">
+                  Selected Aromas: {selectedAromas}
+                </div>
+                
+                <Select
+                  closeMenuOnSelect={false}
+                  isMulti        
+                  name="redWineAromaSelector"                
+                  placeholder="Aroma Selector"
+                  blurInputOnSelect={false}
+                  options={RedWineFlavorOptions}
+                  formatGroupLabel={formatGroupLabel}
+                  defaultValue={selectedAromas}
+                  onChange={e => {
+                    setselectedAromas(Array.isArray(e) ? e.map(x => x.value) : [])
+                    //console.log(selectedFlavors)
+                  }}                  
+                  styles={colorStyles}
+                />
+              </div>
               {errors.NoseIntensity && <p>Value must be at least 1</p> }
 
               <h3>Flavor Intensity
@@ -430,7 +455,6 @@ export const Review = () => {
                   }}                  
                   styles={colorStyles}
                 />
-
               </div>
               {errors.FlavorCharacteristics && <p>Value must be at least 1</p> }
 
