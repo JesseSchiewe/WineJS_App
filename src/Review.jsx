@@ -418,8 +418,9 @@ export const Review = () => {
                 <Select
                   closeMenuOnSelect={false}
                   isMulti        
-                  name="redWineFlavorSelector"
+                  name="redWineFlavorSelector"                
                   placeholder="Flavor Selector"
+                  blurInputOnSelect={false}
                   options={RedWineFlavorOptions}
                   formatGroupLabel={formatGroupLabel}
                   defaultValue={selectedFlavors}
@@ -428,7 +429,8 @@ export const Review = () => {
                     //console.log(selectedFlavors)
                   }}                  
                   styles={colorStyles}
-                />                     
+                />
+
               </div>
               {errors.FlavorCharacteristics && <p>Value must be at least 1</p> }
 

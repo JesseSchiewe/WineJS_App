@@ -36,7 +36,7 @@ const SignIn = () => {
   const [toHome, setToHome] = useState(false);
 
   return (
-    <div className="mt-8">
+    <div className="SignInPage">
       <h1>Sign In</h1>
       <div>
         <form className="">
@@ -49,7 +49,7 @@ const SignIn = () => {
             className="signupfield"
             name="userEmail"
             value = {email}
-            placeholder="E.g: BobTest@gmail.com"
+            placeholder="Ex. WineJSFan@gmail.com"
             id="userEmail"
             onChange = {(event) => onChangeHandler(event)}
           />
@@ -82,11 +82,12 @@ const SignIn = () => {
             Sign in with Google
           </button> */}
           <p className="text">
-            Don't have an account?{" "}
+            {/* Don't have an account?{" "} */}
             <Link to="signUp" className="text-blue-500 hover:text-blue-600">
               Sign up here
             </Link>{" "}
             <br />{" "}
+            <p/>
             <Link to = "passwordReset" className="text-blue-500 hover:text-blue-600">
               Forgot Password?
             </Link>

@@ -349,15 +349,6 @@ textarea {
 }
 
 
-
-
-
-
-
-
-
-
-
 body {
   font-family: "Dosis", Helvetica, Arial, sans-serif; 
   color:#000066;
@@ -597,6 +588,14 @@ input[type="range"]::-webkit-slider-thumb {
     background-position: center;
   }
 
+  .SignInPage {
+    text-align: center;
+  }
+
+  .SignUpPage {
+    text-align: center;    
+  }
+
   form {
     /* background: white;
     opacity: .7; */     
@@ -655,8 +654,10 @@ input[type="range"]::-webkit-slider-thumb {
   h1 {
       font-weight: 600;
       /* color: #000066; */
-      color: white;
-      text-shadow: 2px 2px #000066;
+      /* color: white;
+      text-shadow: 2px 2px #000066; */
+      color: #000066;
+      text-shadow: 1px 1px hotpink;
       margin-top: 0px;
       font-size: 250%;
       /* font-family: "Dosis", Helvetica, Arial, sans-serif;  */

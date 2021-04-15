@@ -41,7 +41,7 @@ const SignUp = () => {
   return (
     <div>
       <h1>Sign Up</h1>
-      <div className="SignUp">
+      <div className="SignUpPage">
         <form>
           <label htmlFor="displayName" className="signuplabel">
             Display Name:
