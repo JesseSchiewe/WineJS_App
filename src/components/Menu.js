@@ -14,7 +14,7 @@ const Menu = ({ open, ...props }) => {
         Home
       </a>  
       <a href="/review" tabIndex={tabIndex}>
-        <span aria-hidden="true">&#127863; </span>
+        <span aria-hidden="true">&#127863;</span>
         Review
       </a>  
       <a href="/reviewresult" tabIndex={tabIndex}>

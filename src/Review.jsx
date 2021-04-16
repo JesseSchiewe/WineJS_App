@@ -6,17 +6,12 @@ import firebase from 'firebase';
 import UserProvider, { UserContext } from "./providers/UserProvider";
 import Select from 'react-select';
 import { useEffect } from 'react';
-//import { RedWineDarkFruit,RedWineRedFruit,RedWineSpice,RedWineHerbs,RedWineSecondary,RedWineFlower,RedWineOak } from './components/WineFlavors';
-//import { RedWineFlavorSelector } from './components/WineFlavorSelectBox';
 import { RedWineFlavorOptions } from './components/WineFlavors';
 import { formatGroupLabel, colorStyles } from './components/WineFlavorSelectBox';
-//import DataGrid from 'react-data-grid';
-//import './index.js';
-//import {Routes} from './Routes';
-//import {db} from './Config';
-//import {Firebase} from './Config';
-//import firestore from './Firebase'
-//import firebase from "firebase/app";
+
+import WineColorChart from './Style/WineColorChart.jpg';
+import WineTastingGrid from './Style/WineTastingGrid.jpg';
+
 
 export const Review = () => {
   const user = useContext(UserContext);
@@ -57,8 +52,10 @@ export const Review = () => {
 
   var hideReviewToggleStart = ""
   var hideResultsStart = ""
+  var showResultsHeader = ""
   if ( RunType === "/reviewresult" ) {
     hideReviewToggleStart = true
+    showResultsHeader = true
   }
   if ( RunType === "/review" ) {
     hideResultsStart = true
@@ -255,6 +252,8 @@ export const Review = () => {
   const [hideFlavorCharacteristicsInfo, toggleFlavorCharacteristicsInfo] = useToggle();
   const [hideBalanceInfo, toggleBalanceInfo] = useToggle();
   const [hideLengthInfo, toggleLengthInfo] = useToggle();
+  const [hideColorChart, toggleColorChart] = useToggle();
+  const [hideTastingGrid, toggleTastingGrid] = useToggle();
 
   const [toResults, setToResults] = useState(false);
 
@@ -291,9 +290,16 @@ export const Review = () => {
   return (
     <UserProvider>
       <div>
-
-        {/* {hideResults ? "Hide" : "Show"} */}
+        <div hidden={!showResultsHeader}>
+          <h1>
+            Results
+          </h1>                  
+        </div>
         <div className="FavoriteWines" hidden={hideResults} >
+          <form>
+            <Select options={ test } className="selectBox" isSearchable={true} placeholder="Select Review" onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } />
+          </form>
+          <p/>
 
           <div className="SortedResults" hidden={hideResults} >
             <button type="button" onClick={() => {sortResults(SortByCategory); setHideSortedResults(!hideSortedResults); setHideReview(true)}} >Show/Hide Favorite Wines</button>
@@ -316,20 +322,14 @@ export const Review = () => {
                 return (
                   <div>
                     <h7 key={i}>
-                      {wineitem[SortByCategory]} --- <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); setHideSortedResults(true) ; setHideReview(false) }} >{wineitem.wine} </b>
+                      {wineitem[SortByCategory]}  |  <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); setHideSortedResults(true) ; setHideReview(false) }} >{wineitem.wine} </b>
                     </h7>
                   </div>
                 );
             })}
           </div>
 
-          <p/>
-          <form>
-            <h6>
-              {/* Select Review */}
-            </h6>
-            <Select options={ test } className="selectBox" isSearchable={true} placeholder="Select Review" onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } />
-          </form>
+
         </div>
 
         <div className="ReviewPage" hidden={hideReview} >
@@ -342,7 +342,7 @@ export const Review = () => {
                 )
               : (
                 <div>
-                  <h1>Review Result</h1>
+                  {/* <h1>Review Result</h1> */}
                   This is a past review. You may edit the review data and save the changes or delete the review from this page.             
                   <h2>Review Date</h2>
                   <input type="text" name="ReviewDate" value={ReviewDate ? ReviewDate : today} ref={register} />
@@ -456,6 +456,9 @@ export const Review = () => {
                   styles={colorStyles}
                 />
               </div>
+
+   
+
               {errors.FlavorCharacteristics && <p>Value must be at least 1</p> }
 
               <h3>Balance
@@ -490,7 +493,7 @@ export const Review = () => {
               <div class="value">{totalValue}</div>
               <input type="hidden" id="Total" name="Total" defaultValue={totalValue} ref={register}/>
 
-              <button type="button" className="infobutton" onClick={togglePurchase} value="" >Purchase Info</button>
+              <button type="button" onClick={togglePurchase} value="" >Purchase Info</button>
               <h2>
                 {hidePurchase ? "" : "How much DID you pay?"}
               </h2>
@@ -499,6 +502,21 @@ export const Review = () => {
                 {hidePurchase ? "" : "How much WOULD you pay?"}
               </h2>
               <input type="number" placeholder="$" name="WineValue" defaultValue={WineValue} hideit={hidePurchase ? "true" : "false"} ref={register({min: 0,max: 30000000})} />
+              
+              <div className="WineTools">
+                <button type="button" className="winetoolsbutton" onClick={toggleColorChart} onSubmit="" >Wine Colors</button>
+              </div>
+              <div hidden={hideColorChart}>
+                  <img src={WineColorChart} alt="Wine Color Chart" width={400} />
+              </div>
+
+              <div className="WineTools">
+                <button type="button" className="winetoolsbutton" onClick={toggleTastingGrid} onSubmit="" >Wine Tasting Grid</button>
+              </div>
+              <div hidden={hideTastingGrid}>
+                  <img src={WineTastingGrid} alt="Wine Tasting Grid" width={400} />
+              </div>
+
 
               <h2>Tasting Notes</h2>
               <textarea name="TastingNotes" defaultValue={TastingNotes} ref={register} >{{TastingNotes}.tostring}</textarea>

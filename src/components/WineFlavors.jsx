@@ -3,6 +3,7 @@ const RedWineDarkFruit = [
     { value: 'Black Cherry', label: 'Black Cherry', color: 'purple', isFixed: true },
     { value: 'Black Currant', label: 'Black Currant', color: 'purple', isFixed: true },
     { value: 'Plum', label: 'Plum', color: 'purple', isFixed: true },
+    { value: 'Prune', label: 'Prune', color: 'purple', isFixed: true },
     { value: 'Blueberry', label: 'Blueberry', color: 'purple', isFixed: true },
     { value: 'Boysenberry', label: 'Boysenberry', color: 'purple', isFixed: true },
 ];
