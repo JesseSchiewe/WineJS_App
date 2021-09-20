@@ -626,6 +626,10 @@ button.winetoolsbutton {
     background: rgba(255, 255, 255, 0.35);
   }
 
+  .hidden {
+    display: none;
+  }
+
 
   textarea {
       font-weight: 400;
