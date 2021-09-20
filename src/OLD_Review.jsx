@@ -8,11 +8,9 @@ import Select from 'react-select';
 import { useEffect } from 'react';
 import { RedWineFlavorOptions } from './components/WineFlavors';
 import { formatGroupLabel, colorStyles } from './components/WineFlavorSelectBox';
-import CreateReviewForm from './CreateReviewForm';
 
 import WineColorChart from './Style/WineColorChart.jpg';
 import WineTastingGrid from './Style/WineTastingGrid.jpg';
-import { WineReviewForm } from './WineReviewForm';
 
 export const Review = () => {
   const user = useContext(UserContext);
@@ -28,8 +26,7 @@ export const Review = () => {
   function handleChange(e){
       wineReviewName = e;
       dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
-      //setReviewData()
-    //   SetReviewData()
+      setReviewData()     
   }
 
   function SetWineArray() {
@@ -143,120 +140,6 @@ export const Review = () => {
 
   const [ deleteReviewRef, setDeleteReviewRef ] = useState();
 
-  // TESTING ONLY -- DELETE THIS PART!!!
-
-  const [ firebaseData, setFirebaseData ] = useState();
-    
-  function SetReviewData() {
-    firebase.database().ref(dbpathref).on('value', (snapshot) => {
-        setDeleteReviewRef('users/' + user.uid + "/" + wineReviewName);
-        setFirebaseData(snapshot);
-        console.log("FIREBASE DATA:");
-        console.log(snapshot);
-        console.log(firebaseData);   
-    });    
-    // CreateReviewForm(wineReviewName);
-  }
-
-//   const [ formData, setFormData ] = useState({
-//     Appellation: firebaseData.Appellation,
-//     Balance: firebaseData.Balance
-//   });    
-    // console.log(formData);
-    // console.log(formData.Appellation);
-    // console.log(formData.Balance);
-
-//   const changeHandler = e => {
-//     setFormData( prevValues => {
-//       return { ...formData,[e.target.name]: e.target.value}
-//     });
-//   }
-
-
-
-
-
-
-
-
-
-    // firebase.database().ref(dbpathref).on('value', (snapshot) => {        
-    //     setDeleteReviewRef('users/' + user.uid + "/" + wineReviewName);
-    //     // console.log(snapshot.val());
-  
-//         setAppellation(snapshot.val().Appellation);
-//         setValue("Appellation", snapshot.val().Appellation);
-  
-//         setBalance(snapshot.val().Balance);
-//         setValue("Balance", snapshot.val().Balance);
-  
-//         setBalanceNotes(snapshot.val().BalanceNotes);
-//         setValue("BalanceNotes", snapshot.val().BalanceNotes);
-  
-//         setFlavorCharacteristics(snapshot.val().FlavorCharacteristics);
-//         setValue("FlavorCharacteristics", snapshot.val().FlavorCharacteristics);
-  
-//         setFlavorCharacteristicsNotes(snapshot.val().FlavorCharacteristicsNotes);
-//         setValue("FlavorCharacteristicsNotes", snapshot.val().FlavorCharacteristicsNotes);
-  
-//         setFlavorIntensity(snapshot.val().FlavorIntensity);
-//         setValue("FlavorIntensity", snapshot.val().FlavorIntensity);
-  
-//         setFlavorIntensityNotes(snapshot.val().FlavorIntensityNotes);
-//         setValue("FlavorIntensityNotes", snapshot.val().FlavorIntensityNotes);
-  
-//         setLength(snapshot.val().Length);
-//         setValue("Length", snapshot.val().Length);
-  
-//         setLengthNotes(snapshot.val().LengthNotes);
-//         setValue("LengthNotes", snapshot.val().LengthNotes);
-  
-//         setNoseIntensity(snapshot.val().NoseIntensity);
-//         setValue("NoseIntensity", snapshot.val().NoseIntensity);
-  
-//         setNoseIntensityNotes(snapshot.val().NoseIntensityNotes);
-//         setValue("NoseIntensityNotes", snapshot.val().NoseIntensityNotes);
-  
-//         setProducer(snapshot.val().Producer);
-//         setValue("Producer", snapshot.val().Producer);
-  
-//         setselectedAromas(snapshot.val().Aromas);
-//         setValue("Aromas", snapshot.val().Aromas);
-  
-//         setselectedFlavors(snapshot.val().Flavors);
-//         setValue("Flavors", snapshot.val().Flavors);
-  
-//         setTastingNotes(snapshot.val().TastingNotes);
-//         setValue("TastingNotes", snapshot.val().TastingNotes);
-  
-//         setVintage(snapshot.val().Vintage);
-//         setValue("Vintage", snapshot.val().Vintage);
-        
-//         setWineName1(snapshot.val().WineName);
-//         setValue("WineName", snapshot.val().WineName)
-  
-//         setReviewDate(snapshot.val().ReviewDate);
-//         setValue("ReviewDate", snapshot.val().ReviewDate);
-  
-//         setActualPrice(snapshot.val().ActualPrice);
-//         setValue("ActualPrice", snapshot.val().ActualPrice);
-  
-//         setWineValue(snapshot.val().WineValue);
-//         setValue("WineValue", snapshot.val().WineValue);
-  
-//         // setTotalValue(snapshot.val().Total);
-//         setValue("totalValue", snapshot.val().Total);
-//       });
-//   })
-
-
-  // END OF TESTING ONLY
-
-
-
-
-
-
 
   // const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   const { register, watch, handleSubmit, setValue, formState: { errors } } = useForm();
@@ -268,75 +151,94 @@ export const Review = () => {
     totalValue = 50 + totalValue
   } 
 
-//   function setReviewData() {
-//     firebase.database().ref(dbpathref).on('value', (snapshot) => {        
-//       setDeleteReviewRef('users/' + user.uid + "/" + wineReviewName);
-//       // console.log(snapshot.val());
+  // function updateTotalValue() {
+  //   setTotalValue((50 + Number(Balance) + Number(Length) + Number(FlavorCharacteristics) + Number(FlavorIntensity) + Number(NoseIntensity)));
+  //   setValue(totalValue, (50 + Number(Balance) + Number(Length) + Number(FlavorCharacteristics) + Number(FlavorIntensity) + Number(NoseIntensity)) );
+  // }
 
-//       setAppellation(snapshot.val().Appellation);
-//       setValue("Appellation", snapshot.val().Appellation);
 
-//       setBalance(snapshot.val().Balance);
-//       setValue("Balance", snapshot.val().Balance);
+    // const [ Balance , setBalance ] = useState(0);
+    // const [ Length, setLength ] = useState(0);
+    // const [ FlavorCharacteristics, setFlavorCharacteristics ] = useState(0);
+    // const [ FlavorIntensity, setFlavorIntensity ] = useState(0);
+    // const [ NoseIntensity, setNoseIntensity ] = useState(0);
+    // const [ totalValue, setTotalValue ] = useState();
+    // useEffect(() => {
+    //   setTotalValue((50 + Number(Balance) + Number(Length) + Number(FlavorCharacteristics) + Number(FlavorIntensity) + Number(NoseIntensity)));
+    //   console.log(totalValue);
+    //   setValue(totalValue, (50 + Number(Balance) + Number(Length) + Number(FlavorCharacteristics) + Number(FlavorIntensity) + Number(NoseIntensity)) );
+    // }, [Balance, Length, FlavorCharacteristics, FlavorIntensity, NoseIntensity]);
 
-//       setBalanceNotes(snapshot.val().BalanceNotes);
-//       setValue("BalanceNotes", snapshot.val().BalanceNotes);
 
-//       setFlavorCharacteristics(snapshot.val().FlavorCharacteristics);
-//       setValue("FlavorCharacteristics", snapshot.val().FlavorCharacteristics);
+  function setReviewData() {
+    firebase.database().ref(dbpathref).on('value', (snapshot) => {        
+      setDeleteReviewRef('users/' + user.uid + "/" + wineReviewName);
+      // console.log(snapshot.val());
 
-//       setFlavorCharacteristicsNotes(snapshot.val().FlavorCharacteristicsNotes);
-//       setValue("FlavorCharacteristicsNotes", snapshot.val().FlavorCharacteristicsNotes);
+      setAppellation(snapshot.val().Appellation);
+      setValue("Appellation", snapshot.val().Appellation);
 
-//       setFlavorIntensity(snapshot.val().FlavorIntensity);
-//       setValue("FlavorIntensity", snapshot.val().FlavorIntensity);
+      setBalance(snapshot.val().Balance);
+      setValue("Balance", snapshot.val().Balance);
 
-//       setFlavorIntensityNotes(snapshot.val().FlavorIntensityNotes);
-//       setValue("FlavorIntensityNotes", snapshot.val().FlavorIntensityNotes);
+      setBalanceNotes(snapshot.val().BalanceNotes);
+      setValue("BalanceNotes", snapshot.val().BalanceNotes);
 
-//       setLength(snapshot.val().Length);
-//       setValue("Length", snapshot.val().Length);
+      setFlavorCharacteristics(snapshot.val().FlavorCharacteristics);
+      setValue("FlavorCharacteristics", snapshot.val().FlavorCharacteristics);
 
-//       setLengthNotes(snapshot.val().LengthNotes);
-//       setValue("LengthNotes", snapshot.val().LengthNotes);
+      setFlavorCharacteristicsNotes(snapshot.val().FlavorCharacteristicsNotes);
+      setValue("FlavorCharacteristicsNotes", snapshot.val().FlavorCharacteristicsNotes);
 
-//       setNoseIntensity(snapshot.val().NoseIntensity);
-//       setValue("NoseIntensity", snapshot.val().NoseIntensity);
+      setFlavorIntensity(snapshot.val().FlavorIntensity);
+      setValue("FlavorIntensity", snapshot.val().FlavorIntensity);
 
-//       setNoseIntensityNotes(snapshot.val().NoseIntensityNotes);
-//       setValue("NoseIntensityNotes", snapshot.val().NoseIntensityNotes);
+      setFlavorIntensityNotes(snapshot.val().FlavorIntensityNotes);
+      setValue("FlavorIntensityNotes", snapshot.val().FlavorIntensityNotes);
 
-//       setProducer(snapshot.val().Producer);
-//       setValue("Producer", snapshot.val().Producer);
+      setLength(snapshot.val().Length);
+      setValue("Length", snapshot.val().Length);
 
-//       setselectedAromas(snapshot.val().Aromas);
-//       setValue("Aromas", snapshot.val().Aromas);
+      setLengthNotes(snapshot.val().LengthNotes);
+      setValue("LengthNotes", snapshot.val().LengthNotes);
 
-//       setselectedFlavors(snapshot.val().Flavors);
-//       setValue("Flavors", snapshot.val().Flavors);
+      setNoseIntensity(snapshot.val().NoseIntensity);
+      setValue("NoseIntensity", snapshot.val().NoseIntensity);
 
-//       setTastingNotes(snapshot.val().TastingNotes);
-//       setValue("TastingNotes", snapshot.val().TastingNotes);
+      setNoseIntensityNotes(snapshot.val().NoseIntensityNotes);
+      setValue("NoseIntensityNotes", snapshot.val().NoseIntensityNotes);
 
-//       setVintage(snapshot.val().Vintage);
-//       setValue("Vintage", snapshot.val().Vintage);
+      setProducer(snapshot.val().Producer);
+      setValue("Producer", snapshot.val().Producer);
+
+      setselectedAromas(snapshot.val().Aromas);
+      setValue("Aromas", snapshot.val().Aromas);
+
+      setselectedFlavors(snapshot.val().Flavors);
+      setValue("Flavors", snapshot.val().Flavors);
+
+      setTastingNotes(snapshot.val().TastingNotes);
+      setValue("TastingNotes", snapshot.val().TastingNotes);
+
+      setVintage(snapshot.val().Vintage);
+      setValue("Vintage", snapshot.val().Vintage);
       
-//       setWineName1(snapshot.val().WineName);
-//       setValue("WineName", snapshot.val().WineName)
+      setWineName1(snapshot.val().WineName);
+      setValue("WineName", snapshot.val().WineName)
 
-//       setReviewDate(snapshot.val().ReviewDate);
-//       setValue("ReviewDate", snapshot.val().ReviewDate);
+      setReviewDate(snapshot.val().ReviewDate);
+      setValue("ReviewDate", snapshot.val().ReviewDate);
 
-//       setActualPrice(snapshot.val().ActualPrice);
-//       setValue("ActualPrice", snapshot.val().ActualPrice);
+      setActualPrice(snapshot.val().ActualPrice);
+      setValue("ActualPrice", snapshot.val().ActualPrice);
 
-//       setWineValue(snapshot.val().WineValue);
-//       setValue("WineValue", snapshot.val().WineValue);
+      setWineValue(snapshot.val().WineValue);
+      setValue("WineValue", snapshot.val().WineValue);
 
-//       // setTotalValue(snapshot.val().Total);
-//       setValue("totalValue", snapshot.val().Total);
-//     });
-//   }
+      // setTotalValue(snapshot.val().Total);
+      setValue("totalValue", snapshot.val().Total);
+    });
+  }
 
   const [hideNoseNotes, toggleNoseNotes] = useToggle();
   const [hideIntenseNotes, toggleIntenseNotes] = useToggle();
@@ -365,22 +267,39 @@ export const Review = () => {
   }
 
   function onSubmit(data) {
-    if (data.errors) {
+    if (data.errors) { 
+      // console.log(FlavorIntensity);
       console.log("Errors are present.");
       console.log(data.errors);
     } else {
       console.log("Successful");
+      // console.log(data.FlavorIntensity);
     }
+    // console.log(selectedAromas);
+    // console.log(data.Total);
+    // console.log(data);
     data.Total = String(totalValue);
+    // console.log(data);
     alert("Successfully submitted form");
     writeToDatabase(user.uid,data);
     setToResults(true);
   }
 
   function onUpdate(data) {
+    // console.log(user.uid,data);
+    // console.log("deleting the old review:")
+    // console.log(deleteReviewRef);
     deleteFromDatabase();
     data.Total = String(totalValue);
     writeToDatabase(user.uid,data);
+    // console.log(Appellation);
+    // console.log(data);
+    // console.log(NoseIntensity);
+    // console.log(totalValue);
+    // console.log(selectedFlavors);
+    // console.log(selectedAromas);
+    // alert("Successfully updated review");
+    // window.location.reload();
     alert("Successfully updated review")
     setToResults(true)
   }
@@ -399,10 +318,6 @@ export const Review = () => {
             Results
           </h1>                  
         </div>
-
-        <CreateReviewForm ReviewName='P20 W20 9-7-2021' user={user}/>
-
-
         <div className="FavoriteWines" hidden={hideResults} >
           <form>
             <Select options={ test } className="selectBox" isSearchable={true} placeholder="Select Review" onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } />
@@ -457,6 +372,7 @@ export const Review = () => {
                 </div>
               )}       
 
+              {/* {toResults ? <Redirect to={{ pathname:"/reviewresult", state: { data: sampleData }}} /> : null} */}
               {toResults ? <Redirect to={{ pathname:"/reviewresult" }} /> : null}
 
               <input type="hidden" name="ReviewDate" id="ReviewDate" {...register("ReviewDate")} defaultValue={ReviewDate} />
@@ -487,8 +403,17 @@ export const Review = () => {
               <input type="range" name="NoseIntensity" id="NoseIntensity" {...register("NoseIntensity")} min="1" max="5" defaultValue="0" value={NoseIntensity} onChange={e => setNoseIntensity(e.target.value)} />
               <button type="button" onClick={toggleNoseNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("NoseIntensityNotes")} defaultValue={NoseIntensityNotes} hideit={hideNoseNotes ? "true" : "false"} />
-            
+              
+
+              {/* <input type="range" name="TestScore" id="TESTScore" min="1" max="5" defaultValue="0" />
+              Test Score = {TestScore.valueOf} */}
+
+
+              {/* <input name="Aromas" id="Aromas" {...register("Aromas")} defaultValue={selectedAromas} /> */}
+              
               <div name="AromaSelector" hidden={hideNoseNotes ? true : false} >
+                {/* <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} defaultValue={selectedAromas} /> */}
+                {/* <input name="Aromas" id="Aromas" {...register("Aromas")} defaultValue={selectedAromas} /> */}
 
                 <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} value={selectedAromas} />
 
@@ -497,6 +422,7 @@ export const Review = () => {
                 </div>
                 
                 <Select
+                  // {...register("Aromas")}
                   closeMenuOnSelect={false}
                   isMulti
                   name="redWineAromaSelector"
@@ -504,9 +430,11 @@ export const Review = () => {
                   blurInputOnSelect={false}
                   options={RedWineFlavorOptions}
                   formatGroupLabel={formatGroupLabel}
+                  // value={selectedAromas}
                   defaultValue={selectedAromas}
                   onChange={e => {
                     setselectedAromas(Array.isArray(e) ? e.map(x => x.value) : []);
+                    // setValue("Aromas", selectedAromas);
                     setValue("Aromas", (Array.isArray(e) ? e.map(x => x.value) : []));
                     console.log(selectedAromas);
                   }}                  
@@ -529,6 +457,7 @@ export const Review = () => {
                 type="range"
                 name="FlavorIntensity"
                 id="FlavorIntensity" 
+                // {...register("FlavorIntensity", { min: 1, max: 50 })}
                 {...register("FlavorIntensity", { pattern: /[^0]+/ })}
                 min="1"
                 max="10"

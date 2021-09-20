@@ -1,6 +1,6 @@
 {
   "name": "winejs",
-  "version": "1.2.7",
+  "version": "2.0.1",
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
