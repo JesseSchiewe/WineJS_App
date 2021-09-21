@@ -14,7 +14,7 @@ import WineColorChart from './Style/WineColorChart.jpg';
 import WineTastingGrid from './Style/WineTastingGrid.jpg';
 import { WineReviewForm } from './WineReviewForm';
 
-export const Review = () => {
+export const ReviewResult = () => {
   const user = useContext(UserContext);
   const RunType = useLocation().pathname;
 
@@ -396,13 +396,13 @@ export const Review = () => {
   return (
     <UserProvider>
         <div>
-            <div>
+            <div hidden={!showResultsHeader}>
                 <h1>
-                    WineJS Review
+                    Results
                 </h1>                  
             </div>
 
-            <CreateReviewForm user={user}/>
+            <CreateReviewForm ReviewName='P40 WN40 9-7-2021' user={user}/>
 
         </div>
     </UserProvider>

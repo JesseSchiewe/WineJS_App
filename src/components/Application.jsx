@@ -13,6 +13,7 @@ import {Contact} from '../Contact';
 import {Review} from "../Review";
 import Home from '../Home';
 import PageHeader from './PageHeader';
+import {ReviewResult} from '../ReviewResult';
 
 export const Version = process.env.REACT_APP_VERSION;
 export const ManualVersion = "2.0.1";
@@ -29,7 +30,7 @@ function Application() {
           <Route path="/about" exact component={About} />
           <Route path="/contact" exact component={Contact} />
           <Route path="/review" exact component={Review} />
-          <Route path="/reviewresult" exact component={Review} />
+          <Route path="/reviewresult" exact component={ReviewResult} />
           <Route path= "/signin" exact component={SignIn} />
           <Route path= "/signUp" exact component={SignUp} />
           <Route path= "/passwordreset" exact component={PasswordReset} />
