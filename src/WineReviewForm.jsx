@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import useToggle from './useToggle';
 import { useLocation, Redirect } from 'react-router-dom';
 import firebase from 'firebase';
 import UserProvider, { UserContext } from "./providers/UserProvider";
 import Select from 'react-select';
-import { useEffect } from 'react';
 import { RedWineFlavorOptions } from './components/WineFlavors';
 import { formatGroupLabel, colorStyles } from './components/WineFlavorSelectBox';
 
@@ -16,31 +15,49 @@ import WineTastingGrid from './Style/WineTastingGrid.jpg';
 export default function WineReviewForm({preloadedValues}) {
     const user = useContext(UserContext);
     const RunType = useLocation().pathname;
+    // const [ deleteReviewRef, setDeleteReviewRef ] = useState('users/' + user.uid + "/" + preloadedValues.WineName);
+    const [ deleteReviewRef, setDeleteReviewRef ] = useState();
+
+    useEffect(() => {
+        if ( RunType === "/reviewresult" ){
+            setDeleteReviewRef('users/' + user.uid + "/" + preloadedValues.Producer + " " + preloadedValues.WineName + " " + preloadedValues.ReviewDate)
+            console.log("SETTING REVIEW NAME");
+        };            
+    }, []);
+
+    console.log("DELETE REVIEW REF");
+    console.log(deleteReviewRef);
+
   
-    var hideReviewToggleStart = ""
+    // var hideReviewToggleStart = ""
     var hideResultsStart = ""
-    var showResultsHeader = ""
+    // var showResultsHeader = ""
     if ( RunType === "/reviewresult" ) {
     //   hideReviewToggleStart = true;
     //   showResultsHeader = true;
+
+        // setDeleteReviewRef('users/' + user.uid + "/" + preloadedValues.WineName);
+        // console.log("DELETE REVIEW REF");
+        // console.log(deleteReviewRef);
+        // console.log(preloadedValues);
+        // console.log(preloadedValues.WineName);
     }
     if ( RunType === "/review" ) {
-    //   hideResultsStart = true
+      hideResultsStart = true
     }
-    const [hideReview, setHideReview] = useState(hideReviewToggleStart);
+    const [hideReview, setHideReview] = useState();
     const hideResults = hideResultsStart;
   
     const date = new Date();
     const today = (date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear()
 
-  const [ WineName1, setWineName1 ] = useState();
-  const [ ReviewDate, setReviewDate ] = useState(today);
+//   const [ WineName1, setWineName1 ] = useState();
+//   const [ ReviewDate, setReviewDate ] = useState(today);
 
   
-  const [ deleteReviewRef, setDeleteReviewRef ] = useState();
 
   // const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-  const { register, watch, handleSubmit, formState: { errors } } = useForm({
+  const { register, setValue, watch, handleSubmit, formState: { errors } } = useForm({
       defaultValues: preloadedValues
   });
 
@@ -53,7 +70,10 @@ export default function WineReviewForm({preloadedValues}) {
   const watchAROMAS = watch("Aromas");
   const watchFLAVORS = watch("Flavors");
 
-  // const watchFields = watch(["Aromas","Flavors"])
+  const watchDATE = watch("ReviewDate");
+
+  const [ selectedAromas, setselectedAromas ] = useState([]);
+  const [ selectedFlavors, setselectedFlavors ] = useState([]);
 
 //   let totalValue = (Number(Balance) + Number(Length) + Number(FlavorCharacteristics) + Number(FlavorIntensity) + Number(NoseIntensity))
     let totalValue = (Number(watchNI) + Number(watchFI) + Number(watchFC) + Number(watchBAL) + Number(watchLEN))
@@ -78,7 +98,7 @@ export default function WineReviewForm({preloadedValues}) {
   const [toResults, setToResults] = useState(false);
 
   function writeToDatabase(userId, data) {
-    firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + ReviewDate).set({
+    firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + data.ReviewDate).set({
       data    
     });
   }
@@ -104,8 +124,9 @@ export default function WineReviewForm({preloadedValues}) {
     deleteFromDatabase();
     data.Total = String(totalValue);
     writeToDatabase(user.uid,data);
-    alert("Successfully updated review")
-    setToResults(true)
+    alert("Successfully updated review");
+    window.location.reload();
+    // setToResults(true);
   }
 
   function onDelete() {
@@ -117,11 +138,6 @@ export default function WineReviewForm({preloadedValues}) {
   return (
     <UserProvider>
       <div>
-        <div hidden={!showResultsHeader}>
-          <h1>
-            Results
-          </h1>                  
-        </div>
         <div className="FavoriteWines" hidden={hideResults} >
           <form>
             {/* <Select options={ test } className="selectBox" isSearchable={true} placeholder="Select Review" onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } /> */}
@@ -142,13 +158,17 @@ export default function WineReviewForm({preloadedValues}) {
                   {/* <h1>Review Result</h1> */}
                   This is a past review. You may edit the review data and save the changes or delete the review from this page.             
                   <h2>Review Date</h2>
-                  <input type="text" {...register("ReviewDate")} value={ReviewDate ? ReviewDate : today} />
+                  {/* <input type="text" {...register("ReviewDate")} value={ReviewDate ? ReviewDate : today} /> */}
+                  {/* <input type="text" {...register("ReviewDate")} defaultValue={today} /> */}
+                  {/* <input type="text" defaultValue={today} /> */}
                 </div>
-              )}       
-
+              )}
+            
               {toResults ? <Redirect to={{ pathname:"/reviewresult" }} /> : null}
 
-              <input type="hidden" name="ReviewDate" id="ReviewDate" {...register("ReviewDate")} />
+
+              {/* <input type="hidden" name="ReviewDate" id="ReviewDate" {...register("ReviewDate")} /> */}
+              <input type="text" name="ReviewDate" id="ReviewDate" defaultValue={today} {...register("ReviewDate")} />
                       
               <h2>Producer</h2>
               <input type="text" name="Producer" ref={register} placeholder="Who makes the wine?" {...register("Producer")}/>
@@ -181,7 +201,7 @@ export default function WineReviewForm({preloadedValues}) {
               <div name="AromaSelector" hidden={hideNoseNotes ? true : false} >
 
                 {/* <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} value={selectedAromas} /> */}
-                {/* <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} value={watchAROMAS} /> */}
+                <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} value={watchAROMAS} />
 
                 <div class="selectedAromas">
                   {/* Selected Aromas: {selectedAromas} */}
@@ -191,18 +211,18 @@ export default function WineReviewForm({preloadedValues}) {
                 <Select
                   closeMenuOnSelect={false}
                   isMulti
-                  name="redWineAromaSelector"
+                  name="AromaSelector"
                   placeholder="Aroma Selector"
                   blurInputOnSelect={false}
                   options={RedWineFlavorOptions}
                   formatGroupLabel={formatGroupLabel}
-                  {...register("Aromas")}
+                //   {...register("Aromas")}
                 //   defaultValue={selectedAromas}
-                //   onChange={e => {
-                //     setselectedAromas(Array.isArray(e) ? e.map(x => x.value) : []);
-                //     setValue("Aromas", (Array.isArray(e) ? e.map(x => x.value) : []));
-                //     console.log(selectedAromas);
-                //   }}                  
+                  onChange={e => {
+                    setselectedAromas(Array.isArray(e) ? e.map(x => x.value) : []);
+                    setValue("Aromas", (Array.isArray(e) ? e.map(x => x.value) : []));
+                    console.log(selectedAromas);
+                  }}                  
                   styles={colorStyles}
                 />
               </div>
@@ -249,7 +269,7 @@ export default function WineReviewForm({preloadedValues}) {
 
               <div name="FlavorSelector" hidden={hideCharNotes ? true : false} >
                 {/* <input type="hidden" name="Flavors" id="Flavors" {...register("Flavors")} defaultValue={selectedFlavors} /> */}
-                {/* <input type="hidden" name="Flavors" id="Flavors" {...register("Flavors")} value={selectedFlavors} /> */}
+                <input type="hidden" name="Flavors" id="Flavors" {...register("Flavors")} value={watchFLAVORS} />
 
                 <div class="selectedFlavors">
                   Selected Flavors: {watchFLAVORS}
@@ -258,19 +278,17 @@ export default function WineReviewForm({preloadedValues}) {
                 <Select
                   closeMenuOnSelect={false}
                   isMulti
-                  name="redWineFlavorSelector"
+                  name="FlavorSelector"
                   placeholder="Flavor Selector"
                   blurInputOnSelect={false}
                   options={RedWineFlavorOptions}
                   formatGroupLabel={formatGroupLabel}
-                  {...register("Flavors")}
+                //   {...register("Flavors")}
                 //   defaultValue={selectedFlavors}
-                //   onChange={e => {
-                //     setselectedFlavors(Array.isArray(e) ? e.map(x => x.value) : []);
-                //     // console.log(selectedFlavors);
-                //     // setValue("Flavors", selectedFlavors);
-                //     setValue("Flavors", (Array.isArray(e) ? e.map(x => x.value) : []));
-                //   }}
+                  onChange={e => {
+                    setselectedFlavors(Array.isArray(e) ? e.map(x => x.value) : []);
+                    setValue("Flavors", (Array.isArray(e) ? e.map(x => x.value) : []));
+                  }}
                   styles={colorStyles}
                 />
               </div>
