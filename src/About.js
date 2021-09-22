@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 
 export const About = () => (
     <Fragment>
-        <div className="WineJS Wine Review">
+        <div className="WineJS Wine Review" data-testid="About">
             <h1>About</h1>
             <h2>About WineJS</h2>
             <div className="standardText" >

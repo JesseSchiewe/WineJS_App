@@ -25,28 +25,18 @@ export default function WineReviewForm({preloadedValues}) {
         };            
     }, []);
 
-    console.log("DELETE REVIEW REF");
-    console.log(deleteReviewRef);
 
-  
-    // var hideReviewToggleStart = ""
-    var hideResultsStart = ""
-    // var showResultsHeader = ""
-    if ( RunType === "/reviewresult" ) {
-    //   hideReviewToggleStart = true;
-    //   showResultsHeader = true;
+    const [ hideResults, setHideResults ] = useState(false);
+    // var hideResultsStart = ""
+    useEffect(() => {
+        if ( RunType === "/review" ) {
+            setHideResults(true)
+            console.log("SET HIDE RESULTS START = TRUE")
+        }
+    }, []);
 
-        // setDeleteReviewRef('users/' + user.uid + "/" + preloadedValues.WineName);
-        // console.log("DELETE REVIEW REF");
-        // console.log(deleteReviewRef);
-        // console.log(preloadedValues);
-        // console.log(preloadedValues.WineName);
-    }
-    if ( RunType === "/review" ) {
-      hideResultsStart = true
-    }
     const [hideReview, setHideReview] = useState();
-    const hideResults = hideResultsStart;
+    // const hideResults = hideResultsStart;
   
     const date = new Date();
     const today = (date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear()
@@ -137,7 +127,7 @@ export default function WineReviewForm({preloadedValues}) {
 
   return (
     <UserProvider>
-      <div>
+      <div data-testid="FullReview">
         <div className="FavoriteWines" hidden={hideResults} >
           <form>
             {/* <Select options={ test } className="selectBox" isSearchable={true} placeholder="Select Review" onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } /> */}
@@ -184,7 +174,8 @@ export default function WineReviewForm({preloadedValues}) {
               <input type="number" name="Vintage" placeholder="Year" {...register("Vintage")} min="1900" max="2030" />
 
               <h3>Nose Intensity
-                <button type="button" className="infobutton" onClick={toggleNoseInfo} onSubmit="" >info</button>
+                {/* <button type="button" className="infobutton" onClick={toggleNoseInfo} onSubmit="" >info</button> */}
+                <button type="button" className="infobutton" onClick={toggleNoseInfo} >info</button>
                 <div>
                   <h5>
                     {hideNoseInfo ? "" : "How strong does the wine smell?"}
@@ -203,7 +194,7 @@ export default function WineReviewForm({preloadedValues}) {
                 {/* <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} value={selectedAromas} /> */}
                 <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} value={watchAROMAS} />
 
-                <div class="selectedAromas">
+                <div className="selectedAromas">
                   {/* Selected Aromas: {selectedAromas} */}
                   Selected Aromas: {watchAROMAS}
                 </div>
@@ -229,14 +220,14 @@ export default function WineReviewForm({preloadedValues}) {
               {errors.NoseIntensity && <p>Value must be at least 1</p> }
 
               <h3>Flavor Intensity
-                <button type="button" className="infobutton" onClick={toggleFlavorIntensityInfo} onSubmit="" >info</button>
+                <button type="button" className="infobutton" onClick={toggleFlavorIntensityInfo} >info</button>
                 <div>
                   <h5>
                     {hideFlavorIntensityInfo ? "" : "How strong does the wine taste?"}
                   </h5>
                 </div>
               </h3>
-              <div class="value">{watchFI}</div>
+              <div className="value">{watchFI}</div>
               {/* <input type="range" id="FlavorIntensity" {...register("FlavorIntensity", { required:true } )} min="1" max="10" defaultValue="0" value={FlavorIntensity} onChange={e => setFlavorIntensity(e.target.value)} /> */}
               <input
                 type="range"
@@ -253,7 +244,7 @@ export default function WineReviewForm({preloadedValues}) {
               {errors.FlavorIntensity && <p>Value must be at least 1</p> }
 
               <h3>Flavor Characteristics
-                <button type="button" className="infobutton" onClick={toggleFlavorCharacteristicsInfo} onSubmit="" >info</button>
+                <button type="button" className="infobutton" onClick={toggleFlavorCharacteristicsInfo} >info</button>
                 <div>
                   <h5>
                     {hideFlavorCharacteristicsInfo ? "" : "Do you like the way the wine tastes?"}
@@ -261,7 +252,7 @@ export default function WineReviewForm({preloadedValues}) {
                 </div>
               </h3>              
               {/* <input type="range" id="FlavorCharacteristics" name="FlavorCharacteristics" min="0" max="25" defaultValue="0" onChange={e => updateTextInput(e.target.value,'FlavorScore')} ref={register} /> */}
-              <div class="value">{watchFC}</div>
+              <div className="value">{watchFC}</div>
               <input type="range" name="FlavorCharacteristics" id="FlavorCharacteristics" {...register("FlavorCharacteristics")} min="1" max="25" defaultValue="0" />
               <button type="button" onClick={toggleCharNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("FlavorCharacteristicsNotes")} hideit={hideCharNotes ? "true" : "false"} />
@@ -271,7 +262,7 @@ export default function WineReviewForm({preloadedValues}) {
                 {/* <input type="hidden" name="Flavors" id="Flavors" {...register("Flavors")} defaultValue={selectedFlavors} /> */}
                 <input type="hidden" name="Flavors" id="Flavors" {...register("Flavors")} value={watchFLAVORS} />
 
-                <div class="selectedFlavors">
+                <div className="selectedFlavors">
                   Selected Flavors: {watchFLAVORS}
                 </div>
 
@@ -296,14 +287,14 @@ export default function WineReviewForm({preloadedValues}) {
               {errors.FlavorCharacteristics && <p>Value must be at least 1</p> }
 
               <h3>Balance
-                <button type="button" className="infobutton" onClick={toggleBalanceInfo} onSubmit="" >info</button>
+                <button type="button" className="infobutton" onClick={toggleBalanceInfo} >info</button>
                 <div>
                   <h5>
                     {hideBalanceInfo ? "" : "Does the wine have a good balance of acidity, tannin (bitterness), sweetness? Is any one flavor overly dominant?"}
                   </h5>
                 </div>
               </h3>
-              <div class="value">{watchBAL}</div>
+              <div className="value">{watchBAL}</div>
               {/* <input type="range" name="Balance" id="Balance" {...register("Balance")} min="1" max="5" defaultValue="0" value={Balance} onChange={e => setBalance(e.target.value)} /> */}
               <input type="range" name="Balance" id="Balance" {...register("Balance")} min="1" max="5" defaultValue="0" />
               <button type="button" onClick={toggleBalNotes} value="" >Show/hide notes</button>
@@ -311,23 +302,23 @@ export default function WineReviewForm({preloadedValues}) {
               {errors.Balance && <p>Value must be at least 1</p> }
 
               <h3>Length
-                <button type="button" className="infobutton" onClick={toggleLengthInfo} onSubmit="" >info</button>
+                <button type="button" className="infobutton" onClick={toggleLengthInfo} >info</button>
                 <div>
                   <h5>
                     {hideLengthInfo ? "" : "How long does the wine flavor remain after taking a sip?"}
                   </h5>
                 </div>
               </h3>
-              <div class="value">{watchLEN}</div>
+              <div className="value">{watchLEN}</div>
               <input type="range" name="Length" id="Length" {...register("Length")} min="1" max="5" defaultValue="0" />
               <button type="button" onClick={toggleLenNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("LengthNotes")} hideit={hideLenNotes ? "true" : "false"} />
               {errors.Length && <p>Value must be at least 1</p> }
 
               <h4>Total</h4>
-              <div class="value">{totalValue}</div>
+              <div className="value">{totalValue.toString()}</div>
               {/* <input type="hidden" name="Total" id="Total" {...register("Total")} value={totalValue} /> */}
-              <input type="text" className="hidethis" name="Total" id="Total" {...register("Total")} value={totalValue} />
+              <input type="hidden" className="hidethis" name="Total" id="Total" {...register("Total")} value={totalValue.toString()} />
 
               <button type="button" onClick={togglePurchase} value="" >Purchase Info</button>
               <h2>
@@ -340,14 +331,15 @@ export default function WineReviewForm({preloadedValues}) {
               <input type="number" placeholder="$" {...register("WineValue")} hideit={hidePurchase ? "true" : "false"} />
               
               <div className="WineTools">
-                <button type="button" className="winetoolsbutton" onClick={toggleColorChart} onSubmit="" >Wine Colors</button>
+                <button type="button" className="winetoolsbutton" onClick={toggleColorChart} >Wine Colors</button>
               </div>
               <div hidden={hideColorChart}>
                   <img src={WineColorChart} alt="Wine Color Chart" width={400} />
               </div>
 
               <div className="WineTools">
-                <button type="button" className="winetoolsbutton" onClick={toggleTastingGrid} onSubmit="" >Wine Tasting Grid</button>
+                {/* <button type="button" className="winetoolsbutton" onClick={toggleTastingGrid} onSubmit="" >Wine Tasting Grid</button> */}
+                <button type="button" className="winetoolsbutton" onClick={toggleTastingGrid} >Wine Tasting Grid</button>
               </div>
               <div hidden={hideTastingGrid}>
                   <img src={WineTastingGrid} alt="Wine Tasting Grid" width={400} />
@@ -363,13 +355,13 @@ export default function WineReviewForm({preloadedValues}) {
                 <input type="submit" onClick={handleSubmit(onSubmit)} />
                 :
                 <div>
-                  <input type="submit" value="Update" onClick={handleSubmit(onUpdate)} />
+                  <input type="submit" defaultValue="Update" onClick={handleSubmit(onUpdate)} />
                   <p/>
                   {/* <input type="delete" value="Delete Review" onClick={handleSubmit(onDelete)} /> */}
                   
                   {/* <input type="delete" value="Delete Review" onClick={() => { window.confirm('Are you sure you wish to delete this item?') && handleSubmit(onDelete) } } /> */}
                   
-                  <input type="delete" value="Delete Review" name="DeleteReview" onClick={() => { window.confirm('Are you sure you wish to delete this item?') && onDelete() } } />
+                  <input type="delete" defaultValue="Delete Review" name="DeleteReview" onClick={() => { window.confirm('Are you sure you wish to delete this item?') && onDelete() } } />
                 </div>
               }
             </div>

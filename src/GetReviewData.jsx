@@ -10,5 +10,5 @@ export const GetReviewData = (dbpathref) => {
 
     return new Promise((resolve, reject) => {
         setTimeout(() => resolve(firebaseData), 1000) 
-    })
-}
+    });
+};
