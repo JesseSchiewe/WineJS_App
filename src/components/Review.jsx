@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
-import { useLocation, Redirect } from 'react-router-dom';
-import UserProvider, { UserContext } from "./providers/UserProvider";
+import React from 'react';
+import UserProvider from "../providers/UserProvider";
 import WineReviewForm from './WineReviewForm';
 
 export const Review = () => {
-  const user = useContext(UserContext);
-  const RunType = useLocation().pathname;
+  // const user = useContext(UserContext);
+  // const RunType = useLocation().pathname;
 
   return (
     <UserProvider>
@@ -15,10 +14,7 @@ export const Review = () => {
                     Review
                 </h1>                  
             </div>
-
-            {/* <CreateReviewForm user={user}/> */}
             <WineReviewForm />
-
         </div>
     </UserProvider>
   );

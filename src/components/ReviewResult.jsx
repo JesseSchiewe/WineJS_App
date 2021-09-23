@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { useLocation, Redirect } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import firebase from 'firebase';
-import UserProvider, { UserContext } from "./providers/UserProvider";
+import UserProvider, { UserContext } from "../providers/UserProvider";
 import Select from 'react-select';
 import { useEffect } from 'react';
 import CreateReviewForm from './CreateReviewForm';
@@ -12,7 +12,7 @@ export const ReviewResult = () => {
   const [ SortByCategory, setSortByCategory ] = useState("Total");
   const [ wineReviewName, setWineReviewName ] =useState(null);
 
-  var dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
+  // var dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
   var dbWineNames = '/users/' + user.uid + "/"
 
   var query = firebase.database().ref(dbWineNames).orderByKey();   
@@ -21,7 +21,7 @@ export const ReviewResult = () => {
   function handleChange(e){
     setWineReviewName(e);
     console.log(e);
-    dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
+    // dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
   }
 
   function SetWineArray() {
@@ -53,8 +53,8 @@ export const ReviewResult = () => {
   const [hideReview, setHideReview] = useState(hideReviewToggleStart);
   const hideResults = hideResultsStart;
 
-  const date = new Date();
-  const today = (date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear()
+  // const date = new Date();
+  // const today = (date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear()
 
   const wineSortCategories = [
     "ActualPrice",
@@ -106,19 +106,19 @@ export const ReviewResult = () => {
     setSortedReviews(sorted);
   };
 
-  const [ deleteReviewRef, setDeleteReviewRef ] = useState();
+  // const [ deleteReviewRef, setDeleteReviewRef ] = useState();
 
-  const [ firebaseData, setFirebaseData ] = useState();
+  // const [ firebaseData, setFirebaseData ] = useState();
     
-  function SetReviewData() {
-    firebase.database().ref(dbpathref).on('value', (snapshot) => {
-        setDeleteReviewRef('users/' + user.uid + "/" + wineReviewName);
-        setFirebaseData(snapshot);
-        console.log("FIREBASE DATA:");
-        console.log(snapshot);
-        console.log(firebaseData);   
-    });
-  }
+  // function SetReviewData() {
+  //   firebase.database().ref(dbpathref).on('value', (snapshot) => {
+  //       setDeleteReviewRef('users/' + user.uid + "/" + wineReviewName);
+  //       setFirebaseData(snapshot);
+  //       console.log("FIREBASE DATA:");
+  //       console.log(snapshot);
+  //       console.log(firebaseData);   
+  //   });
+  // }
 
   return (
     <UserProvider>

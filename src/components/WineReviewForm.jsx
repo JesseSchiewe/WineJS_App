@@ -3,18 +3,18 @@ import { useForm } from 'react-hook-form';
 import useToggle from './useToggle';
 import { useLocation, Redirect } from 'react-router-dom';
 import firebase from 'firebase';
-import UserProvider, { UserContext } from "./providers/UserProvider";
+import UserProvider, { UserContext } from "../providers/UserProvider";
 import Select from 'react-select';
-import { RedWineFlavorOptions } from './components/WineFlavors';
-import { formatGroupLabel, colorStyles } from './components/WineFlavorSelectBox';
+import { RedWineFlavorOptions } from './WineFlavors';
+import { formatGroupLabel, colorStyles } from './WineFlavorSelectBox';
 
-import WineColorChart from './Style/WineColorChart.jpg';
-import WineTastingGrid from './Style/WineTastingGrid.jpg';
+import WineColorChart from '../Style/WineColorChart.jpg';
+import WineTastingGrid from '../Style/WineTastingGrid.jpg';
 
 
 
 // export const WineReviewForm = () => {
-export default function WineReviewForm({ preloadedValues, onUpdate }) {
+export default function WineReviewForm({ preloadedValues }) {
     const user = useContext(UserContext);
     const RunType = useLocation().pathname;
     // const [ deleteReviewRef, setDeleteReviewRef ] = useState('users/' + user.uid + "/" + preloadedValues.WineName);
@@ -25,7 +25,7 @@ export default function WineReviewForm({ preloadedValues, onUpdate }) {
             setDeleteReviewRef('users/' + user.uid + "/" + preloadedValues.Producer + " " + preloadedValues.WineName + " " + preloadedValues.ReviewDate)
             console.log("SETTING REVIEW NAME");
         };            
-    }, []);
+    }, [RunType,preloadedValues,user]);
 
 
     const [ hideResults, setHideResults ] = useState(false);
@@ -35,9 +35,9 @@ export default function WineReviewForm({ preloadedValues, onUpdate }) {
             setHideResults(true)
             console.log("SET HIDE RESULTS START = TRUE")
         }
-    }, []);
+    }, [RunType]);
 
-    const [hideReview, setHideReview] = useState();
+    // const [hideReview, setHideReview] = useState();
     // const hideResults = hideResultsStart;
   
     const date = new Date();
@@ -130,7 +130,8 @@ export default function WineReviewForm({ preloadedValues, onUpdate }) {
   return (
     <UserProvider>
       <div data-testid="FullReview">
-        <div className="ReviewPage" hidden={hideReview} >
+        {/* <div className="ReviewPage" hidden={hideReview} > */}
+        <div className="ReviewPage" >
           {/* <form className="reviewform" onSubmit={handleSubmit(submitAction = onSubmit)}> */}
           <form className="reviewform" >
           {/* <form className="reviewform" onSubmit={handleSubmit(onSubmit)}>      */}

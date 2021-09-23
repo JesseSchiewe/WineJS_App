@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import SignIn from './components/SignIn';
+import SignIn from '../components/SignIn';
 import { BrowserRouter } from "react-router-dom";
 
 const mockLogin = jest.fn((email, password) => {

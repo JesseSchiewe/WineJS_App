@@ -1,7 +1,7 @@
 // import React, {useState} from "react";
 // //import ReactDOM from 'react-dom';
 // //import { Link } from "@reach/router";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // //import { signInWithGoogle } from "../Firebase";
 import { auth } from "../Firebase";
 // import { Redirect } from 'react-router-dom';
@@ -15,11 +15,14 @@ export default function SignIn({ login }) {
   const { register, handleSubmit, formState: { errors }} = useForm();
 
   const onSubmit = async (data) => {
-    await login(data.email, data.password);
-    await auth.signInWithEmailAndPassword(data.email, data.password).catch(error => {
-      console.log("Error signing in with password and email!");
-      console.error("Error signing in with password and email", error);
-    });
+    if (login) {
+      await login(data.email, data.password);
+    } else {
+      await auth.signInWithEmailAndPassword(data.email, data.password).catch(error => {
+        console.log("Error signing in with password and email!");
+        console.error("Error signing in with password and email", error);
+      });
+    };
     <Redirect to={{ pathname:"/home" }} />
   };
 

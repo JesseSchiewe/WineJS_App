@@ -37,25 +37,7 @@ export const Favorites = () => {
     return(
         <Fragment>
             <div>
-
                 <div>
-                    {/* {topRated.map((wineitem, i) => {
-                        return <h2 key={i}>
-                            {wineitem.total} --- {wineitem.wine} 
-                        </h2>;
-                    })}
-                    <button type="button" onClick={sortByScore}>
-                        Sort top rated wines
-                    </button> */}
-
-                    {/* <button type="button" onClick={toggleHideFavorites} >Show/hide Top Rated Wines</button>
-                    {hideFavorites ? "" : topRated.map((wineitem, i) => {
-                        return <h2 key={i}>
-                            {wineitem.total} --- {wineitem.wine} 
-                        </h2>;
-                    })} */}
-
-
                     <button type="button" onClick={() => {sortByScore(); toggleHideFavorites()}} >Show/hide Top Rated Wines</button>
                     {hideFavorites ? "" : (
                             <div>
@@ -66,17 +48,6 @@ export const Favorites = () => {
                         )
                     }
 
-                    {/* {hideFavorites ? "" : topRated.map((wineitem, i) => {
-                        return (
-                            <div>
-                                <h6 key={i}>
-                                    {wineitem.total} --- {wineitem.wine} 
-                                </h6>;
-                            </div>
-                        );
-                    })} */}
-
-
                     {hideFavorites ? "" : topRated.map((wineitem, i) => {
                         return (
                             <div>
@@ -86,7 +57,6 @@ export const Favorites = () => {
                             </div>
                         );
                     })}
-
                 </div>
             </div>
         </Fragment>
