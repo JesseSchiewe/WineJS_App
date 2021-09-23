@@ -28,6 +28,9 @@ export default function CreateReviewForm({ReviewName, user}) {
     console.log('CREATEREVIEWFORM REVIEW DATA:')
     console.log(data)
 
+    console.log("FETCHED DATA");
+    console.log(data);
+
     return data ? <WineReviewForm preloadedValues={data} /> : <div>Loading...</div>
 }
 

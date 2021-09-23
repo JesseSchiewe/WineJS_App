@@ -11,8 +11,10 @@ import { formatGroupLabel, colorStyles } from './components/WineFlavorSelectBox'
 import WineColorChart from './Style/WineColorChart.jpg';
 import WineTastingGrid from './Style/WineTastingGrid.jpg';
 
+
+
 // export const WineReviewForm = () => {
-export default function WineReviewForm({preloadedValues}) {
+export default function WineReviewForm({ preloadedValues, onUpdate }) {
     const user = useContext(UserContext);
     const RunType = useLocation().pathname;
     // const [ deleteReviewRef, setDeleteReviewRef ] = useState('users/' + user.uid + "/" + preloadedValues.WineName);
@@ -60,10 +62,10 @@ export default function WineReviewForm({preloadedValues}) {
   const watchAROMAS = watch("Aromas");
   const watchFLAVORS = watch("Flavors");
 
-  const watchDATE = watch("ReviewDate");
+//   const watchDATE = watch("ReviewDate");
 
-  const [ selectedAromas, setselectedAromas ] = useState([]);
-  const [ selectedFlavors, setselectedFlavors ] = useState([]);
+//   const [ selectedAromas, setselectedAromas ] = useState([]);
+//   const [ selectedFlavors, setselectedFlavors ] = useState([]);
 
 //   let totalValue = (Number(Balance) + Number(Length) + Number(FlavorCharacteristics) + Number(FlavorIntensity) + Number(NoseIntensity))
     let totalValue = (Number(watchNI) + Number(watchFI) + Number(watchFC) + Number(watchBAL) + Number(watchLEN))
@@ -128,15 +130,10 @@ export default function WineReviewForm({preloadedValues}) {
   return (
     <UserProvider>
       <div data-testid="FullReview">
-        <div className="FavoriteWines" hidden={hideResults} >
-          <form>
-            {/* <Select options={ test } className="selectBox" isSearchable={true} placeholder="Select Review" onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } /> */}
-          </form>
-          <p/>
-        </div>
-
         <div className="ReviewPage" hidden={hideReview} >
-          <form className="reviewform" onSubmit={handleSubmit(onSubmit)}>          
+          {/* <form className="reviewform" onSubmit={handleSubmit(submitAction = onSubmit)}> */}
+          <form className="reviewform" >
+          {/* <form className="reviewform" onSubmit={handleSubmit(onSubmit)}>      */}
             <div className="formbackground" >
               {hideResults ? (
                 <div>
@@ -210,9 +207,8 @@ export default function WineReviewForm({preloadedValues}) {
                 //   {...register("Aromas")}
                 //   defaultValue={selectedAromas}
                   onChange={e => {
-                    setselectedAromas(Array.isArray(e) ? e.map(x => x.value) : []);
+                    // setselectedAromas(Array.isArray(e) ? e.map(x => x.value) : []);
                     setValue("Aromas", (Array.isArray(e) ? e.map(x => x.value) : []));
-                    console.log(selectedAromas);
                   }}                  
                   styles={colorStyles}
                 />
@@ -277,7 +273,7 @@ export default function WineReviewForm({preloadedValues}) {
                 //   {...register("Flavors")}
                 //   defaultValue={selectedFlavors}
                   onChange={e => {
-                    setselectedFlavors(Array.isArray(e) ? e.map(x => x.value) : []);
+                    // setselectedFlavors(Array.isArray(e) ? e.map(x => x.value) : []);
                     setValue("Flavors", (Array.isArray(e) ? e.map(x => x.value) : []));
                   }}
                   styles={colorStyles}
@@ -352,16 +348,18 @@ export default function WineReviewForm({preloadedValues}) {
 
               
               {hideResults ?
-                <input type="submit" onClick={handleSubmit(onSubmit)} />
-                :
+                // <input type="submit" onClick={handleSubmit(onSubmit)} data-testid="SubmitButton" />
                 <div>
-                  <input type="submit" defaultValue="Update" onClick={handleSubmit(onUpdate)} />
-                  <p/>
-                  {/* <input type="delete" value="Delete Review" onClick={handleSubmit(onDelete)} /> */}
-                  
-                  {/* <input type="delete" value="Delete Review" onClick={() => { window.confirm('Are you sure you wish to delete this item?') && handleSubmit(onDelete) } } /> */}
-                  
-                  <input type="delete" defaultValue="Delete Review" name="DeleteReview" onClick={() => { window.confirm('Are you sure you wish to delete this item?') && onDelete() } } />
+                    <input type="submit" onClick={handleSubmit(onSubmit)} data-testid="SubmitButton" />
+                    {/* <input type="submit" onClick={handleSubmit(submitAction)} data-testid="SubmitButton" /> */}
+                </div>
+                :
+                <div>             
+                    <input type="update" defaultValue="Update" name="Update" onClick={handleSubmit(onUpdate)} data-testid="UpdateButton" />
+                    {/* <input type="update" defaultValue="Update" name="Update" onClick={handleSubmit(updateAction)} data-testid="UpdateButton" /> */}
+                    
+                    {/* <input type="submit" defaultValue="Update" name="Update" onClick={handleSubmit(onUpdate)} data-testid="UpdateButton" /> */}
+                    <input type="delete" defaultValue="Delete Review" name="DeleteReview" onClick={() => { window.confirm('Are you sure you wish to delete this item?') && onDelete() } } />
                 </div>
               }
             </div>

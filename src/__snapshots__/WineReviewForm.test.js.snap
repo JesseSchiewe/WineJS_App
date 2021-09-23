@@ -5,18 +5,10 @@ exports[`matches snapshot 1`] = `
   data-testid="FullReview"
 >
   <div
-    className="FavoriteWines"
-    hidden={false}
-  >
-    <form />
-    <p />
-  </div>
-  <div
     className="ReviewPage"
   >
     <form
       className="reviewform"
-      onSubmit={[Function]}
     >
       <div
         className="formbackground"
@@ -28,7 +20,7 @@ exports[`matches snapshot 1`] = `
           </h2>
         </div>
         <input
-          defaultValue="9-21-2021"
+          defaultValue="9-22-2021"
           id="ReviewDate"
           name="ReviewDate"
           onBlur={[Function]}
@@ -647,11 +639,12 @@ exports[`matches snapshot 1`] = `
         />
         <div>
           <input
+            data-testid="UpdateButton"
             defaultValue="Update"
+            name="Update"
             onClick={[Function]}
-            type="submit"
+            type="update"
           />
-          <p />
           <input
             defaultValue="Delete Review"
             name="DeleteReview"
@@ -665,23 +658,15 @@ exports[`matches snapshot 1`] = `
 </div>
 `;
 
-exports[`matches snapshot 2 1`] = `
+exports[`matches snapshot 3 1`] = `
 <div
   data-testid="FullReview"
 >
-  <div
-    className="FavoriteWines"
-    hidden={false}
-  >
-    <form />
-    <p />
-  </div>
   <div
     className="ReviewPage"
   >
     <form
       className="reviewform"
-      onSubmit={[Function]}
     >
       <div
         className="formbackground"
@@ -693,7 +678,7 @@ exports[`matches snapshot 2 1`] = `
           </h2>
         </div>
         <input
-          defaultValue="9-21-2021"
+          defaultValue="9-22-2021"
           id="ReviewDate"
           name="ReviewDate"
           onBlur={[Function]}
@@ -759,7 +744,9 @@ exports[`matches snapshot 2 1`] = `
         </h3>
         <div
           className="value"
-        />
+        >
+          2
+        </div>
         <input
           defaultValue="0"
           id="NoseIntensity"
@@ -794,11 +781,25 @@ exports[`matches snapshot 2 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             type="hidden"
+            value={
+              Array [
+                "Cherry",
+                "Strawberry",
+                "Raspberry",
+                "Pomegranate",
+                "Tomato",
+              ]
+            }
           />
           <div
             className="selectedAromas"
           >
             Selected Aromas: 
+            Cherry
+            Strawberry
+            Raspberry
+            Pomegranate
+            Tomato
           </div>
           <div
             className=" css-2b097c-container"
@@ -933,7 +934,9 @@ exports[`matches snapshot 2 1`] = `
         </h3>
         <div
           className="value"
-        />
+        >
+          4
+        </div>
         <input
           defaultValue="0"
           id="FlavorIntensity"
@@ -975,7 +978,9 @@ exports[`matches snapshot 2 1`] = `
         </h3>
         <div
           className="value"
-        />
+        >
+          19
+        </div>
         <input
           defaultValue="0"
           id="FlavorCharacteristics"
@@ -1010,11 +1015,25 @@ exports[`matches snapshot 2 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             type="hidden"
+            value={
+              Array [
+                "Red Currant",
+                "Mushroom",
+                "Leather",
+                "Black Pepper",
+                "Cedar",
+              ]
+            }
           />
           <div
             className="selectedFlavors"
           >
             Selected Flavors: 
+            Red Currant
+            Mushroom
+            Leather
+            Black Pepper
+            Cedar
           </div>
           <div
             className=" css-2b097c-container"
@@ -1149,7 +1168,9 @@ exports[`matches snapshot 2 1`] = `
         </h3>
         <div
           className="value"
-        />
+        >
+          3
+        </div>
         <input
           defaultValue="0"
           id="Balance"
@@ -1191,7 +1212,9 @@ exports[`matches snapshot 2 1`] = `
         </h3>
         <div
           className="value"
-        />
+        >
+          5
+        </div>
         <input
           defaultValue="0"
           id="Length"
@@ -1222,7 +1245,7 @@ exports[`matches snapshot 2 1`] = `
         <div
           className="value"
         >
-          NaN
+          83
         </div>
         <input
           className="hidethis"
@@ -1231,7 +1254,7 @@ exports[`matches snapshot 2 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           type="hidden"
-          value="NaN"
+          value="83"
         />
         <button
           onClick={[Function]}
@@ -1312,11 +1335,12 @@ exports[`matches snapshot 2 1`] = `
         />
         <div>
           <input
+            data-testid="UpdateButton"
             defaultValue="Update"
+            name="Update"
             onClick={[Function]}
-            type="submit"
+            type="update"
           />
-          <p />
           <input
             defaultValue="Delete Review"
             name="DeleteReview"

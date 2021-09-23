@@ -473,98 +473,134 @@ button.winetoolsbutton {
 
   button[type='submit'],
   input[type='submit'] {
-  background: #ec5990;
-  color: black;
-  text-transform: uppercase;
-  border: none;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  text-align: center;
-  padding: 15px;
-  font-size: 30px;
-  width: 100%;
-  font-weight: 100;
-  letter-spacing: 8px;
+    background: #ec5990;
+    color: black;
+    text-transform: uppercase;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 15px;
+    font-size: 30px;
+    width: 100%;
+    font-weight: 100;
+    letter-spacing: 8px;
   }
   button[type='submit']:hover,
   input[type='submit']:hover {
-  background: #bf1650;
+    background: #bf1650;
   }
   button[type='submit']:active,
   input[type='button']:active,
   input[type='submit']:active {
-  transition: 0.3s all;
-  transform: translateY(3px);
-  border: 1px solid transparent;
-  /* opacity: 0.8; */
+    transition: 0.3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
+    /* opacity: 0.8; */
   }
 
+
+  button[type='update'],
+    input[type='update'] {
+    background: #ec5990;
+    color: black;
+    text-transform: uppercase;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    /* padding: 15px; */
+    padding: 0px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 30px;
+    width: 100%;
+    font-weight: 100;
+    letter-spacing: 8px;
+  }
+  button[type='update']:hover,
+  input[type='update']:hover {
+    background: #bf1650;
+  }
+  button[type='update']:active,
+  input[type='update']:active,
+  input[type='update']:active {
+    transition: 0.3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
+    /* opacity: 0.8; */
+  }
+
+
   button[type='delete'],
-  input[type='delete'] {
-  background: crimson;
-  color: black;
-  text-transform: uppercase;
-  border: none;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  padding: 15px;
-  text-align: center;
-  font-size: 15px;
-  height: .1em;
-  width: 92.5%;
-  font-weight: 100;
-  letter-spacing: 4px;
+    input[type='delete'] {
+    background: crimson;
+    color: black;
+    text-transform: uppercase;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 15px;
+    height: .1em;
+    /* width: 92.5%; */
+    width: 100%;
+    font-weight: 100;
+    letter-spacing: 4px;
   }
   button[type='delete']:hover,
   input[type='delete']:hover {
-  background: red;
+    background: red;
   }
   button[type='delete']:active,
   input[type='button']:active,
   input[type='delete']:active {
-  transition: 0.3s all;
-  transform: translateY(3px);
-  border: 1px solid transparent;
+    transition: 0.3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
   /* opacity: 0.8; */
   }
 
   button[type="menubutton"] {
-      color:rebeccapurple;
-      background: none;
-      font-family: sans-serif;
-      font-size: 60%;
-      margin: .5em;
-      margin-top: 0em;
-      padding: 0px;
-      text-transform: uppercase;
-      border-width: .2em;
-      border-color: rebeccapurple;
+    color:rebeccapurple;
+    background: none;
+    font-family: sans-serif;
+    font-size: 60%;
+    margin: .5em;
+    margin-top: 0em;
+    padding: 0px;
+    text-transform: uppercase;
+    border-width: .2em;
+    border-color: rebeccapurple;
 
-      background-image: linear-gradient(135deg, purple, darkred);
-      border-radius: 4px;
-      box-sizing: border-box;
-      color: #ffffff;
-      display: inline-table;
-      height: 40%;
-      font-weight: 600;
-      padding: 1px;
-      position: top;
-      text-decoration: none;
-      width: 7em;
-      z-index: 2;
+    background-image: linear-gradient(135deg, purple, darkred);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: inline-table;
+    height: 40%;
+    font-weight: 600;
+    padding: 1px;
+    position: top;
+    text-decoration: none;
+    width: 7em;
+    z-index: 2;
   }
 
   button[type="signoutbutton"] {
-      color:rebeccapurple;
-      background-color: goldenrod;
-      font-family: sans-serif;
-      font-size: 60%;
-      margin: .5em;
-      margin-top: 0em;
-      padding: 1px;
-      text-transform: uppercase;
-      border: 2px solid rebeccapurple;
-      border-color: rebeccapurple;
+    color:rebeccapurple;
+    background-color: goldenrod;
+    font-family: sans-serif;
+    font-size: 60%;
+    margin: .5em;
+    margin-top: 0em;
+    padding: 1px;
+    text-transform: uppercase;
+    border: 2px solid rebeccapurple;
+    border-color: rebeccapurple;
   }
 
   .FavoriteWines {
@@ -575,20 +611,20 @@ button.winetoolsbutton {
   
 
   .SiteHeader {
-      text-align: right;
-      vertical-align: top;
-      padding: 0em;
-      margin: 0em;
-      margin-right: 2%;
-      margin-top: 0em;
-      margin-bottom: 2em;
+    text-align: right;
+    vertical-align: top;
+    padding: 0em;
+    margin: 0em;
+    margin-right: 2%;
+    margin-top: 0em;
+    margin-bottom: 2em;
   }
 
   .SiteMenu {
-      text-align: center;
-      vertical-align: top;
-      padding: 0em;
-      margin: 0em;
+    text-align: center;
+    vertical-align: top;
+    padding: 0em;
+    margin: 0em;
   }
 
   .ReviewPage {
@@ -632,16 +668,16 @@ button.winetoolsbutton {
 
 
   textarea {
-      font-weight: 400;
-      background: whitesmoke;
-      color: black;
-      border-color: grey;
-      padding: 10px 15px;
-      border-radius: 4px;
-      width: 100%;
-      height: 250px;
-      box-sizing: border-box;
-      font-size: 14px;
+    font-weight: 400;
+    background: whitesmoke;
+    color: black;
+    border-color: grey;
+    padding: 10px 15px;
+    border-radius: 4px;
+    width: 100%;
+    height: 250px;
+    box-sizing: border-box;
+    font-size: 14px;
   }
 
   .selectedAromas {
@@ -659,10 +695,8 @@ button.winetoolsbutton {
     padding: .8em;
   }
 
-  .sitepages {
-      
-      width: 20%;
-      /* opacity: 90%; */
+  .sitepages {    
+    width: 20%;
   }
 
   .Version {
@@ -678,18 +712,15 @@ button.winetoolsbutton {
   }
 
   h1 {
-      font-weight: 600;
-      /* color: #000066; */
-      /* color: white;
-      text-shadow: 2px 2px #000066; */
-      color: #000066;
-      text-shadow: 1px 1px hotpink;
-      margin-top: 0px;
-      font-size: 250%;
-      /* font-family: "Dosis", Helvetica, Arial, sans-serif;  */
-      text-align: center;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgb(79, 98, 148);
+    font-weight: 600;
+    color: #000066;
+    text-shadow: 1px 1px hotpink;
+    margin-top: 0px;
+    font-size: 250%;
+    /* font-family: "Dosis", Helvetica, Arial, sans-serif;  */
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(79, 98, 148);
     }
   h2 {
     color:black;
@@ -730,14 +761,14 @@ button.winetoolsbutton {
     justify-self: right;
   }
   h6 {
-      color:black;
-      margin: 0px auto;
-      /* padding: 1%; */
-      /* font-weight: 200; */
-      margin-left: 5%;
-      margin-right: 5%;
-      /* margin-bottom: -5%; */
-      font-weight: bold;
-      font-size: 2em;
-      justify-self: right;
-    }
+    color:black;
+    margin: 0px auto;
+    /* padding: 1%; */
+    /* font-weight: 200; */
+    margin-left: 5%;
+    margin-right: 5%;
+    /* margin-bottom: -5%; */
+    font-weight: bold;
+    font-size: 2em;
+    justify-self: right;
+  }
