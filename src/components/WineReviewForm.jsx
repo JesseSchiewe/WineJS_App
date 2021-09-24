@@ -7,50 +7,32 @@ import UserProvider, { UserContext } from "../providers/UserProvider";
 import Select from 'react-select';
 import { RedWineFlavorOptions } from './WineFlavors';
 import { formatGroupLabel, colorStyles } from './WineFlavorSelectBox';
-
 import WineColorChart from '../Style/WineColorChart.jpg';
 import WineTastingGrid from '../Style/WineTastingGrid.jpg';
 
-
-
-// export const WineReviewForm = () => {
 export default function WineReviewForm({ preloadedValues }) {
-    const user = useContext(UserContext);
-    const RunType = useLocation().pathname;
-    // const [ deleteReviewRef, setDeleteReviewRef ] = useState('users/' + user.uid + "/" + preloadedValues.WineName);
-    const [ deleteReviewRef, setDeleteReviewRef ] = useState();
+  const user = useContext(UserContext);
+  const RunType = useLocation().pathname;
+  const [ deleteReviewRef, setDeleteReviewRef ] = useState();
 
-    useEffect(() => {
-        if ( RunType === "/reviewresult" ){
-            setDeleteReviewRef('users/' + user.uid + "/" + preloadedValues.Producer + " " + preloadedValues.WineName + " " + preloadedValues.ReviewDate)
-            console.log("SETTING REVIEW NAME");
-        };            
-    }, [RunType,preloadedValues,user]);
+  useEffect(() => {
+    if ( RunType === "/reviewresult" ){
+      setDeleteReviewRef('users/' + user.uid + "/" + preloadedValues.Producer + " " + preloadedValues.WineName + " " + preloadedValues.ReviewDate)
+    };            
+  }, [RunType,preloadedValues,user]);
 
 
-    const [ hideResults, setHideResults ] = useState(false);
-    // var hideResultsStart = ""
-    useEffect(() => {
-        if ( RunType === "/review" ) {
-            setHideResults(true)
-            console.log("SET HIDE RESULTS START = TRUE")
-        }
-    }, [RunType]);
+  const [ hideResults, setHideResults ] = useState(false);
+  useEffect(() => {
+    if ( RunType === "/review" ) {
+      setHideResults(true)
+    }
+  }, [RunType]);
 
-    // const [hideReview, setHideReview] = useState();
-    // const hideResults = hideResultsStart;
-  
-    const date = new Date();
-    const today = (date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear()
-
-//   const [ WineName1, setWineName1 ] = useState();
-//   const [ ReviewDate, setReviewDate ] = useState(today);
-
-  
-
-  // const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+  const date = new Date();
+  const today = (date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear()
   const { register, setValue, watch, handleSubmit, formState: { errors } } = useForm({
-      defaultValues: preloadedValues
+    defaultValues: preloadedValues
   });
 
   // Watch method for updating values
@@ -62,16 +44,10 @@ export default function WineReviewForm({ preloadedValues }) {
   const watchAROMAS = watch("Aromas");
   const watchFLAVORS = watch("Flavors");
 
-//   const watchDATE = watch("ReviewDate");
-
-//   const [ selectedAromas, setselectedAromas ] = useState([]);
-//   const [ selectedFlavors, setselectedFlavors ] = useState([]);
-
-//   let totalValue = (Number(Balance) + Number(Length) + Number(FlavorCharacteristics) + Number(FlavorIntensity) + Number(NoseIntensity))
-    let totalValue = (Number(watchNI) + Number(watchFI) + Number(watchFC) + Number(watchBAL) + Number(watchLEN))
-    if ( totalValue !== 0 ) {
-        totalValue = 50 + totalValue
-    } 
+  let totalValue = (Number(watchNI) + Number(watchFI) + Number(watchFC) + Number(watchBAL) + Number(watchLEN))
+  if ( totalValue !== 0 ) {
+      totalValue = 50 + totalValue
+  } 
 
   const [hideNoseNotes, toggleNoseNotes] = useToggle();
   const [hideIntenseNotes, toggleIntenseNotes] = useToggle();
@@ -118,7 +94,6 @@ export default function WineReviewForm({ preloadedValues }) {
     writeToDatabase(user.uid,data);
     alert("Successfully updated review");
     window.location.reload();
-    // setToResults(true);
   }
 
   function onDelete() {
@@ -130,11 +105,8 @@ export default function WineReviewForm({ preloadedValues }) {
   return (
     <UserProvider>
       <div data-testid="FullReview">
-        {/* <div className="ReviewPage" hidden={hideReview} > */}
         <div className="ReviewPage" >
-          {/* <form className="reviewform" onSubmit={handleSubmit(submitAction = onSubmit)}> */}
           <form className="reviewform" >
-          {/* <form className="reviewform" onSubmit={handleSubmit(onSubmit)}>      */}
             <div className="formbackground" >
               {hideResults ? (
                 <div>
@@ -143,19 +115,13 @@ export default function WineReviewForm({ preloadedValues }) {
                 )
               : (
                 <div>
-                  {/* <h1>Review Result</h1> */}
                   This is a past review. You may edit the review data and save the changes or delete the review from this page.             
                   <h2>Review Date</h2>
-                  {/* <input type="text" {...register("ReviewDate")} value={ReviewDate ? ReviewDate : today} /> */}
-                  {/* <input type="text" {...register("ReviewDate")} defaultValue={today} /> */}
-                  {/* <input type="text" defaultValue={today} /> */}
                 </div>
               )}
             
               {toResults ? <Redirect to={{ pathname:"/reviewresult" }} /> : null}
 
-
-              {/* <input type="hidden" name="ReviewDate" id="ReviewDate" {...register("ReviewDate")} /> */}
               <input type="text" name="ReviewDate" id="ReviewDate" defaultValue={today} {...register("ReviewDate")} />
                       
               <h2>Producer</h2>
@@ -172,7 +138,6 @@ export default function WineReviewForm({ preloadedValues }) {
               <input type="number" name="Vintage" placeholder="Year" {...register("Vintage")} min="1900" max="2030" />
 
               <h3>Nose Intensity
-                {/* <button type="button" className="infobutton" onClick={toggleNoseInfo} onSubmit="" >info</button> */}
                 <button type="button" className="infobutton" onClick={toggleNoseInfo} >info</button>
                 <div>
                   <h5>
@@ -180,20 +145,15 @@ export default function WineReviewForm({ preloadedValues }) {
                   </h5>
                 </div>
               </h3>
-              {/* <div className="value">{NoseIntensity}</div> */}
               <div className="value">{watchNI}</div>
-              {/* <input type="range" name="NoseIntensity" id="NoseIntensity" {...register("NoseIntensity")} min="1" max="5" defaultValue="0" value={NoseIntensity} onChange={e => setNoseIntensity(e.target.value)} /> */}
-              <input type="range" name="NoseIntensity" id="NoseIntensity" {...register("NoseIntensity")} min="1" max="5" defaultValue="0" />
+              <input type="range" name="NoseIntensity" id="NoseIntensity" {...register("NoseIntensity")} min="0" max="5" defaultValue="0" />
               <button type="button" onClick={toggleNoseNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("NoseIntensityNotes")} hideit={hideNoseNotes ? "true" : "false"} />
             
               <div name="AromaSelector" hidden={hideNoseNotes ? true : false} >
-
-                {/* <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} value={selectedAromas} /> */}
                 <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} value={watchAROMAS} />
 
                 <div className="selectedAromas">
-                  {/* Selected Aromas: {selectedAromas} */}
                   Selected Aromas: {watchAROMAS}
                 </div>
                 
@@ -205,10 +165,7 @@ export default function WineReviewForm({ preloadedValues }) {
                   blurInputOnSelect={false}
                   options={RedWineFlavorOptions}
                   formatGroupLabel={formatGroupLabel}
-                //   {...register("Aromas")}
-                //   defaultValue={selectedAromas}
                   onChange={e => {
-                    // setselectedAromas(Array.isArray(e) ? e.map(x => x.value) : []);
                     setValue("Aromas", (Array.isArray(e) ? e.map(x => x.value) : []));
                   }}                  
                   styles={colorStyles}
@@ -225,16 +182,14 @@ export default function WineReviewForm({ preloadedValues }) {
                 </div>
               </h3>
               <div className="value">{watchFI}</div>
-              {/* <input type="range" id="FlavorIntensity" {...register("FlavorIntensity", { required:true } )} min="1" max="10" defaultValue="0" value={FlavorIntensity} onChange={e => setFlavorIntensity(e.target.value)} /> */}
               <input
                 type="range"
                 name="FlavorIntensity"
                 id="FlavorIntensity" 
                 {...register("FlavorIntensity", { pattern: /[^0]+/ })}
-                min="1"
+                min="0"
                 max="10"
                 defaultValue="0"
-                // value={FlavorIntensity}
               />
               <button type="button" onClick={toggleIntenseNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("FlavorIntensityNotes")} hideit={hideIntenseNotes ? "true" : "false"} />
@@ -248,15 +203,12 @@ export default function WineReviewForm({ preloadedValues }) {
                   </h5>
                 </div>
               </h3>              
-              {/* <input type="range" id="FlavorCharacteristics" name="FlavorCharacteristics" min="0" max="25" defaultValue="0" onChange={e => updateTextInput(e.target.value,'FlavorScore')} ref={register} /> */}
               <div className="value">{watchFC}</div>
-              <input type="range" name="FlavorCharacteristics" id="FlavorCharacteristics" {...register("FlavorCharacteristics")} min="1" max="25" defaultValue="0" />
+              <input type="range" name="FlavorCharacteristics" id="FlavorCharacteristics" {...register("FlavorCharacteristics")} min="0" max="25" defaultValue="0" />
               <button type="button" onClick={toggleCharNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("FlavorCharacteristicsNotes")} hideit={hideCharNotes ? "true" : "false"} />
-              {/* {hideCharNotes ? "" : RedWineFlavorSelector()} */}
 
               <div name="FlavorSelector" hidden={hideCharNotes ? true : false} >
-                {/* <input type="hidden" name="Flavors" id="Flavors" {...register("Flavors")} defaultValue={selectedFlavors} /> */}
                 <input type="hidden" name="Flavors" id="Flavors" {...register("Flavors")} value={watchFLAVORS} />
 
                 <div className="selectedFlavors">
@@ -271,10 +223,7 @@ export default function WineReviewForm({ preloadedValues }) {
                   blurInputOnSelect={false}
                   options={RedWineFlavorOptions}
                   formatGroupLabel={formatGroupLabel}
-                //   {...register("Flavors")}
-                //   defaultValue={selectedFlavors}
                   onChange={e => {
-                    // setselectedFlavors(Array.isArray(e) ? e.map(x => x.value) : []);
                     setValue("Flavors", (Array.isArray(e) ? e.map(x => x.value) : []));
                   }}
                   styles={colorStyles}
@@ -292,8 +241,7 @@ export default function WineReviewForm({ preloadedValues }) {
                 </div>
               </h3>
               <div className="value">{watchBAL}</div>
-              {/* <input type="range" name="Balance" id="Balance" {...register("Balance")} min="1" max="5" defaultValue="0" value={Balance} onChange={e => setBalance(e.target.value)} /> */}
-              <input type="range" name="Balance" id="Balance" {...register("Balance")} min="1" max="5" defaultValue="0" />
+              <input type="range" name="Balance" id="Balance" {...register("Balance")} min="0" max="5" defaultValue="0" />
               <button type="button" onClick={toggleBalNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("BalanceNotes")} hideit={hideBalNotes ? "true" : "false"} />
               {errors.Balance && <p>Value must be at least 1</p> }
@@ -307,14 +255,13 @@ export default function WineReviewForm({ preloadedValues }) {
                 </div>
               </h3>
               <div className="value">{watchLEN}</div>
-              <input type="range" name="Length" id="Length" {...register("Length")} min="1" max="5" defaultValue="0" />
+              <input type="range" name="Length" id="Length" {...register("Length")} min="0" max="5" defaultValue="0" />
               <button type="button" onClick={toggleLenNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("LengthNotes")} hideit={hideLenNotes ? "true" : "false"} />
               {errors.Length && <p>Value must be at least 1</p> }
 
               <h4>Total</h4>
               <div className="value">{totalValue.toString()}</div>
-              {/* <input type="hidden" name="Total" id="Total" {...register("Total")} value={totalValue} /> */}
               <input type="hidden" className="hidethis" name="Total" id="Total" {...register("Total")} value={totalValue.toString()} />
 
               <button type="button" onClick={togglePurchase} value="" >Purchase Info</button>
@@ -335,31 +282,22 @@ export default function WineReviewForm({ preloadedValues }) {
               </div>
 
               <div className="WineTools">
-                {/* <button type="button" className="winetoolsbutton" onClick={toggleTastingGrid} onSubmit="" >Wine Tasting Grid</button> */}
                 <button type="button" className="winetoolsbutton" onClick={toggleTastingGrid} >Wine Tasting Grid</button>
               </div>
               <div hidden={hideTastingGrid}>
                   <img src={WineTastingGrid} alt="Wine Tasting Grid" width={400} />
               </div>
 
-
               <h2>Tasting Notes</h2>
-              {/* <textarea {...register("TastingNotes")} >{{TastingNotes}.tostring}</textarea> */}
               <textarea {...register("TastingNotes")} />
-
               
               {hideResults ?
-                // <input type="submit" onClick={handleSubmit(onSubmit)} data-testid="SubmitButton" />
                 <div>
                     <input type="submit" onClick={handleSubmit(onSubmit)} data-testid="SubmitButton" />
-                    {/* <input type="submit" onClick={handleSubmit(submitAction)} data-testid="SubmitButton" /> */}
                 </div>
                 :
                 <div>             
-                    <input type="update" defaultValue="Update" name="Update" onClick={handleSubmit(onUpdate)} data-testid="UpdateButton" />
-                    {/* <input type="update" defaultValue="Update" name="Update" onClick={handleSubmit(updateAction)} data-testid="UpdateButton" /> */}
-                    
-                    {/* <input type="submit" defaultValue="Update" name="Update" onClick={handleSubmit(onUpdate)} data-testid="UpdateButton" /> */}
+                    <input type="update" defaultValue="Update" name="Update" onClick={handleSubmit(onUpdate)} data-testid="UpdateButton" />                  
                     <input type="delete" defaultValue="Delete Review" name="DeleteReview" onClick={() => { window.confirm('Are you sure you wish to delete this item?') && onDelete() } } />
                 </div>
               }
@@ -370,4 +308,3 @@ export default function WineReviewForm({ preloadedValues }) {
     </UserProvider>
   );
 }
-

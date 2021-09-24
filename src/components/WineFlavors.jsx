@@ -118,18 +118,3 @@ export const RedWineFlavorOptions = [
         color: 'black'
     }
 ]
-
-
-// const RedWineFlavorsList = [
-//     "Cherry",
-//     "Strawberry",
-//     "Blackberry",
-//     "Blackcurrant",
-//     "Blueberry"
-// ];
-
-// const RedWineFlavors = RedWineFlavorsList.map((category) =>
-//     ({label:category,value:category})
-// );
-
-//export { RedWineDarkFruit,RedWineRedFruit,RedWineSpice,RedWineHerbs,RedWineSecondary,RedWineFlower,RedWineOak };

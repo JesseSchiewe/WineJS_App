@@ -1,6 +1,6 @@
 import React, {Fragment, useContext, useState} from 'react';
 import firebase from 'firebase';
-import { UserContext } from "./providers/UserProvider";
+import { UserContext } from "../providers/UserProvider";
 import useToggle from './useToggle';
 
 export const Favorites = () => {

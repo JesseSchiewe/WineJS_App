@@ -12,7 +12,6 @@ export const ReviewResult = () => {
   const [ SortByCategory, setSortByCategory ] = useState("Total");
   const [ wineReviewName, setWineReviewName ] =useState(null);
 
-  // var dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
   var dbWineNames = '/users/' + user.uid + "/"
 
   var query = firebase.database().ref(dbWineNames).orderByKey();   
@@ -20,8 +19,7 @@ export const ReviewResult = () => {
 
   function handleChange(e){
     setWineReviewName(e);
-    console.log(e);
-    // dbpathref = '/users/' + user.uid + "/" + wineReviewName + '/data'
+    // console.log(e);
   }
 
   function SetWineArray() {
@@ -52,9 +50,6 @@ export const ReviewResult = () => {
   }
   const [hideReview, setHideReview] = useState(hideReviewToggleStart);
   const hideResults = hideResultsStart;
-
-  // const date = new Date();
-  // const today = (date.getMonth()+1) + '-' + date.getDate() + '-' + date.getFullYear()
 
   const wineSortCategories = [
     "ActualPrice",
@@ -106,20 +101,6 @@ export const ReviewResult = () => {
     setSortedReviews(sorted);
   };
 
-  // const [ deleteReviewRef, setDeleteReviewRef ] = useState();
-
-  // const [ firebaseData, setFirebaseData ] = useState();
-    
-  // function SetReviewData() {
-  //   firebase.database().ref(dbpathref).on('value', (snapshot) => {
-  //       setDeleteReviewRef('users/' + user.uid + "/" + wineReviewName);
-  //       setFirebaseData(snapshot);
-  //       console.log("FIREBASE DATA:");
-  //       console.log(snapshot);
-  //       console.log(firebaseData);   
-  //   });
-  // }
-
   return (
     <UserProvider>
       <div>
@@ -134,11 +115,10 @@ export const ReviewResult = () => {
             <Select options={ winearray } className="selectBox" isSearchable={true} placeholder="Select Review" onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } />
           </form>
           <p/>
-          <div className="SortedResults" hidden={hideResults} >
-            <button type="button" onClick={() => {sortResults(SortByCategory); setHideSortedResults(!hideSortedResults); setHideReview(true)}} >Show/Hide Favorite Wines</button>
+          <div className="Center" hidden={hideResults} >
+            <button type="StandardButton" onClick={() => {sortResults(SortByCategory); setHideSortedResults(!hideSortedResults); setHideReview(true)}} >Show/Hide Favorite Wines</button>
             {hideSortedResults ? "" : (
               <form>
-                {/* <Select options={ sortOptions } className="selectBox" isSearchable={true} onChange={() => {sortResults("total"); toggleHideSortedResults()}}   /> */}
                 <Select options={ sortOptions } className="selectBox" placeholder="Sort By" isSearchable={true} onChange={(e) => {sortResults(e.value); setSortByCategory(e.value) }}   />
               </form>
             )}

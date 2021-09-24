@@ -21,7 +21,7 @@ export default function HeaderSignedOut() {
                 </Link>
             </div> 
 
-            <div className="SiteMenu">                               
+            <div>                               
                 <Link to="/home">
                     <button type="menubutton" className="headerbutton" >Home</button>
                 </Link>

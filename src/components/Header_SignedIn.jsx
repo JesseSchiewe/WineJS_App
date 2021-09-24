@@ -25,6 +25,7 @@ export default function HeaderSignedIn() {
             <div className="Version">
                 v {ManualVersion} {Version}
             </div>
+
             <ThemeProvider theme={theme}>
                 {/* <GlobalStyles /> */}
                 <div ref={node}>
@@ -42,10 +43,10 @@ export default function HeaderSignedIn() {
                     <span className="bn39span" onClick = {() => {auth.signOut()}}>
                         Sign Out
                     </span>
-                </div>     
+                </div>
+   
                 {/* <button className="bn39span" onClick = {() => {auth.signOut()}} >Google Sign Out</button>                    */}
-                <p/>
-            </div>                         
+            </div>
         </div>
     )
 };

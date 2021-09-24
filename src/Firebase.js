@@ -1,6 +1,3 @@
-//import React from 'react';
-//import React from 'react';
-//import ReactDOM from 'react-dom';
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
@@ -20,12 +17,12 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-export const signInWithGoogle = () => {
-    //auth.signInWithPopup(provider);
-    auth.signInWithRedirect(provider);
-    //auth.signInWithCredential(provider);
-};
+// const provider = new firebase.auth.GoogleAuthProvider();
+// export const signInWithGoogle = () => {
+//     //auth.signInWithPopup(provider);
+//     auth.signInWithRedirect(provider);
+//     //auth.signInWithCredential(provider);
+// };
 
 export const generateUserDocument = async (user, additionalData) => {
     if (!user) return;
@@ -59,7 +56,3 @@ const getUserDocument = async uid => {
         console.error("Error fetching user", error);
     }
 };
-
-
-//const FirebaseContext = React.createContext(null);
-//export default FirebaseContext
