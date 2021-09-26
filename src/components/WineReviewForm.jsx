@@ -147,7 +147,7 @@ export default function WineReviewForm({ preloadedValues }) {
               </h3>
               <div className="value">{watchNI}</div>
               <input type="range" name="NoseIntensity" id="NoseIntensity" {...register("NoseIntensity")} min="0" max="5" defaultValue="0" />
-              <button type="button" onClick={toggleNoseNotes} value="" >Show/hide notes</button>
+              <button type="button" className="reviewbutton" onClick={toggleNoseNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("NoseIntensityNotes")} hideit={hideNoseNotes ? "true" : "false"} />
             
               <div name="AromaSelector" hidden={hideNoseNotes ? true : false} >
@@ -191,7 +191,7 @@ export default function WineReviewForm({ preloadedValues }) {
                 max="10"
                 defaultValue="0"
               />
-              <button type="button" onClick={toggleIntenseNotes} value="" >Show/hide notes</button>
+              <button type="button" className="reviewbutton" onClick={toggleIntenseNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("FlavorIntensityNotes")} hideit={hideIntenseNotes ? "true" : "false"} />
               {errors.FlavorIntensity && <p>Value must be at least 1</p> }
 
@@ -205,7 +205,7 @@ export default function WineReviewForm({ preloadedValues }) {
               </h3>              
               <div className="value">{watchFC}</div>
               <input type="range" name="FlavorCharacteristics" id="FlavorCharacteristics" {...register("FlavorCharacteristics")} min="0" max="25" defaultValue="0" />
-              <button type="button" onClick={toggleCharNotes} value="" >Show/hide notes</button>
+              <button type="button" className="reviewbutton" onClick={toggleCharNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("FlavorCharacteristicsNotes")} hideit={hideCharNotes ? "true" : "false"} />
 
               <div name="FlavorSelector" hidden={hideCharNotes ? true : false} >
@@ -242,7 +242,7 @@ export default function WineReviewForm({ preloadedValues }) {
               </h3>
               <div className="value">{watchBAL}</div>
               <input type="range" name="Balance" id="Balance" {...register("Balance")} min="0" max="5" defaultValue="0" />
-              <button type="button" onClick={toggleBalNotes} value="" >Show/hide notes</button>
+              <button type="button" className="reviewbutton" onClick={toggleBalNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("BalanceNotes")} hideit={hideBalNotes ? "true" : "false"} />
               {errors.Balance && <p>Value must be at least 1</p> }
 
@@ -256,7 +256,7 @@ export default function WineReviewForm({ preloadedValues }) {
               </h3>
               <div className="value">{watchLEN}</div>
               <input type="range" name="Length" id="Length" {...register("Length")} min="0" max="5" defaultValue="0" />
-              <button type="button" onClick={toggleLenNotes} value="" >Show/hide notes</button>
+              <button type="button" className="reviewbutton" onClick={toggleLenNotes} value="" >Show/hide notes</button>
               <textarea type="small" {...register("LengthNotes")} hideit={hideLenNotes ? "true" : "false"} />
               {errors.Length && <p>Value must be at least 1</p> }
 
@@ -264,7 +264,7 @@ export default function WineReviewForm({ preloadedValues }) {
               <div className="value">{totalValue.toString()}</div>
               <input type="hidden" className="hidethis" name="Total" id="Total" {...register("Total")} value={totalValue.toString()} />
 
-              <button type="button" onClick={togglePurchase} value="" >Purchase Info</button>
+              <button type="button" className="reviewbutton" onClick={togglePurchase} value="" >Purchase Info</button>
               <h2>
                 {hidePurchase ? "" : "How much DID you pay?"}
               </h2>

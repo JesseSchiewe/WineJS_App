@@ -34,7 +34,7 @@ function Application() {
             <Route path="/contact" exact component={Contact} />
             <Route path="/review" exact component={Review} />
             <Route path="/reviewresult" exact component={ReviewResult} />
-            <Route path= "/signin" exact component={SignIn} />
+            <Route path= "/signin" exact component={Home} />
             <Route path= "/signUp" exact component={SignUp} />
             <Route path= "/passwordreset" exact component={PasswordReset} />
             <Route path= "/profilepage" exact component={ProfilePage} />    
@@ -47,6 +47,8 @@ function Application() {
             <Route path="/home" exact component={Home} />
             <Route path="/about" exact component={About} />
             <Route path="/contact" exact component={Contact} />
+            <Route path="/review" exact component={SignIn} />
+            <Route path="/reviewresult" exact component={SignIn} />
             <Route path= "/signin" exact component={SignIn} />
             <Route path= "/signUp" exact component={SignUp} />
             <Route path= "/passwordreset" exact component={PasswordReset} />

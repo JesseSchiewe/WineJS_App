@@ -12,7 +12,7 @@ export default function HeaderSignedOut() {
             </div>
             <div className="SiteHeader"> 
                 Not Signed In
-                <Link to="/">
+                <Link to="/signin">
                     <div className="bn39" href="/">
                         <span className="bn39span" >
                             Sign In

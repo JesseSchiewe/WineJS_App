@@ -20,7 +20,7 @@ exports[`matches snapshot 1`] = `
           </h2>
         </div>
         <input
-          defaultValue="9-23-2021"
+          defaultValue="9-26-2021"
           id="ReviewDate"
           name="ReviewDate"
           onBlur={[Function]}
@@ -91,13 +91,14 @@ exports[`matches snapshot 1`] = `
           defaultValue="0"
           id="NoseIntensity"
           max="5"
-          min="1"
+          min="0"
           name="NoseIntensity"
           onBlur={[Function]}
           onChange={[Function]}
           type="range"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -265,13 +266,14 @@ exports[`matches snapshot 1`] = `
           defaultValue="0"
           id="FlavorIntensity"
           max="10"
-          min="1"
+          min="0"
           name="FlavorIntensity"
           onBlur={[Function]}
           onChange={[Function]}
           type="range"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -307,13 +309,14 @@ exports[`matches snapshot 1`] = `
           defaultValue="0"
           id="FlavorCharacteristics"
           max="25"
-          min="1"
+          min="0"
           name="FlavorCharacteristics"
           onBlur={[Function]}
           onChange={[Function]}
           type="range"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -481,13 +484,14 @@ exports[`matches snapshot 1`] = `
           defaultValue="0"
           id="Balance"
           max="5"
-          min="1"
+          min="0"
           name="Balance"
           onBlur={[Function]}
           onChange={[Function]}
           type="range"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -523,13 +527,14 @@ exports[`matches snapshot 1`] = `
           defaultValue="0"
           id="Length"
           max="5"
-          min="1"
+          min="0"
           name="Length"
           onBlur={[Function]}
           onChange={[Function]}
           type="range"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -561,6 +566,7 @@ exports[`matches snapshot 1`] = `
           value="NaN"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -678,7 +684,7 @@ exports[`matches snapshot 3 1`] = `
           </h2>
         </div>
         <input
-          defaultValue="9-23-2021"
+          defaultValue="9-26-2021"
           id="ReviewDate"
           name="ReviewDate"
           onBlur={[Function]}
@@ -751,13 +757,14 @@ exports[`matches snapshot 3 1`] = `
           defaultValue="0"
           id="NoseIntensity"
           max="5"
-          min="1"
+          min="0"
           name="NoseIntensity"
           onBlur={[Function]}
           onChange={[Function]}
           type="range"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -941,13 +948,14 @@ exports[`matches snapshot 3 1`] = `
           defaultValue="0"
           id="FlavorIntensity"
           max="10"
-          min="1"
+          min="0"
           name="FlavorIntensity"
           onBlur={[Function]}
           onChange={[Function]}
           type="range"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -985,13 +993,14 @@ exports[`matches snapshot 3 1`] = `
           defaultValue="0"
           id="FlavorCharacteristics"
           max="25"
-          min="1"
+          min="0"
           name="FlavorCharacteristics"
           onBlur={[Function]}
           onChange={[Function]}
           type="range"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -1175,13 +1184,14 @@ exports[`matches snapshot 3 1`] = `
           defaultValue="0"
           id="Balance"
           max="5"
-          min="1"
+          min="0"
           name="Balance"
           onBlur={[Function]}
           onChange={[Function]}
           type="range"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -1219,13 +1229,14 @@ exports[`matches snapshot 3 1`] = `
           defaultValue="0"
           id="Length"
           max="5"
-          min="1"
+          min="0"
           name="Length"
           onBlur={[Function]}
           onChange={[Function]}
           type="range"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""
@@ -1257,6 +1268,7 @@ exports[`matches snapshot 3 1`] = `
           value="83"
         />
         <button
+          className="reviewbutton"
           onClick={[Function]}
           type="button"
           value=""

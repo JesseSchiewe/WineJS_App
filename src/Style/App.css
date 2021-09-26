@@ -6,7 +6,18 @@ html, body {
   /* background: url(WineSunset.jpg) no-repeat center ; */
   background-position-y: center;
   /* overflow: hidden; */
-  background: #f7e7ce;
+  /* background: #f7e7ce; */
+  /* background-color: black; */
+  font-family: 'Montserrat', sans-serif;
+  /* background: #ffcccc; */
+  background: #ffe6e6;
+  height: 100vh;
+}
+
+.NavBar {
+  /* padding-top: 65px; */
+  margin-top: 65px;
+  margin-bottom: 65px;
 }
 
 .outline {
@@ -31,7 +42,7 @@ html, body {
   z-index: 1;
 }
 
-.menu {
+/* .menu {
   position: fixed;
   right: 0;
   margin: 3em 2em;
@@ -39,14 +50,14 @@ html, body {
   color: #c89253;
   font-size: 24px;
   z-index: 1;
-} 
+}  */
 
 .title {
   position: absolute;
   top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Smythe";
+  /* font-family: "Smythe"; */
   color: #c89253;
   font-size: 68px;
   z-index: 1;
@@ -57,7 +68,7 @@ html, body {
   top: 46%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Great Vibes";
+  /* font-family: "Great Vibes"; */
   color: #fff;
   font-size: 24px;
   z-index: 1;
@@ -149,6 +160,7 @@ input[type='text'] {
   width: 80%;
   height: 40px;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
 }
 
@@ -228,6 +240,7 @@ textarea {
   width: 100%;
   height: 250px;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
 }
 
@@ -238,7 +251,7 @@ textarea {
   width: 80%;
   /* opacity: 0; */
   text-align: center;
-  font-family: Helvetica;
+  /* font-family: Helvetica; */
   text-transform: uppercase;
   letter-spacing: 4px;
   color: #fff;
@@ -269,7 +282,7 @@ textarea {
   padding: 2.5em;
   letter-spacing: 2px;
   font-size: 0.8em;
-  font-family: Helvetica;
+  /* font-family: Helvetica; */
   color: #765936;
   transition: 0.3s;
   z-index: 3;
@@ -314,9 +327,15 @@ textarea {
 }
 
 .signupfield {
-  margin-left: 2em;
-  width: 15em;
-  height: 2em;
+  /* margin-left: 2em; */
+  width: 30em;
+  height: 4em;
+  opacity: .8;
+}
+
+.signinfield {
+  width: 30em;
+  height: 4em;
   opacity: .8;
 }
 
@@ -341,7 +360,7 @@ textarea {
 
 
 body {
-  font-family: "Dosis", Helvetica, Arial, sans-serif; 
+  /* font-family: "Dosis", Helvetica, Arial, sans-serif;  */
   color:#000066;
   padding-top: 0px;
   /* text-shadow: white 1px 1px 1px; */
@@ -416,10 +435,11 @@ input[type="range"]::-webkit-slider-thumb {
     margin-left: 5%;
   }
 
-  button[type="button"] {
+  /* button[type="reviewbutton"] */
+  button.reviewbutton {
     color:black;
     background-color: palevioletred;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
     margin: 0em;
     margin-top: 0em;
     margin-left: 25%;
@@ -433,7 +453,7 @@ input[type="range"]::-webkit-slider-thumb {
   button.infobutton {
     color:black;
     background-color: gold;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
     float: right;
     margin: 0em;
     margin-top: 0em;
@@ -447,7 +467,7 @@ input[type="range"]::-webkit-slider-thumb {
 button.winetoolsbutton {
   color:black;
   background-color: lightblue;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
   float: right;
   margin: 0em;
   margin-right: 25%;
@@ -558,7 +578,7 @@ button.winetoolsbutton {
   button[type="menubutton"] {
     color:rebeccapurple;
     background: none;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
     font-size: 60%;
     margin: .5em;
     margin-top: 0em;
@@ -584,7 +604,7 @@ button.winetoolsbutton {
   button[type="signoutbutton"] {
     color:rebeccapurple;
     background-color: goldenrod;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
     font-size: 60%;
     margin: .5em;
     margin-top: 0em;
@@ -646,7 +666,7 @@ button.winetoolsbutton {
   }
   
 
-  .SiteHeader {
+  /* .SiteHeader {
     text-align: right;
     vertical-align: top;
     padding: 0em;
@@ -654,18 +674,17 @@ button.winetoolsbutton {
     margin-right: 2%;
     margin-top: 0em;
     margin-bottom: 2em;
-  }
+  } */
 
-  .SiteMenu {
+  /* .SiteMenu {
     text-align: center;
     vertical-align: top;
     padding: 0em;
     margin: 0em;
-    /* Background: #0048BA; */
     background: url(WineJS_Cork.png) no-repeat center ;
     background-size: contain;
     min-height: 5em;
-  }
+  } */
 
   .ReviewPage {
     margin: 0;
@@ -699,7 +718,8 @@ button.winetoolsbutton {
 
 
   .formbackground {
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px 20px;
   }
 
   .hidden {
@@ -709,7 +729,8 @@ button.winetoolsbutton {
 
   textarea {
     font-weight: 400;
-    background: whitesmoke;
+    /* background: whitesmoke; */
+    background:rgba(255, 255, 255, 0.5);
     color: black;
     border-color: grey;
     padding: 10px 15px;
@@ -746,21 +767,23 @@ button.winetoolsbutton {
   }
 
 
-  h1, h2, h3, h4, h5, h6, h7 {
-      font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  h1, h2, h3, h4, h5, h6 {
+      /* font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; */
+      font-family: 'Montserrat', sans-serif;
+      font-variant: 'Regular';
       font-weight: 400;
   }
 
   h1 {
     font-weight: 600;
     color: #000066;
-    text-shadow: 1px 1px hotpink;
+    /* text-shadow: 1px 1px hotpink; */
     margin-top: 0px;
     font-size: 250%;
     /* font-family: "Dosis", Helvetica, Arial, sans-serif;  */
     text-align: center;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgb(79, 98, 148);
+    /* border-bottom: 1px solid rgb(79, 98, 148); */
     }
   h2 {
     color:black;

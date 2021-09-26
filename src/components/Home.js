@@ -1,57 +1,70 @@
 
 import { Link } from "react-router-dom";
-import React, { Fragment, useContext, useState, useEffect } from "react";
+// import React, { Fragment } from "react";
+
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+import DariusBottles from '../Style/darius_bottles.jpg';
+import DariusLineup from '../Style/darius_II_history_lineup.jpg';
+// import zalto from '../Style/zalto.jpg';
+// import WineJS_Cork from '../Style/WineJS_Cork.png';
 
 export default function Home() {
 
     return(
         <div>
-            <Fragment>
-                <div className="Home">
-                    <h1>WineJS Home</h1>
-                    <p/>
-                    <h2>Welcome!</h2>
-                    <h5>You must be signed in to access the Review and Review Results pages.</h5>
-                    <p/>
-                    <div className="standardText" >
-                        After you sign in, you can access all of the features from the hamburger menu at the top left of the screen.
-                        <p/>
-                    </div>
-                    <hr/>
+            {/* <React.Fragment> */}
+            <div className="Home">
+                <h1>WineJS Home</h1>
+                <div className="Cards" style={{ display:'flex', justifyContent:'center', flexDirection:'column', margin:'auto', alignItems:'center' }}>
+                    <Card sx={{ width: 345, margin:"5px", borderRadius:'15px' }} raised="true" >
+                        <CardActionArea component={Link} to='/review' >
+                            <CardMedia
+                            component="img"
+                            height="140"
+                            image={DariusBottles}
+                            alt="Review"
+                            />
+                            <CardContent sx={{background:"#dacebb"}}>
+                            <Typography gutterBottom variant="h5" component="div" sx={{color:"#343078"}}>
+                                New Review
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                Create a new review.
+                                There are "Info" buttons next to each category that will explain how to rate the wine.
+                            </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </Card>
 
-
-                    <div className="standardText">
-                        The review section allows you to record your thoughts about a wine.
-                        It saves your notes and scores into a database that you can access from anywhere.
-                        This can help you remember spectacular bottles of wine.
-                        <p/>
-                        There are "Info" buttons next to each category that will explain how to rate the wine.
-                        <p/>
-                        You can also click or tap the "Show/Hide Notes" button in each category to enter more details.
-                    </div>
-                    <h2><Link to="/review">Review</Link></h2>
-                    <p/>
-                    <hr/>
-
-                    <div className="standardText">
-                        To look at any previous review results, use the Results section.
-                        The Results section allows you to select a previous review, edit it, and save the changes.
-                        It also allows you view your favorite wines and sort by many different categories.
-                    </div>
-                    <h2><Link to="/reviewresult">Results</Link></h2>
-                    <p/>
-                    <hr/>
-
-                    {/* <h2>Or click on a link below</h2> */}
-                    <div className="standardText">
-                        Other Links:
-                    </div>
-                    <h2><Link to="/about">About</Link></h2>
-                    <h2><Link to="/contact">Contact</Link></h2>
-                    {/* <button onClick = {() => {auth.signOut()}}>Sign out</button> */}
+                    <Card sx={{ width: 345, margin:"5px", borderRadius:'15px' }} raised="true">
+                    {/* <Card > */}
+                        <CardActionArea component={Link} to='/reviewresult' >
+                            <CardMedia
+                            component="img"
+                            height="140"
+                            image={DariusLineup}
+                            alt="Review"
+                            />
+                            <CardContent sx={{background:"#f7e7ce"}}>
+                            <Typography gutterBottom variant="h5" component="div" sx={{color:"#343078"}}>
+                                Results
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                See past reviews.
+                                You may also edit it and save the changes.
+                                It also allows you view your favorite wines and sort by many different categories.
+                            </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                    </Card>
                 </div>
-            </Fragment>
-            
+            </div>
+        
         </div>
     )
 };
