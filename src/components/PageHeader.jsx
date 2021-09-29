@@ -1,23 +1,11 @@
-import HeaderSignedIn from './Header_SignedIn';
+import React from 'react';
+import MenuAppBar from './MenuAppBar';
 
-export default function PageHeader() {
-    // const user = useContext(UserContext);
+export default function HeaderSignedIn() {
 
-    // if (user) {
-    //     return(
-    //         <div>
-    //             <HeaderSignedIn />
-    //         </div> 
-    //     );
-    // } else {
-    //     return(
-    //         <div>
-    //             <HeaderSignedOut />
-    //         </div>
-    //     );
-    // }
-
-    return (
-        <HeaderSignedIn />
+    return(
+        <div className="SiteMenu">
+            <MenuAppBar />
+        </div>
     )
 };

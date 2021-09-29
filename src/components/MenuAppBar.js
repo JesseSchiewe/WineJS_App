@@ -76,7 +76,7 @@ export default function MenuAppBar(props) {
     <div className="NavBar">   
       <Box sx={{ flexGrow: 1 }}>
         <HideOnScroll {...props}>
-          <AppBar sx={{ background:"#80002a" }}>
+          <AppBar sx={{ background:"#80002a" }} style={{background: 'transparent', boxShadow:'none'}}>
             <Toolbar>
               <IconButton
                 size="large"
@@ -106,13 +106,13 @@ export default function MenuAppBar(props) {
                   onClose={handleCloseMenu}
                 >
                 <Paper variant="outlined" style={{backgroundColor:"#ffcccc", marginTop:'-8px', marginBottom:'-8px'}}>
-                <MenuItem onClick={handleCloseMenu} component={Link} to={'/home'}><HomeIcon/>Home</MenuItem>
-                <MenuItem onClick={handleCloseMenu} component={Link} to={'/review'}><WineBarIcon/>Review</MenuItem>
-                <MenuItem onClick={handleCloseMenu} component={Link} to={'/reviewresult'}><StarOutlineIcon/>Results</MenuItem>
-                <MenuItem onClick={handleCloseMenu} component={Link} to={'/profilepage'}><PersonIcon/>Profile</MenuItem>
-                <MenuItem onClick={handleCloseMenu} component={Link} to={'/about'}><InfoIcon/>About Us</MenuItem>
-                <MenuItem onClick={handleCloseMenu} component={Link} to={'/contact'}><PhoneIcon/>Contact</MenuItem>
-                <MenuItem onClick={handleCloseMenu}>Version: {Version} ({ManualVersion})</MenuItem>
+                  <MenuItem onClick={handleCloseMenu} component={Link} to={'/home'}><HomeIcon/>Home</MenuItem>
+                  <MenuItem onClick={handleCloseMenu} component={Link} to={'/review'}><WineBarIcon/>Review</MenuItem>
+                  <MenuItem onClick={handleCloseMenu} component={Link} to={'/reviewresult'}><StarOutlineIcon/>Results</MenuItem>
+                  <MenuItem onClick={handleCloseMenu} component={Link} to={'/profilepage'}><PersonIcon/>Profile</MenuItem>
+                  <MenuItem onClick={handleCloseMenu} component={Link} to={'/about'}><InfoIcon/>About Us</MenuItem>
+                  <MenuItem onClick={handleCloseMenu} component={Link} to={'/contact'}><PhoneIcon/>Contact</MenuItem>
+                  <MenuItem onClick={handleCloseMenu}>Version: {Version} ({ManualVersion})</MenuItem>
                 </Paper>
               </Menu>
               <Typography variant="h4" sx={{ flexGrow: 1 }} component={Link} to={'/home'} >
@@ -151,8 +151,10 @@ export default function MenuAppBar(props) {
                   >
                     {user ? 
                       <div>
-                        <MenuItem onClick={handleCloseProfile} component={Link} to={'/profilepage'}>Profile</MenuItem>
-                        <MenuItem onClick={signOut}>Sign Out</MenuItem>
+                        <Paper variant="outlined" style={{backgroundColor:"#ffcccc", marginTop:'-8px', marginBottom:'-8px'}}>
+                          <MenuItem onClick={handleCloseProfile} component={Link} to={'/profilepage'}>Profile</MenuItem>
+                          <MenuItem onClick={signOut}>Sign Out</MenuItem>
+                        </Paper>
                       </div>
                       :
                         <MenuItem onClick={handleCloseProfile} component={Link} to={'/signin'}>Sign In</MenuItem>
