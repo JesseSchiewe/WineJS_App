@@ -16,7 +16,7 @@ import {ReviewResult} from './ReviewResult';
 import LoadingScreen from './LoadingScreen';
 
 export const Version = process.env.REACT_APP_VERSION;
-export const ManualVersion = "2.0.3";
+export const ManualVersion = "2.0.4";
 
 function Application() {
   const user = useContext(UserContext);
