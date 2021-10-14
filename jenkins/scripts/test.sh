@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
+
+whoami
+
 echo 'Changing execution permission for this shell script.'
 git add --chmod=+x "filename"
 
