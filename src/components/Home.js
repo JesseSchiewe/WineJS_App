@@ -21,7 +21,7 @@ export default function Home() {
             <div className="Home">
                 <h1>WineJS Home</h1>
                 <div className="Cards" style={{ display:'flex', justifyContent:'center', flexDirection:'column', margin:'auto', alignItems:'center' }}>
-                    <Card sx={{ width: 345, margin:"5px", borderRadius:'15px' }} raised="true" >
+                    <Card sx={{ width: 345, margin:"5px", borderRadius:'15px' }} >
                         <CardActionArea component={Link} to='/review' >
                             <CardMedia
                             component="img"
@@ -41,7 +41,7 @@ export default function Home() {
                         </CardActionArea>
                     </Card>
 
-                    <Card sx={{ width: 345, margin:"5px", borderRadius:'15px' }} raised="true">
+                    <Card sx={{ width: 345, margin:"5px", borderRadius:'15px' }} >
                     {/* <Card > */}
                         <CardActionArea component={Link} to='/reviewresult' >
                             <CardMedia
