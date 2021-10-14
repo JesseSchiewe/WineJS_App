@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+echo 'Changing execution permission for this shell script.'
+git add --chmod=+x "filename"
 
 echo 'The following "npm" command (if executed) installs the "cross-env"'
 echo 'dependency into the local "node_modules" directory, which will ultimately'
