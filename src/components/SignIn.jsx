@@ -51,9 +51,10 @@ export default function SignIn({ login }) {
         </div>
         {errors.email && <span role="alert">{errors.email.message}</span>}
         <label htmlFor="password" className="signuplabel">Password:</label>
-        <div style={{marginBottom:'30px'}}>          
+        <div style={{marginBottom:'30px'}} >          
           <input
             id="password"
+            data-testid="password"
             {...register("password", {
               required: "required",
               minLength: {

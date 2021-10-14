@@ -29,12 +29,14 @@ describe("SignIn", () => {
 
     it("should display matching error when email is invalid", async () => {
         fireEvent.input(screen.getByRole("textbox", { name: /email/i }), {
-        target: {
-            value: "test"
-        }
+            target: {
+                value: "test"
+            }
         });
 
-        fireEvent.input(screen.getByLabelText("password"), {
+        // fireEvent.input(screen.getByLabelText("password"), {
+        // fireEvent.input(screen.getByRole("textbox", { name: /password/i }), {
+        fireEvent.input(screen.getByTestId("password"), {
             target: {
                 value: "password"
             }
@@ -45,7 +47,8 @@ describe("SignIn", () => {
         expect(await screen.findAllByRole("alert")).toHaveLength(1);
         expect(mockLogin).not.toBeCalled();
         expect(screen.getByRole("textbox", { name: /email/i }).value).toBe("test");
-        expect(screen.getByLabelText("password").value).toBe("password");
+        // expect(screen.getByLabelText("password").value).toBe("password");
+        expect(screen.getByTestId("password").value).toBe("password");
     });
 
     it("should display min length error when password is invalid", async () => {
@@ -55,7 +58,9 @@ describe("SignIn", () => {
         }
     });
 
-    fireEvent.input(screen.getByLabelText("password"), {
+    // fireEvent.input(screen.getByLabelText("password"), {
+    fireEvent.input(screen.getByTestId("password"), {
+    // fireEvent.input(screen.getByRole("textbox", { name: /password/ }), {
         target: {
             value: "pass"
         }
@@ -69,7 +74,8 @@ describe("SignIn", () => {
         "test@mail.com"
     );
 
-    expect(screen.getByLabelText("password").value).toBe("pass");
+    // expect(screen.getByLabelText("password").value).toBe("pass");
+    expect(screen.getByTestId("password").value).toBe("pass");
   });
 
   it("should not display error when value is valid", async () => {
@@ -79,7 +85,8 @@ describe("SignIn", () => {
         }
     });
 
-    fireEvent.input(screen.getByLabelText("password"), {
+    // fireEvent.input(screen.getByLabelText("password"), {
+    fireEvent.input(screen.getByTestId("password"), {
         target: {
             value: "password"
         }

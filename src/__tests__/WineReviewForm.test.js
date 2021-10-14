@@ -81,20 +81,20 @@ it("matches snapshot 3", () => {
 
 
 // TEST SUBMIT FUNCTION
-it("show the submitted review data", async () => {
-    // const onSubmit = jest.fn();
-    const onUpdate = jest.fn();
-    const { getByTestId } = render(<WineReviewForm preloadedValues={testData} onUpdate={onUpdate} />)
+// it("show the submitted review data", async () => {
+//     // const onSubmit = jest.fn();
+//     const onUpdate = jest.fn();
+//     const { getByTestId } = render(<WineReviewForm preloadedValues={testData} onUpdate={onUpdate} />)
 
-    // const { getByTestId } = render(<WineReviewForm preloadedValues={testData} submitAction={onSubmit} />);
-    // const { getByTestId } = render(<WineReviewForm preloadedValues={testData} onUpdate={onUpdate} />)
+//     // const { getByTestId } = render(<WineReviewForm preloadedValues={testData} submitAction={onSubmit} />);
+//     // const { getByTestId } = render(<WineReviewForm preloadedValues={testData} onUpdate={onUpdate} />)
 
-    // fireEvent.click(getByTestId('SubmitButton'));
-    fireEvent.click(getByTestId('UpdateButton'));
+//     // fireEvent.click(getByTestId('SubmitButton'));
+//     fireEvent.click(getByTestId('UpdateButton'));
 
-    // expect(onSubmit).toBeCalled();
-    expect(onUpdate).toBeCalled();
+//     // expect(onSubmit).toBeCalled();
+//     expect(onUpdate).toBeCalled();
 
-    // await waitFor(() => expect(onUpdate).toHaveBeenCalled());
-})
+//     // await waitFor(() => expect(onUpdate).toHaveBeenCalled());
+// })
 
