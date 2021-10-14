@@ -1,10 +1,5 @@
 #!/usr/bin/env sh
 
-whoami
-
-echo 'Changing execution permission for this shell script.'
-git add --chmod=+x "filename"
-
 echo 'The following "npm" command (if executed) installs the "cross-env"'
 echo 'dependency into the local "node_modules" directory, which will ultimately'
 echo 'be stored in the Jenkins home directory. As described in'
