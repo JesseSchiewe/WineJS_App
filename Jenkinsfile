@@ -49,6 +49,7 @@ pipeline {
                 withAWS(region:'us-east-2',credentials:'AWSJenkins') {
                     s3Delete(bucket: 'arn:aws:s3:::winejs', path:'**/*')
                     s3Upload(bucket: 'arn:aws:s3:::winejs', workingDir:'build', includePathPattern:'**/*');
+                }
             }
         }
     }
