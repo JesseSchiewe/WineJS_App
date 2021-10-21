@@ -40,8 +40,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "rm -rf /var/www/jenkins-react-app"
-                sh "cp -r ${WORKSPACE}/build/ /var/www/jenkins-react-app/"
+                // sh "rm -rf '/var/www/WineJS'"
+                // sh "cp -r '${WORKSPACE}/build/' '/var/www/WineJS/'"
+                sh "echo 'skipping localhost deployment'"
             }
         }
         stage('Production') {
