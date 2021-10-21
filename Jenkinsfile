@@ -34,7 +34,7 @@ pipeline {
         stage('UserTesting') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                input message: 'Open a browser to localhost:3000. When you are finished testing the web site, click "Proceed" to continue)'
                 sh './jenkins/scripts/kill.sh'
             }
         }
@@ -47,7 +47,7 @@ pipeline {
         }
         stage('Production') {
             steps {
-                withAWS(region:'us-east-2',credentials:'AWSJenkins') {
+                withAWS(region:'us-east-2',credentials:'Jenkins') {
                     s3Delete(bucket: 'arn:aws:s3:::winejs', path:'**/*')
                     s3Upload(bucket: 'arn:aws:s3:::winejs', workingDir:'build', includePathPattern:'**/*');
                 }
