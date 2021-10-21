@@ -27,6 +27,9 @@ it("renders page correctly", () => {
 });
 
 it("matches snapshot", () => {
+    jest
+        .useFakeTimers('modern')
+        .setSystemTime(new Date('01-01-2001').getTime());
     const tree = renderer.create(<WineReviewForm/>).toJSON();
     expect(tree).toMatchSnapshot();
 })
@@ -39,6 +42,9 @@ jest.mock("react-router-dom", ()  => ({
         pathname: "localhost:3000/reviewresult"
     })
 }));
+// jest
+//     .useFakeTimers('modern')
+//     .setSystemTime(new Date('01-01-2001').getTime());
 
 const testData = {
     ActualPrice: "75",
@@ -73,12 +79,14 @@ it("renders page correctly - With Data", () => {
 });
 
 it("matches snapshot 3", () => {
+    jest
+        .useFakeTimers('modern')
+        .setSystemTime(new Date('01-01-2001').getTime());
     const tree = renderer.create(<WineReviewForm preloadedValues={testData} />).toJSON();
     expect(tree).toMatchSnapshot();
 })
 
 // cleanup
-
 
 // TEST SUBMIT FUNCTION
 // it("show the submitted review data", async () => {
