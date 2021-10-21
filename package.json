@@ -11,6 +11,7 @@
     "core-js": "^3.16.1",
     "firebase": "^8.9.1",
     "joi": "^17.4.2",
+    "pre-commit": "^1.2.2",
     "react": "^17.0.2",
     "react-dom": "^16.13.1",
     "react-firebase-hooks": "^2.2.0",
@@ -32,8 +33,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test-lib-pre-commit": "react-scripts test --watchAll=false --coverage"
   },
+  "pre-commit": [
+    "test-lib-pre-commit"
+  ],
   "eslintConfig": {
     "extends": "react-app"
   },
