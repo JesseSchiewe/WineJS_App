@@ -116,7 +116,6 @@ export default function MenuAppBar(props) {
                 </Paper>
               </Menu>
               <Typography variant="h4" sx={{ flexGrow: 1 }} component={Link} to={'/home'} >
-                {/* WineJS */}
                 <img src={WineJS_Cork} alt="logo" height="50" />
               </Typography>
               <Typography >

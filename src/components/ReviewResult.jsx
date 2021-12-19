@@ -132,7 +132,10 @@ export const ReviewResult = () => {
             )}
             {hideSortedResults ? "" : sortedReviews.map((wineitem, i) => {
                 return (
-                  <div>
+                  <div style={{ 
+                    display: 'flex',
+                    justifyContent: 'left'
+                  }}>
                     <h7 key={i}>
                       {wineitem[SortByCategory]}  |  <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); setHideSortedResults(true) ; setHideReview(false) }} >{wineitem.wine} </b>
                     </h7>

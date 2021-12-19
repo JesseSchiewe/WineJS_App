@@ -661,6 +661,8 @@ button.winetoolsbutton {
     display: flex;
     align-items: center;
     margin:auto;
+    z-index: 100000;
+    position: relative;
   }
   
 
