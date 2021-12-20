@@ -122,26 +122,43 @@ export const ReviewResult = () => {
                 <Select options={ sortOptions } className="selectBox" placeholder="Sort By" isSearchable={true} onChange={(e) => {sortResults(e.value); setSortByCategory(e.value) }}   />
               </form>
             )}
+
             {hideSortedResults ? "" : (
-              <div>
+              <div style={{marginTop:'1em'}}>
                 <h7>
                   Sorted by {SortByCategory}
                 </h7>
                 <p/>
+
+                <table style={{textAlign: 'left'}}>
+                  <tr>
+                    <th style={{ borderBottom: 'solid 1px black', borderRight: 'solid 1px black'}}>
+                      Result
+                    </th>
+                    <th style={{borderBottom: 'solid 1px black'}}>
+                      Wine Name
+                    </th>
+                  </tr>
+                    
+                    {hideSortedResults ? "" : sortedReviews.map((wineitem, i) => {
+                      return (
+                        <tr>
+                          <td style={{borderRight: 'solid 1px black', borderBottom: 'solid 1px black'}}>
+                            {wineitem[SortByCategory]}
+                          </td>
+                          <td style={{borderBottom: 'solid 1px black'}}>
+                            <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); setHideSortedResults(true) ; setHideReview(false) }} >{wineitem.wine} </b>
+                          </td>
+                        </tr>
+                      )})
+                    }
+
+                </table>
               </div>
             )}
-            {hideSortedResults ? "" : sortedReviews.map((wineitem, i) => {
-                return (
-                  <div style={{ 
-                    display: 'flex',
-                    justifyContent: 'left'
-                  }}>
-                    <h7 key={i}>
-                      {wineitem[SortByCategory]}  |  <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); setHideSortedResults(true) ; setHideReview(false) }} >{wineitem.wine} </b>
-                    </h7>
-                  </div>
-                );
-            })}
+            
+
+
           </div>
         </div>
 
