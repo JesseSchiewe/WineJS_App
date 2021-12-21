@@ -6,6 +6,9 @@ import Select from 'react-select';
 import { useEffect } from 'react';
 import CreateReviewForm from './CreateReviewForm';
 
+import { ResponsiveRadar } from '@nivo/radar';
+import RadarChart from './RadarChart';
+
 export const ReviewResult = () => {
   const user = useContext(UserContext);
   const RunType = useLocation().pathname;
@@ -50,6 +53,79 @@ export const ReviewResult = () => {
   }
   const [hideReview, setHideReview] = useState(hideReviewToggleStart);
   const hideResults = hideResultsStart;
+
+  const data = [
+    {
+      "taste": "fruity",
+      "chardonay": 88,
+      "carmenere": 99,
+      "syrah": 56
+    },
+    {
+      "taste": "bitter",
+      "chardonay": 91,
+      "carmenere": 59,
+      "syrah": 92
+    },
+    {
+      "taste": "heavy",
+      "chardonay": 97,
+      "carmenere": 35,
+      "syrah": 57
+    },
+    {
+      "taste": "strong",
+      "chardonay": 82,
+      "carmenere": 87,
+      "syrah": 59
+    },
+    {
+      "taste": "sunny",
+      "chardonay": 83,
+      "carmenere": 70,
+      "syrah": 74
+    }
+  ]
+
+  const MyResponsiveRadar = ({ data /* see data tab */ }) => (
+    <ResponsiveRadar
+      data={data}
+      keys={[ 'chardonay', 'carmenere', 'syrah' ]}
+      indexBy="taste"
+      valueFormat=">-.2f"
+      margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
+      borderColor={{ from: 'color' }}
+      gridLabelOffset={36}
+      dotSize={10}
+      dotColor={{ theme: 'background' }}
+      dotBorderWidth={2}
+      colors={{ scheme: 'nivo' }}
+      blendMode="multiply"
+      motionConfig="wobbly"
+      legends={[
+        {
+          anchor: 'top-left',
+          direction: 'column',
+          translateX: -50,
+          translateY: -40,
+          itemWidth: 80,
+          itemHeight: 20,
+          itemTextColor: '#999',
+          symbolSize: 12,
+          symbolShape: 'circle',
+          effects: [
+            {
+              on: 'hover',
+              style: {
+                itemTextColor: '#000'
+              }
+            }
+          ]
+        }
+      ]}
+    />
+  )
+
 
   const wineSortCategories = [
     "ActualPrice",
@@ -125,13 +201,13 @@ export const ReviewResult = () => {
 
             {hideSortedResults ? "" : (
               <div style={{marginTop:'1em'}}>
-                <h7>
+                <h6>
                   Sorted by {SortByCategory}
-                </h7>
+                </h6>
                 <p/>
 
                 <table style={{textAlign: 'left'}}>
-                  <tr>
+                  <tr key='tableLabels'>
                     <th style={{ borderBottom: 'solid 1px black', borderRight: 'solid 1px black'}}>
                       Result
                     </th>
@@ -142,7 +218,7 @@ export const ReviewResult = () => {
                     
                     {hideSortedResults ? "" : sortedReviews.map((wineitem, i) => {
                       return (
-                        <tr>
+                        <tr key={i}>
                           <td style={{borderRight: 'solid 1px black', borderBottom: 'solid 1px black'}}>
                             {wineitem[SortByCategory]}
                           </td>
@@ -163,6 +239,19 @@ export const ReviewResult = () => {
         </div>
 
         <div key={wineReviewName}>
+            
+          {console.log(wineReviewName)}
+
+          {hideReview ? "" : 
+            // <div style={{height: '700px', width: '700px', display: 'flex', alignSelf: 'center', alignItems: 'center'}}>
+            <div style={{ margin: 'auto'}}>
+            {/* <div style={{ display: 'flex', alignSelf: 'center', alignItems: 'center', margin: 'auto'}}> */}
+              <RadarChart ReviewName={wineReviewName} user={user} />
+              {/* <RadarChart  /> */}
+              {/* <MyResponsiveRadar data={data} /> */}
+            </div>
+          }
+
           {hideReview ? "" : <CreateReviewForm ReviewName={wineReviewName} user={user} /> }
         </div>
 

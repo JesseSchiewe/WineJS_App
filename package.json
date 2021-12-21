@@ -1,11 +1,13 @@
 {
   "name": "winejs",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "private": true,
   "dependencies": {
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.1",
     "@mui/material": "^5.0.1",
+    "@nivo/core": "^0.75.0",
+    "@nivo/radar": "^0.75.0",
     "axios": "^0.21.4",
     "chokidar": "^3.5.2",
     "core-js": "^3.16.1",
