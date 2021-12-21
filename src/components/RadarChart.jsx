@@ -13,7 +13,7 @@ export const GetChartData = (dbpathref) => {
 
     firebase.database().ref(dbpathref).on('value', (snapshot) => {
         firebaseData = snapshot.val();
-        console.log(firebaseData);
+        // console.log(firebaseData);
     });
 
     return new Promise((resolve, reject) => {
@@ -31,14 +31,18 @@ const MyResponsiveRadar = ({ data, revname }) => (
         // keys={[ 'LSKJF1' ]}
         keys={[revname]}
         indexBy="Category"
-        valueFormat=">-.2f"
+        maxValue={1}
+        // valueFormat=">-.2f"
+        valueFormat=" >-.0%"
         margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
         borderColor={{ from: 'color' }}
         gridLabelOffset={36}
         dotSize={10}
         dotColor={{ theme: 'background' }}
         dotBorderWidth={2}
-        colors={{ scheme: 'nivo' }}
+        // colors={{ scheme: 'nivo' }}
+        colors={{ scheme: 'category10' }}
+        fillOpacity={.55}
         blendMode="multiply"
         motionConfig="wobbly"
         legends={[
@@ -76,22 +80,41 @@ export default function RadarChart({ ReviewName, user }) {
     useEffect(() => {
         const fetchData = async () => {
             var revData = await GetChartData(dbpathref);
-            const chartCategories = [ 'NoseIntensity', 'FlavorIntensity', 'FlavorCharacteristics', 'Balance', 'Length' ]
+            // const chartCategories = [ 'NoseIntensity', 'FlavorIntensity', 'FlavorCharacteristics', 'Balance', 'Length' ]
+            const chartMath = {NoseIntensity: 5,FlavorIntensity: 10,FlavorCharacteristics: 25,Balance: 5,Length: 5,Total: 100};
+
+            // console.log(chartMath);
+            // console.log(Object.keys(chartMath));
+
 
             const final = Object.entries(revData).map(([key,value]) => {
-                if (chartCategories.includes(key)) {
+                // if (chartCategories.includes(key)) {
+                if (Object.keys(chartMath).includes(key)) {
 
-                    let wineLabel = revData.WineName
+                    // let wineLabel = revData.WineName
+                    // let percentValue = (Number(value) / chartMath[key]) * 100
+
+                    let percentValue = (Number(value) / chartMath[key])
+
+                    if (key === 'Total') {
+                        percentValue = (Number(value) - 50 ) / 50
+                    }
+
+                    // console.log(`Key: ${key} percentage: ${percentValue}`)
+
                     let tempObject = {
                         'Category': key,
-                        [wineLabel] : Number(value)
+                        // [revData.WineName] : Number(value)
+                        [revData.WineName] : percentValue
                     };
                     return tempObject
+                } else {
+                    return undefined
                 };
             }).filter(notUndefined => notUndefined !== undefined);
 
             setRevName(revData.WineName);
-            console.log(revname);
+            // console.log(revname);
 
             setData(final);
         }
@@ -104,7 +127,7 @@ export default function RadarChart({ ReviewName, user }) {
             // <div style={{height: '500px', display: 'flex', alignItems: 'center', alignSelf: 'center', alignContent: 'center', margin: 'auto' }}>
             // <div style={{height: '500px', display: 'flex', alignItems: 'center', alignSelf: 'center', alignContent: 'center'}}>
             <div style={{height: '500px'}}>
-                {console.log(data)}
+                {/* {console.log(data)} */}
                 <MyResponsiveRadar data={data} revname={revname} />
                 {/* <MyResponsiveRadar data={TEST6} />  */}
             </div>
