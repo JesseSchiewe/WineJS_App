@@ -36,7 +36,7 @@ const MyResponsiveRadar = ({ data, revname }) => (
         valueFormat=" >-.0%"
         margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
         borderColor={{ from: 'color' }}
-        gridLabelOffset={36}
+        gridLabelOffset={10}
         dotSize={10}
         dotColor={{ theme: 'background' }}
         dotBorderWidth={2}
@@ -126,7 +126,7 @@ export default function RadarChart({ ReviewName, user }) {
         (
             // <div style={{height: '500px', display: 'flex', alignItems: 'center', alignSelf: 'center', alignContent: 'center', margin: 'auto' }}>
             // <div style={{height: '500px', display: 'flex', alignItems: 'center', alignSelf: 'center', alignContent: 'center'}}>
-            <div style={{height: '500px'}}>
+            <div style={{height: '320px', paddingBottom: '10px'}}>
                 {/* {console.log(data)} */}
                 <MyResponsiveRadar data={data} revname={revname} />
                 {/* <MyResponsiveRadar data={TEST6} />  */}
