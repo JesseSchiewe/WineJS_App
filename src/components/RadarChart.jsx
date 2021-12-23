@@ -85,9 +85,10 @@ export default function RadarChart({ ReviewName, user }) {
         }
     ];
 
-    let dbpathref = '/users/' + user.uid + "/" + ReviewName + '/data'
 
     useEffect(() => {
+        let dbpathref = '/users/' + user.uid + "/" + ReviewName + '/data';
+
         const fetchData = async (ReviewName) => {
             dbpathref = '/users/' + user.uid + "/" + ReviewName + '/data'
             var revData = await GetChartData(dbpathref);
@@ -118,11 +119,8 @@ export default function RadarChart({ ReviewName, user }) {
 
             if (!(revname.includes(revData.WineName))) {                
                 handleAddWine(revData.WineName);
-                console.log(`${revData.WineName} is NOT already in revname.`);
-            } else {
-                console.log(`${revData.WineName} is already in revname.`);
             };
-        }
+        };
         if (Array.isArray(ReviewName)) {
             ReviewName.forEach(fetchData);
             setData(DataModel);
