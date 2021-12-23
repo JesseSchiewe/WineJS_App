@@ -130,7 +130,8 @@ export default function RadarChart({ ReviewName, user }) {
             setData(DataModel);
             setFinished(true);
         };
-    }, [ReviewName])
+    // }, [ReviewName])
+    }, [ReviewName]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return finished ? 
         (
