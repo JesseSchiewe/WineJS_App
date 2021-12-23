@@ -13,6 +13,8 @@ export const ReviewResult = () => {
   const [ SortByCategory, setSortByCategory ] = useState("Total");
   const [ wineReviewName, setWineReviewName ] =useState(null);
 
+  const [ compareList, setCompareList ] = useState([]);
+
   var dbWineNames = '/users/' + user.uid + "/"
 
   var query = firebase.database().ref(dbWineNames).orderByKey();   
@@ -51,6 +53,7 @@ export const ReviewResult = () => {
   }
   const [hideReview, setHideReview] = useState(hideReviewToggleStart);
   const hideResults = hideResultsStart;
+  const [hideCompare, setHideCompare] = useState(true);
 
   const wineSortCategories = [
     "ActualPrice",
@@ -101,6 +104,9 @@ export const ReviewResult = () => {
     });
     setSortedReviews(sorted);
   };
+
+
+  // console.log(compareList);
 
   return (
     <UserProvider>
@@ -164,6 +170,36 @@ export const ReviewResult = () => {
         </div>
 
         <div key={wineReviewName}>
+          
+          TESTING COMPARE RESULTS
+          {/* {console.log(winearray)} */}
+            {/* {hideReview ? "" :  */}
+              <div id='Radar' style={{ margin: 'auto'}}>
+                <Select
+                  closeMenuOnSelect={false}
+                  closeMenuOnScroll={false}
+                  isSearchable={false}
+                  isMulti
+                  name="CompareSelector"
+                  placeholder="Select to Compare"
+                  blurInputOnSelect={false}
+                  options={winearray}
+                  onChange={e => {
+                    setCompareList((Array.isArray(e) ? e.map(x => x.value) : []));
+                  }}
+                  // onMenuClose={e => {
+                  //   setCompareList((Array.isArray(e) ? e.map(x => x.value) : []));
+                  // }}
+                  onMenuClose={e=> {setHideCompare(false)}}
+                />
+
+                {hideCompare ? "" : <RadarChart ReviewName={compareList} user={user} /> }
+                {/* <RadarChart ReviewName={compareList} user={user} /> */}
+
+                {/* <CompareResults ReviewName={wineReviewName} user={user} /> */}
+              </div>
+            {/* } */}
+          END TESTING COMPARE RESULTS
 
           {hideReview ? "" : 
             <div id='Radar' style={{ margin: 'auto'}}>
