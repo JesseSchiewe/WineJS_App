@@ -59,8 +59,9 @@ const MyResponsiveRadar = ({ data, revname }) => (
         // keys={[ 'Total', 'NoseIntensity', 'FlavorIntensity', 'FlavorCharacteristics', 'Balance', 'Length' ]}
         // keys={[ 'stuff', 'LSKJF1' ]}
         // keys={[ 'LSKJF1' ]}
-        // keys={ revname }
-        keys={[revname]}
+
+        keys={ revname }
+        // keys={[revname]}
         
         // keys={revname}
         // keys={['Wine Name 3 and what not', '"sa asfasd sda sdf wfew fwfe wefww  wffwe "', 'LSKJF1']}
@@ -109,8 +110,18 @@ const MyResponsiveRadar = ({ data, revname }) => (
 export default function RadarChart({ ReviewName, user }) {
     const [data, setData] = useState([]);
     const [revname, setRevName] = useState([]);
+    // const [revname, setRevName] = useState();
+
     // let revname = [];
     const [finished, setFinished] = useState(false);
+
+
+    const handleAddWine = (newWine) => {
+        setRevName((revname) => [...revname,newWine]);
+        console.log(`NEW WINE ADDED: ${newWine}`);
+        console.log(revname);
+    };
+
 
     let TEMPWINES = [];
     
@@ -210,12 +221,28 @@ export default function RadarChart({ ReviewName, user }) {
             //     console.log(`${revData.WineName} is already in revname.`);
             // };
 
+            if (!(revname.includes(revData.WineName))) {
+                // let currentWine = revData.WineName;
+                // setRevName((revname) => [...revname,currentWine]);
+                handleAddWine(revData.WineName);
+                // setRevName((revname) => [...revname,revData.WineName]);
+                console.log(`${revData.WineName} is NOT already in revname.`);
+            } else {
+                console.log(`${revData.WineName} is already in revname.`);
+            };
             
-            TEMPWINES.push(revData.WineName);
-            console.log(TEMPWINES);
+            // handleAddWine(revData.WineName);
+            // console.log(revname);
+            
+            // TEMPWINES.push(revData.WineName);
+            // console.log(TEMPWINES);
+
             // revname.push(revData.WineName);
 
             // console.log(TEMPWINES);
+
+
+            // setRevName(revname => [...revname, ...TEMPWINES]);
 
 
             // console.log(revname);
@@ -228,7 +255,7 @@ export default function RadarChart({ ReviewName, user }) {
             // revname = 'LSKJF1';
             // console.log(revname);
 
-            setRevName(revData.WineName);
+    // setRevName(revData.WineName);
 
 
             // function mergeArrayObjects(final,TESTDATA){
@@ -280,15 +307,21 @@ export default function RadarChart({ ReviewName, user }) {
             // setData(final);
 
             // console.log(compareData);
+
+
+
         }
         if (Array.isArray(ReviewName)) {
             ReviewName.forEach(fetchData);
             // setData([TESTDATA]);
             setData(TESTDATA);
+            // handleAddWine();
             // console.log(revname);
-            // console.log(TEMPWINES);
             // setRevName(TEMPWINES);
-            setRevName(...TEMPWINES);
+            // setRevName({[TEMPWINES]});
+            // setRevName(revname => [...revname, ...TEMPWINES]);
+            console.log(TEMPWINES);
+            console.log(revname);
             // const setList = (TEMPWINES) => setRevName(TEMPWINES);
             setFinished(true);
         } else {
@@ -309,6 +342,8 @@ export default function RadarChart({ ReviewName, user }) {
         // console.log(data);
 
         // setFinished(true);
+
+
 
     // }, [dbpathref])
     }, [ReviewName])
