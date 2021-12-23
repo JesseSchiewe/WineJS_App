@@ -14,28 +14,54 @@ export const ReviewResult = () => {
   const [ wineReviewName, setWineReviewName ] =useState(null);
 
   const [ compareList, setCompareList ] = useState([]);
+  const handleChangeCompare = (obj) => {
+    setCompareList(obj);
+  };
 
+
+  
   var dbWineNames = '/users/' + user.uid + "/"
+  var query = firebase.database().ref(dbWineNames).orderByKey();
 
-  var query = firebase.database().ref(dbWineNames).orderByKey();   
-  var winearray = [];
+  // var winearray = [];
+  const [ winearray, setWinearray ] = useState();
+
 
   function handleChange(e){
     setWineReviewName(e);
-    // console.log(e);
   }
 
+  // function SetWineArray() {
+  //   var returnArr = [];         
+  //     query.once("value").then(function (snapshot) {
+  //       snapshot.forEach(function (childSnapshot) {
+  //           returnArr.push({ label:childSnapshot.key, value:childSnapshot.key});  
+  //       });
+  //     });
+  //   console.log('running SETWINEARRAY AGAIN');
+  //   winearray = returnArr
+  //   return returnArr
+  // }
+  // SetWineArray()
+
+  // var returnArr = [];
   function SetWineArray() {
-    var returnArr = [];         
-      query.once("value").then(function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-            returnArr.push({ label:childSnapshot.key, value:childSnapshot.key});  
+    useEffect(() => {
+      var returnArr = [];         
+        query.once("value").then(function (snapshot) {
+          snapshot.forEach(function (childSnapshot) {
+              returnArr.push({ label:childSnapshot.key, value:childSnapshot.key});
+              // winearray.push({ label:childSnapshot.key, value:childSnapshot.key});
+          });
         });
-      });
-    winearray = returnArr
-    return returnArr
+      // console.log('running SETWINEARRAY AGAIN');
+      // console.log(winearray);
+      // winearray = returnArr
+      setWinearray(returnArr);
+      // return returnArr
+    }, []);
   }
-  SetWineArray()
+  SetWineArray();
 
   const [hideSortedResults, setHideSortedResults] = useState(true);
   var dbWineNamesWI = '/users/' + user.uid + "/"
@@ -93,6 +119,9 @@ export const ReviewResult = () => {
 
   SetWineArrayItems()
 
+  // const [wineitems, setWineitems] = useState([]);
+
+
   const sortOptions = wineSortCategories.map((category) =>
     ({label:category,value:category})
   );
@@ -104,9 +133,6 @@ export const ReviewResult = () => {
     });
     setSortedReviews(sorted);
   };
-
-
-  // console.log(compareList);
 
   return (
     <UserProvider>
@@ -163,43 +189,56 @@ export const ReviewResult = () => {
                 </table>
               </div>
             )}
-            
-
-
           </div>
         </div>
 
         <div key={wineReviewName}>
-          
-          TESTING COMPARE RESULTS
-          {/* {console.log(winearray)} */}
-            {/* {hideReview ? "" :  */}
-              <div id='Radar' style={{ margin: 'auto'}}>
-                <Select
-                  closeMenuOnSelect={false}
-                  closeMenuOnScroll={false}
-                  isSearchable={false}
-                  isMulti
-                  name="CompareSelector"
-                  placeholder="Select to Compare"
-                  blurInputOnSelect={false}
-                  options={winearray}
-                  onChange={e => {
-                    setCompareList((Array.isArray(e) ? e.map(x => x.value) : []));
-                  }}
-                  // onMenuClose={e => {
-                  //   setCompareList((Array.isArray(e) ? e.map(x => x.value) : []));
-                  // }}
-                  onMenuClose={e=> {setHideCompare(false)}}
-                />
+          <div id='Compare' style={{border:'2px solid black'}}>
+            TESTING COMPARE RESULTS
+            {/* {console.log(winearray)} */}
+              {/* {hideReview ? "" :  */}
+                <div id='Radar' style={{ margin: 'auto'}}>
+                  <Select
+                    closeMenuOnSelect={false}
+                    closeMenuOnScroll={false}
+                    onMenuOpen={() => setHideCompare(true)}
+                    onClick={null}
+                    isSearchable={false}
+                    isMulti
+                    name="CompareSelector"
+                    placeholder="Select to Compare"
+                    blurInputOnSelect={false}
+                    options={winearray}
+                    // onChange={e => {
+                    //   setCompareList((Array.isArray(e) ? e.map(x => x.value) : []));
+                    // }}
 
-                {hideCompare ? "" : <RadarChart ReviewName={compareList} user={user} /> }
-                {/* <RadarChart ReviewName={compareList} user={user} /> */}
+                    // onChange={(option) => handleChangeCompare(option)}
+                    // onChange={(option) => handleChangeCompare(option)}
+                    
+                    onChange={(option) => handleChangeCompare(option.map(x => x.value))}
+                    // onChange={(option) => {handleChangeCompare(option.map(x => x.value)), setHideCompare(true)}}
 
-                {/* <CompareResults ReviewName={wineReviewName} user={user} /> */}
-              </div>
-            {/* } */}
-          END TESTING COMPARE RESULTS
+                    // onMenuClose={e => {
+                    //   setCompareList((Array.isArray(e) ? e.map(x => x.value) : []));
+                    // }}
+                    onMenuClose={e=> {setHideCompare(false)}}
+                  />
+
+
+                  {/* <button type="button" style={{margin:'5px', fontSize:'14px', alignContent:'center', display:'flex', alignSelf:'center'}} className="winetoolsbutton" onClick={() => setHideCompare(false)} >Show Comparison</button> */}
+
+                  {hideCompare ? "" :
+                    <RadarChart ReviewName={compareList} user={user} /> 
+                  }
+                  
+                  {/* <RadarChart ReviewName={compareList} user={user} /> */}
+
+                  {/* <CompareResults ReviewName={wineReviewName} user={user} /> */}
+                </div>
+              {/* } */}
+            END TESTING COMPARE RESULTS
+          </div>
 
           {hideReview ? "" : 
             <div id='Radar' style={{ margin: 'auto'}}>
