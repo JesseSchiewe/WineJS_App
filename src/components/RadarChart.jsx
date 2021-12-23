@@ -1,20 +1,12 @@
 import { ResponsiveRadar } from '@nivo/radar'
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
-// import { forEach } from 'core-js/core/array';
-
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
 
 export const GetChartData = (dbpathref) => {
     let firebaseData = ''
 
     firebase.database().ref(dbpathref).on('value', (snapshot) => {
         firebaseData = snapshot.val();
-        // console.log(firebaseData);
     });
 
     return new Promise((resolve, reject) => {
@@ -28,7 +20,6 @@ const MyResponsiveRadar = ({ data, revname }) => (
         keys={ revname }
         indexBy="Category"
         maxValue={1}
-        // valueFormat=">-.2f"
         valueFormat=" >-.0%"
         margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
         borderColor={{ from: 'color' }}
@@ -36,7 +27,6 @@ const MyResponsiveRadar = ({ data, revname }) => (
         dotSize={10}
         dotColor={{ theme: 'background' }}
         dotBorderWidth={2}
-        // colors={{ scheme: 'nivo' }}
         colors={{ scheme: 'category10' }}
         fillOpacity={.55}
         blendMode="multiply"
@@ -66,22 +56,15 @@ const MyResponsiveRadar = ({ data, revname }) => (
 )
 
 
-// export default function RadarChart() {
 export default function RadarChart({ ReviewName, user }) {
     const [data, setData] = useState([]);
     const [revname, setRevName] = useState([]);
-    // const [revname, setRevName] = useState();
-
-    // let revname = [];
     const [finished, setFinished] = useState(false);
-
     const handleAddWine = (newWine) => {
         setRevName((revname) => [...revname,newWine]);
-        // console.log(`NEW WINE ADDED: ${newWine}`);
-        // console.log(revname);
     };
     
-    let TESTDATA = [
+    let DataModel = [
         {
             Category: 'Total',
         },
@@ -110,7 +93,6 @@ export default function RadarChart({ ReviewName, user }) {
             var revData = await GetChartData(dbpathref);
             const chartMath = {NoseIntensity: 5,FlavorIntensity: 10,FlavorCharacteristics: 25,Balance: 5,Length: 5,Total: 100};
 
-            // const final = Object.entries(revData).map(([key,value]) => {
             Object.entries(revData).map(([key,value]) => {
                 if (Object.keys(chartMath).includes(key)) {
 
@@ -125,8 +107,8 @@ export default function RadarChart({ ReviewName, user }) {
                         [revData.WineName] : percentValue
                     };
 
-                    let index = TESTDATA.findIndex(d => d.Category === key);
-                    if (index !== -1) {TESTDATA[index][revData.WineName] = percentValue};
+                    let index = DataModel.findIndex(d => d.Category === key);
+                    if (index !== -1) {DataModel[index][revData.WineName] = percentValue};
 
                     return tempObject
                 } else {
@@ -143,11 +125,11 @@ export default function RadarChart({ ReviewName, user }) {
         }
         if (Array.isArray(ReviewName)) {
             ReviewName.forEach(fetchData);
-            setData(TESTDATA);
+            setData(DataModel);
             setFinished(true);
         } else {
             fetchData(ReviewName);
-            setData(TESTDATA);
+            setData(DataModel);
             setFinished(true);
         };
     }, [ReviewName])
@@ -155,9 +137,7 @@ export default function RadarChart({ ReviewName, user }) {
     return finished ? 
         (
             <div style={{height: '320px', paddingBottom: '10px'}}>
-                {/* {console.log(data)} */}
                 <MyResponsiveRadar data={data} revname={revname} />
-                {/* {console.log(revname)} */}
             </div>
         )
         :

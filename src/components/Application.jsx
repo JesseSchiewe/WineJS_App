@@ -16,7 +16,7 @@ import {ReviewResult} from './ReviewResult';
 import LoadingScreen from './LoadingScreen';
 
 export const Version = process.env.REACT_APP_VERSION;
-export const ManualVersion = "2.0.8";
+export const ManualVersion = "2.0.9";
 
 function Application() {
   const user = useContext(UserContext);
@@ -26,7 +26,6 @@ function Application() {
       {
         user ?
           <Router>
-            {/* <Route path="/" exact component={Home} /> */}
             <Route path="/" exact component={LoadingScreen} />
             <Route path="/" component={PageHeader} />
             <Route path="/home" exact component={Home} />
@@ -43,7 +42,6 @@ function Application() {
           <Router>            
             <Route path="/" exact component={LoadingScreen} />
             <Route path="/" component={PageHeader} />
-            {/* <Route path="/" exact component={SignIn} /> */}
             <Route path="/home" exact component={Home} />
             <Route path="/about" exact component={About} />
             <Route path="/contact" exact component={Contact} />

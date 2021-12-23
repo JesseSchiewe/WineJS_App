@@ -12,58 +12,33 @@ export const ReviewResult = () => {
   const RunType = useLocation().pathname;
   const [ SortByCategory, setSortByCategory ] = useState("Total");
   const [ wineReviewName, setWineReviewName ] =useState(null);
-
   const [ compareList, setCompareList ] = useState([]);
   const handleChangeCompare = (obj) => {
     setCompareList(obj);
   };
-
-
-  
   var dbWineNames = '/users/' + user.uid + "/"
   var query = firebase.database().ref(dbWineNames).orderByKey();
-
-  // var winearray = [];
   const [ winearray, setWinearray ] = useState();
-
 
   function handleChange(e){
     setWineReviewName(e);
   }
 
-  // function SetWineArray() {
-  //   var returnArr = [];         
-  //     query.once("value").then(function (snapshot) {
-  //       snapshot.forEach(function (childSnapshot) {
-  //           returnArr.push({ label:childSnapshot.key, value:childSnapshot.key});  
-  //       });
-  //     });
-  //   console.log('running SETWINEARRAY AGAIN');
-  //   winearray = returnArr
-  //   return returnArr
-  // }
-  // SetWineArray()
-
-  // var returnArr = [];
   function SetWineArray() {
     useEffect(() => {
       var returnArr = [];         
         query.once("value").then(function (snapshot) {
           snapshot.forEach(function (childSnapshot) {
               returnArr.push({ label:childSnapshot.key, value:childSnapshot.key});
-              // winearray.push({ label:childSnapshot.key, value:childSnapshot.key});
           });
         });
-      // console.log('running SETWINEARRAY AGAIN');
-      // console.log(winearray);
-      // winearray = returnArr
       setWinearray(returnArr);
-      // return returnArr
     }, []);
   }
   SetWineArray();
 
   const [hideSortedResults, setHideSortedResults] = useState(true);
+  const [hideCompareDiv, setHideCompareDiv] = useState(true);
   var dbWineNamesWI = '/users/' + user.uid + "/"
   var querywi = firebase.database().ref(dbWineNamesWI).orderByKey();
 
@@ -116,11 +91,7 @@ export const ReviewResult = () => {
       });
     }, []);
   }
-
   SetWineArrayItems()
-
-  // const [wineitems, setWineitems] = useState([]);
-
 
   const sortOptions = wineSortCategories.map((category) =>
     ({label:category,value:category})
@@ -193,10 +164,12 @@ export const ReviewResult = () => {
         </div>
 
         <div key={wineReviewName}>
-          <div id='Compare' style={{border:'2px solid black'}}>
-            TESTING COMPARE RESULTS
-            {/* {console.log(winearray)} */}
-              {/* {hideReview ? "" :  */}
+          
+          <div id='Compare' style={{border:'2px solid black'}} >
+            <button type="StandardButton" onClick={() => setHideCompareDiv(!hideCompareDiv)} >Show/Hide Comparison</button>
+
+              <div id='CompareRadar' hidden={hideCompareDiv}>
+                Compare Results
                 <div id='Radar' style={{ margin: 'auto'}}>
                   <Select
                     closeMenuOnSelect={false}
@@ -209,35 +182,14 @@ export const ReviewResult = () => {
                     placeholder="Select to Compare"
                     blurInputOnSelect={false}
                     options={winearray}
-                    // onChange={e => {
-                    //   setCompareList((Array.isArray(e) ? e.map(x => x.value) : []));
-                    // }}
-
-                    // onChange={(option) => handleChangeCompare(option)}
-                    // onChange={(option) => handleChangeCompare(option)}
-                    
                     onChange={(option) => handleChangeCompare(option.map(x => x.value))}
-                    // onChange={(option) => {handleChangeCompare(option.map(x => x.value)), setHideCompare(true)}}
-
-                    // onMenuClose={e => {
-                    //   setCompareList((Array.isArray(e) ? e.map(x => x.value) : []));
-                    // }}
                     onMenuClose={e=> {setHideCompare(false)}}
                   />
-
-
-                  {/* <button type="button" style={{margin:'5px', fontSize:'14px', alignContent:'center', display:'flex', alignSelf:'center'}} className="winetoolsbutton" onClick={() => setHideCompare(false)} >Show Comparison</button> */}
-
                   {hideCompare ? "" :
                     <RadarChart ReviewName={compareList} user={user} /> 
                   }
-                  
-                  {/* <RadarChart ReviewName={compareList} user={user} /> */}
-
-                  {/* <CompareResults ReviewName={wineReviewName} user={user} /> */}
                 </div>
-              {/* } */}
-            END TESTING COMPARE RESULTS
+            </div>
           </div>
 
           {hideReview ? "" : 
@@ -248,7 +200,6 @@ export const ReviewResult = () => {
 
           {hideReview ? "" : <CreateReviewForm ReviewName={wineReviewName} user={user} /> }
         </div>
-
       </div>
     </UserProvider>
   );
