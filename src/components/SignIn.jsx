@@ -9,7 +9,7 @@ import { auth } from "../Firebase";
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Redirect } from "react-router";
+import { Navigate } from "react-router";
 
 export default function SignIn({ login }) {
   const { register, handleSubmit, formState: { errors }} = useForm();
@@ -73,13 +73,13 @@ export default function SignIn({ login }) {
       </form>
       <div className="text">
         <div>
-          <Link to="/signUp" className="text-blue-500 hover:text-blue-600">Sign up here</Link>
+          <Link to="/signUp" className="StandardLink">Sign up here</Link>
         </div>
         <div>
-          <Link to = "/passwordReset" className="text-blue-500 hover:text-blue-600">Forgot Password?</Link>
+          <Link to = "/passwordReset" className="StandardLink">Forgot Password?</Link>
         </div>
       </div>
-      { SignedIn ? <Redirect to={{ pathname:"/home" }} /> : ""}
+      { SignedIn ? <Navigate to={{ pathname:"/home" }} /> : ""}
     </div>
   );
 }

@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import useToggle from './useToggle';
-import { useLocation, Redirect } from 'react-router-dom';
-import firebase from 'firebase';
+import { useLocation, Navigate } from 'react-router-dom';
+import firebase from 'firebase/compat/app';
+import "firebase/compat/database";
 import UserProvider, { UserContext } from "../providers/UserProvider";
 import Select from 'react-select';
 import { RedWineFlavorOptions } from './WineFlavors';
 import { formatGroupLabel, colorStyles } from './WineFlavorSelectBox';
 import WineColorChart from '../Style/WineColorChart.jpg';
 import WineTastingGrid from '../Style/WineTastingGrid.jpg';
+import WineFlavorWheel from '../Style/WineFlavorWheel.jpg';
 
 export default function WineReviewForm({ preloadedValues }) {
   const user = useContext(UserContext);
@@ -60,10 +62,11 @@ export default function WineReviewForm({ preloadedValues }) {
   const [hideFlavorCharacteristicsInfo, toggleFlavorCharacteristicsInfo] = useToggle();
   const [hideBalanceInfo, toggleBalanceInfo] = useToggle();
   const [hideLengthInfo, toggleLengthInfo] = useToggle();
-  const [hideColorChart, toggleColorChart] = useToggle();
-  const [hideTastingGrid, toggleTastingGrid] = useToggle();
+  const [hideWineTools, toggleWineTools] = useToggle();
 
   const [toResults, setToResults] = useState(false);
+
+  const [selectedWineTool, setSelectedWineTool] = useState();
 
   function writeToDatabase(userId, data) {
     firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + data.ReviewDate).set({
@@ -110,7 +113,7 @@ export default function WineReviewForm({ preloadedValues }) {
             <div className="formbackground" >
               {hideResults ? (
                 <div>
-                  <h1>WineJS Review</h1>                  
+                  {/* <h1>WineJS Review</h1>                   */}
                 </div>
                 )
               : (
@@ -120,7 +123,7 @@ export default function WineReviewForm({ preloadedValues }) {
                 </div>
               )}
             
-              {toResults ? <Redirect to={{ pathname:"/reviewresult" }} /> : null}
+              {toResults ? <Navigate to={{ pathname:"/reviewresult" }} /> : null}
 
               <input type="text" name="ReviewDate" id="ReviewDate" defaultValue={today} {...register("ReviewDate")} />
                       
@@ -265,31 +268,58 @@ export default function WineReviewForm({ preloadedValues }) {
               <input type="hidden" className="hidethis" name="Total" id="Total" {...register("Total")} value={totalValue.toString()} />
 
               <button type="button" className="reviewbutton" onClick={togglePurchase} value="" >Purchase Info</button>
-              <h2>
+              <h5>
                 {hidePurchase ? "" : "How much DID you pay?"}
-              </h2>
+              </h5>
               <input type="number" placeholder="$" {...register("ActualPrice")} hideit={hidePurchase ? "true" : "false"}  />
-              <h2>
+              <h5>
                 {hidePurchase ? "" : "How much WOULD you pay?"}
-              </h2>
+              </h5>
               <input type="number" placeholder="$" {...register("WineValue")} hideit={hidePurchase ? "true" : "false"} />
               
-              <div className="WineTools">
+              {/* <div className="WineTools">
                 <button type="button" className="winetoolsbutton" onClick={toggleColorChart} >Wine Colors</button>
-              </div>
-              <div hidden={hideColorChart}>
-                  <img src={WineColorChart} alt="Wine Color Chart" width={400} />
-              </div>
+                <div hidden={hideColorChart}>
+                    <img src={WineColorChart} alt="Wine Color Chart" width={400} />
+                </div>
 
-              <div className="WineTools">
                 <button type="button" className="winetoolsbutton" onClick={toggleTastingGrid} >Wine Tasting Grid</button>
+                <div hidden={hideTastingGrid}>
+                    <img src={WineTastingGrid} alt="Wine Tasting Grid" width={400} />
+                </div>
+
+                <button type="button" className="winetoolsbutton" onClick={toggleWineFlavorWheel} >Wine Flavor Wheel</button>
+                <div hidden={hideWineFlavorWheel}>
+                    <img src={WineFlavorWheel} alt="Wine Flavor Wheel" width={400} />
+                </div>
+              </div> */}
+
+              <div>
+                <button type="button" className="winetoolsbutton winetoolsbutton-big" onClick={toggleWineTools}>{hideWineTools ? "Show Wine Tools" : "Hide Wine Tools"}</button>
               </div>
-              <div hidden={hideTastingGrid}>
-                  <img src={WineTastingGrid} alt="Wine Tasting Grid" width={400} />
+              <div className="WineToolsBox" hidden={hideWineTools}>
+                <div className="WineTools">
+                  <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineColorChart")} >Colors</button>
+                  <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineTastingGrid")} >Tasting Grid</button>
+                  <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineFlavorWheel")} >Flavor Wheel</button>
+                  <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("EMPTY")}>Clear Wine Tools</button>
+
+                  <div hidden={selectedWineTool !== "WineColorChart"}>
+                      <img src={WineColorChart} alt="Wine Color Chart" width={395} />
+                  </div>
+                  <div hidden={selectedWineTool !== "WineTastingGrid"}>
+                      <img src={WineTastingGrid} alt="Wine Tasting Grid" width={395} />
+                  </div>                
+                  <div hidden={selectedWineTool !== "WineFlavorWheel"}>
+                      <img src={WineFlavorWheel} alt="Wine Flavor Wheel" width={397} />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2>Tasting Notes</h2>
+                <textarea {...register("TastingNotes")} />
               </div>
 
-              <h2>Tasting Notes</h2>
-              <textarea {...register("TastingNotes")} />
               
               {hideResults ?
                 <div>

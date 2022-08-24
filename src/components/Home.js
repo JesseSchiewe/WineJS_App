@@ -29,11 +29,11 @@ export default function Home() {
                             image={DariusBottles}
                             alt="Review"
                             />
-                            <CardContent sx={{background:"#dacebb"}}>
-                            <Typography gutterBottom variant="h5" component="div" sx={{color:"#343078"}}>
+                            <CardContent sx={{background:"#4e4e50"}}>
+                            <Typography gutterBottom variant="h5" component="div" sx={{color:"crimson"}}>
                                 New Review
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="#ffffff">
                                 Create a new review.
                                 There are "Info" buttons next to each category that will explain how to rate the wine.
                             </Typography>
@@ -50,11 +50,11 @@ export default function Home() {
                             image={DariusLineup}
                             alt="Review"
                             />
-                            <CardContent sx={{background:"#f7e7ce"}}>
-                            <Typography gutterBottom variant="h5" component="div" sx={{color:"#343078"}}>
+                            <CardContent sx={{background:"#4e4e50"}}>
+                            <Typography gutterBottom variant="h5" component="div" sx={{color:"crimson"}}>
                                 Results
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="#ffffff">
                                 See past reviews.
                                 You may also edit it and save the changes.
                                 It also allows you view your favorite wines and sort by many different categories.

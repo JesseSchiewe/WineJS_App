@@ -1,4 +1,5 @@
-import firebase from 'firebase';
+// import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
 
 export const GetReviewData = (dbpathref) => {    
     let firebaseData = ''

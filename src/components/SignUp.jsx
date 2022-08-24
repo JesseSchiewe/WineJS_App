@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 //import {signInWithGoogle} from "../Firebase";
 import { auth, generateUserDocument } from "../Firebase";
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 
 
@@ -86,7 +86,7 @@ const SignUp = () => {
           />
           <p/>
           <button
-            className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
+            className="BasicButton"
             onClick={event => {createUserWithEmailAndPasswordHandler(event, email, password);}}
           >
           Sign up
@@ -96,7 +96,7 @@ const SignUp = () => {
               {error}
             </div>
           )}
-          {toHome ? <Redirect to={{ pathname:"/" }} /> : null}
+          {toHome ? <Navigate to={{ pathname:"/" }} /> : null}
           {/* <h2>
             or
           </h2>
@@ -107,7 +107,7 @@ const SignUp = () => {
           </button> */}
           <p className="text-center my-3">
             Already have an account?{" "}
-            <Link to="/SignIn" className="text-blue-500 hover:text-blue-600">
+            <Link to="/SignIn" className="StandardLink">
               Sign in here
             </Link>
           </p>

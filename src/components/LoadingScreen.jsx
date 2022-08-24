@@ -1,4 +1,4 @@
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import spinningglass from '../Style/spinningglass.gif'
 
@@ -19,7 +19,7 @@ export default function LoadingScreen() {
                     <img src={spinningglass} alt="loading..." className="CenterImage" />                       
                 </div>
                 :
-                <Redirect to={{ pathname:"/home" }} />
+                <Navigate to={{ pathname:"/home" }} />
             }
         </div>
     );

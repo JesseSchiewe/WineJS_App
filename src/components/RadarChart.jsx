@@ -1,6 +1,6 @@
 import { ResponsiveRadar } from '@nivo/radar'
 import React, { useState, useEffect } from 'react';
-import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
 
 export const GetChartData = (dbpathref) => {
     let firebaseData = ''
@@ -24,11 +24,11 @@ const MyResponsiveRadar = ({ data, revname }) => (
         margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
         borderColor={{ from: 'color' }}
         gridLabelOffset={10}
-        dotSize={10}
+        dotSize={7}
         dotColor={{ theme: 'background' }}
         dotBorderWidth={2}
         colors={{ scheme: 'category10' }}
-        fillOpacity={.55}
+        fillOpacity={.4}
         blendMode="multiply"
         motionConfig="wobbly"
         legends={[

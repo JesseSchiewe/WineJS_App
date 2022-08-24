@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import ProfilePage from "./ProfilePage";
@@ -16,7 +16,7 @@ import {ReviewResult} from './ReviewResult';
 import LoadingScreen from './LoadingScreen';
 
 export const Version = process.env.REACT_APP_VERSION;
-export const ManualVersion = "2.0.9";
+export const ManualVersion = "3.0.1";
 
 function Application() {
   const user = useContext(UserContext);
@@ -26,30 +26,34 @@ function Application() {
       {
         user ?
           <Router>
-            <Route path="/" exact component={LoadingScreen} />
-            <Route path="/" component={PageHeader} />
-            <Route path="/home" exact component={Home} />
-            <Route path="/about" exact component={About} />
-            <Route path="/contact" exact component={Contact} />
-            <Route path="/review" exact component={Review} />
-            <Route path="/reviewresult" exact component={ReviewResult} />
-            <Route path= "/signin" exact component={Home} />
-            <Route path= "/signUp" exact component={SignUp} />
-            <Route path= "/passwordreset" exact component={PasswordReset} />
-            <Route path= "/profilepage" exact component={ProfilePage} />    
+            <Routes>
+              <Route path="/" exact element={<LoadingScreen />} />
+              <Route path="/" element={<PageHeader />} />
+              <Route path="/home" exact element={<><PageHeader/><Home /></>} />
+              <Route path="/about" exact element={<><PageHeader/><About /></>} />
+              <Route path="/contact" exact element={<><PageHeader/><Contact /></>} />
+              <Route path="/review" exact element={<><PageHeader/><Review /></>} />
+              <Route path="/reviewresult" exact element={<><PageHeader/><ReviewResult /></>} />
+              <Route path= "/signin" exact element={<><PageHeader/><Home /></>} />
+              <Route path= "/signUp" exact element={<><PageHeader/><SignUp /></>} />
+              <Route path= "/passwordreset" exact element={<><PageHeader/><PasswordReset /></>} />
+              <Route path= "/profilepage" exact element={<><PageHeader/><ProfilePage /></>} />    
+            </Routes>
           </Router>
         :
-          <Router>            
-            <Route path="/" exact component={LoadingScreen} />
-            <Route path="/" component={PageHeader} />
-            <Route path="/home" exact component={Home} />
-            <Route path="/about" exact component={About} />
-            <Route path="/contact" exact component={Contact} />
-            <Route path="/review" exact component={SignIn} />
-            <Route path="/reviewresult" exact component={SignIn} />
-            <Route path= "/signin" exact component={SignIn} />
-            <Route path= "/signUp" exact component={SignUp} />
-            <Route path= "/passwordreset" exact component={PasswordReset} />
+          <Router>   
+            <Routes>         
+              <Route path="/" exact element={<LoadingScreen />} />
+              <Route path="/" element={<PageHeader />} />
+              <Route path="/home" exact element={<><PageHeader/><Home /></>} />
+              <Route path="/about" exact element={<><PageHeader/><About /></>} />
+              <Route path="/contact" exact element={<><PageHeader/><Contact /></>} />
+              <Route path="/review" exact element={<><PageHeader/><SignIn /></>} />
+              <Route path="/reviewresult" exact element={<><PageHeader/><SignIn /></>} />
+              <Route path= "/signin" exact element={<><PageHeader/><SignIn /></>} />
+              <Route path= "/signUp" exact element={<><PageHeader/><SignUp /></>} />
+              <Route path= "/passwordreset" exact element={<><PageHeader/><PasswordReset /></>} />
+            </Routes>
           </Router>
       } 
     </div>

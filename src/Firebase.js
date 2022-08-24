@@ -1,6 +1,8 @@
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
+// Firebase v9 compatible method
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyB2yTPOk9y8C4hWu_x8crC8q3Sqbu6R44I",
@@ -16,6 +18,10 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
+// export const firestore = firebaseApp.firestore();
+// export const auth = firebase.auth();
 
 // const provider = new firebase.auth.GoogleAuthProvider();
 // export const signInWithGoogle = () => {

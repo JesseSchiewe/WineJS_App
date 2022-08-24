@@ -1,11 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
+import "firebase/compat/database";
 import UserProvider, { UserContext } from "../providers/UserProvider";
 import Select from 'react-select';
 import { useEffect } from 'react';
 import CreateReviewForm from './CreateReviewForm';
 import RadarChart from './RadarChart';
+
+import HorizontalSelector from './HorizontalSelector';
 
 export const ReviewResult = () => {
   const user = useContext(UserContext);
@@ -55,6 +58,8 @@ export const ReviewResult = () => {
   const [hideReview, setHideReview] = useState(hideReviewToggleStart);
   const hideResults = hideResultsStart;
   const [hideCompare, setHideCompare] = useState(true);
+
+  const [menuBarOption, setMenuBarOption] = useState("All");
 
   const wineSortCategories = [
     "ActualPrice",
@@ -113,27 +118,35 @@ export const ReviewResult = () => {
                 Results
             </h1>                  
         </div>
-
+        <div className='Center'>
+          {/* <HorizontalSelector clickhandler={handleMenuBarClick} options={["Favorites","Compare","Sort"]} style={{alignItems: "center"}} /> */}
+          <HorizontalSelector clickhandler={setMenuBarOption} options={["All","Favorites","Compare","Sort"]} style={{alignItems: "center"}} />
+        </div>
         <div className="FavoriteWines" hidden={hideResults} >
-          <form>
-            <Select options={ winearray } className="selectBox" isSearchable={true} placeholder="Select Review" onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } />
-          </form>
-          <p/>
+          <div hidden={menuBarOption !== "All"}>
+            <form>
+              <Select options={ winearray } className="selectBox" isSearchable={true} placeholder="Select Review" onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } />
+            </form>
+          </div>
           <div className="Center" hidden={hideResults} >
-            <button type="StandardButton" onClick={() => {sortResults(SortByCategory); setHideSortedResults(!hideSortedResults); setHideReview(true)}} >Show/Hide Favorite Wines</button>
-            {hideSortedResults ? "" : (
+            {/* <button type="StandardButton" onClick={() => {sortResults(SortByCategory); setHideSortedResults(!hideSortedResults); setHideReview(true)}} >Show/Hide Favorite Wines</button> */}
+            {/* {hideSortedResults ? "" : (
               <form>
                 <Select options={ sortOptions } className="selectBox" placeholder="Sort By" isSearchable={true} onChange={(e) => {sortResults(e.value); setSortByCategory(e.value) }}   />
               </form>
-            )}
+            )} */}
+            {menuBarOption === "Favorites" &&
+              <form>
+                <Select options={ sortOptions } className="selectBox" placeholder="Sort By" isSearchable={true} onChange={(e) => {sortResults(e.value); setSortByCategory(e.value) }}   />
+              </form>
+            }
 
-            {hideSortedResults ? "" : (
+            {/* {hideSortedResults ? "" : ( */}
+            {menuBarOption === "Favorites" &&
               <div style={{marginTop:'1em'}}>
                 <h6>
                   Sorted by {SortByCategory}
                 </h6>
-                <p/>
-
                 <table style={{textAlign: 'left'}}>
                   <tr key='tableLabels'>
                     <th style={{ borderBottom: 'solid 1px black', borderRight: 'solid 1px black'}}>
@@ -144,7 +157,19 @@ export const ReviewResult = () => {
                     </th>
                   </tr>
                     
-                    {hideSortedResults ? "" : sortedReviews.map((wineitem, i) => {
+                    {/* {hideSortedResults ? "" : sortedReviews.map((wineitem, i) => {
+                      return (
+                        <tr key={i}>
+                          <td style={{borderRight: 'solid 1px black', borderBottom: 'solid 1px black'}}>
+                            {wineitem[SortByCategory]}
+                          </td>
+                          <td style={{borderBottom: 'solid 1px black'}}>
+                            <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); setHideSortedResults(true) ; setHideReview(false) }} >{wineitem.wine} </b>
+                          </td>
+                        </tr>
+                      )})
+                    } */}
+                    {menuBarOption === "Favorites" && sortedReviews.map((wineitem, i) => {
                       return (
                         <tr key={i}>
                           <td style={{borderRight: 'solid 1px black', borderBottom: 'solid 1px black'}}>
@@ -159,16 +184,16 @@ export const ReviewResult = () => {
 
                 </table>
               </div>
-            )}
+            }
           </div>
         </div>
 
         <div key={wineReviewName}>
           
           <div id='Compare' style={{border:'2px solid black'}} >
-            <button type="StandardButton" onClick={() => setHideCompareDiv(!hideCompareDiv)} >Show/Hide Comparison</button>
+            {/* <button type="StandardButton" onClick={() => setHideCompareDiv(!hideCompareDiv)} >Show/Hide Comparison</button> */}
 
-              <div id='CompareRadar' hidden={hideCompareDiv}>
+              <div id='CompareRadar' hidden={menuBarOption !== "Compare"}>
                 Compare Results
                 <div id='Radar' style={{ margin: 'auto'}}>
                   <Select

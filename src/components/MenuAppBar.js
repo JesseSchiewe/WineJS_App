@@ -105,7 +105,7 @@ export default function MenuAppBar(props) {
                   open={Boolean(anchorElMenu)}
                   onClose={handleCloseMenu}
                 >
-                <Paper variant="outlined" style={{backgroundColor:"#ffcccc", marginTop:'-8px', marginBottom:'-8px'}}>
+                <Paper variant="outlined" style={{color:"#ffffff",backgroundColor:"#4e4e50", marginTop:'-8px', marginBottom:'-8px'}}>
                   <MenuItem onClick={handleCloseMenu} component={Link} to={'/home'}><HomeIcon/>Home</MenuItem>
                   <MenuItem onClick={handleCloseMenu} component={Link} to={'/review'}><WineBarIcon/>Review</MenuItem>
                   <MenuItem onClick={handleCloseMenu} component={Link} to={'/reviewresult'}><StarOutlineIcon/>Results</MenuItem>
@@ -115,11 +115,12 @@ export default function MenuAppBar(props) {
                   <MenuItem onClick={handleCloseMenu}>Version: {Version} ({ManualVersion})</MenuItem>
                 </Paper>
               </Menu>
-              <Typography variant="h4" sx={{ flexGrow: 1 }} component={Link} to={'/home'} >
-                <img src={WineJS_Cork} alt="logo" height="50" />
+              <Typography sx={{ flexGrow: 1 }}>
+                {/* <img src={WineJS_Cork} alt="logo" height="30" /> */}
               </Typography>
-              <Typography >
-                WineJS
+              <Typography component={Link} to={'/home'}>
+                {/* WineJS */}
+                <img src={WineJS_Cork} alt="logo" height="23" />
               </Typography>
               {/* {auth && ( */}
                 <div>
@@ -150,7 +151,7 @@ export default function MenuAppBar(props) {
                   >
                     {user ? 
                       <div>
-                        <Paper variant="outlined" style={{backgroundColor:"#ffcccc", marginTop:'-8px', marginBottom:'-8px'}}>
+                        <Paper variant="outlined" style={{backgroundColor:"#4e4e50", color:"#ffffff", marginTop:'-8px', marginBottom:'-8px'}}>
                           <MenuItem onClick={handleCloseProfile} component={Link} to={'/profilepage'}>Profile</MenuItem>
                           <MenuItem onClick={signOut}>Sign Out</MenuItem>
                         </Paper>
