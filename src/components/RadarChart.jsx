@@ -14,6 +14,103 @@ export const GetChartData = (dbpathref) => {
     });
 }
 
+const RadarStyle = {    
+    // "background": "#000000",
+    "textColor": "#ffffff",
+    "fontSize": 11,
+    "axis": {
+        "domain": {
+            "line": {
+                "stroke": "#777777",
+                "strokeWidth": 1
+            }
+        },
+        "legend": {
+            "text": {
+                "fontSize": 12,
+                "fill": "#333333"
+            }
+        },
+        "ticks": {
+            "line": {
+                "stroke": "#777777",
+                "strokeWidth": 1
+            },
+            "text": {
+                "fontSize": 11,
+                "fill": "#333333"
+            }
+        }
+    },
+    "grid": {
+        "line": {
+            "stroke": "#dddddd",
+            "strokeWidth": 1
+        }
+    },
+    "legends": {
+        "title": {
+            "text": {
+                "fontSize": 11,
+                "fill": "#333333"
+            }
+        },
+        "text": {
+            "color": "#ffffff",
+            "fontSize": 11,
+            "fill": "#333333"
+        },
+        "ticks": {
+            "line": {},
+            "text": {
+                "fontSize": 10,
+                "fill": "#333333"
+            }
+        }
+    },
+    "annotations": {
+        "text": {
+            "fontSize": 13,
+            "fill": "#333333",
+            "outlineWidth": 2,
+            "outlineColor": "#ffffff",
+            "outlineOpacity": 1
+        },
+        "link": {
+            "stroke": "#000000",
+            "strokeWidth": 1,
+            "outlineWidth": 2,
+            "outlineColor": "#ffffff",
+            "outlineOpacity": 1
+        },
+        "outline": {
+            "stroke": "#000000",
+            "strokeWidth": 2,
+            "outlineWidth": 2,
+            "outlineColor": "#ffffff",
+            "outlineOpacity": 1
+        },
+        "symbol": {
+            "fill": "#000000",
+            "outlineWidth": 2,
+            "outlineColor": "#ffffff",
+            "outlineOpacity": 1
+        }
+    },
+    "tooltip": {
+        "container": {
+            "background": "#000000",
+            "color": "#ffffff",
+            "fontSize": 12
+        },
+        "basic": {},
+        "chip": {},
+        "table": {},
+        "tableCell": {},
+        "tableCellValue": {}
+    }    
+}
+
 const MyResponsiveRadar = ({ data, revname }) => (
     <ResponsiveRadar
         data={data}
@@ -24,13 +121,15 @@ const MyResponsiveRadar = ({ data, revname }) => (
         margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
         borderColor={{ from: 'color' }}
         gridLabelOffset={10}
+        gridShape="linear"
         dotSize={7}
         dotColor={{ theme: 'background' }}
         dotBorderWidth={2}
         colors={{ scheme: 'category10' }}
-        fillOpacity={.4}
+        fillOpacity={.6}
         blendMode="multiply"
         motionConfig="wobbly"
+        theme={RadarStyle}
         legends={[
             {
                 anchor: 'top-left',
@@ -39,14 +138,14 @@ const MyResponsiveRadar = ({ data, revname }) => (
                 translateY: -40,
                 itemWidth: 80,
                 itemHeight: 20,
-                itemTextColor: '#999',
+                itemTextColor: '#ffffff',
                 symbolSize: 12,
                 symbolShape: 'circle',
                 effects: [
                     {
                         on: 'hover',
                         style: {
-                            itemTextColor: '#000'
+                            itemTextColor: 'crimson'
                         }
                     }
                 ]

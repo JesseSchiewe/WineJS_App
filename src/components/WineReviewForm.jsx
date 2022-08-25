@@ -11,6 +11,7 @@ import { formatGroupLabel, colorStyles } from './WineFlavorSelectBox';
 import WineColorChart from '../Style/WineColorChart.jpg';
 import WineTastingGrid from '../Style/WineTastingGrid.jpg';
 import WineFlavorWheel from '../Style/WineFlavorWheel.jpg';
+import { Stack } from '@mui/system';
 
 export default function WineReviewForm({ preloadedValues }) {
   const user = useContext(UserContext);
@@ -297,22 +298,21 @@ export default function WineReviewForm({ preloadedValues }) {
               <div>
                 <button type="button" className="winetoolsbutton winetoolsbutton-big" onClick={toggleWineTools}>{hideWineTools ? "Show Wine Tools" : "Hide Wine Tools"}</button>
               </div>
-              <div className="WineToolsBox" hidden={hideWineTools}>
-                <div className="WineTools">
+              <div className="WineToolsSection" hidden={hideWineTools}>
+                <Stack className="HorizontalStack" direction="row" spacing={0.1}>
                   <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineColorChart")} >Colors</button>
                   <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineTastingGrid")} >Tasting Grid</button>
                   <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineFlavorWheel")} >Flavor Wheel</button>
                   <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("EMPTY")}>Clear Wine Tools</button>
-
-                  <div hidden={selectedWineTool !== "WineColorChart"}>
-                      <img src={WineColorChart} alt="Wine Color Chart" width={395} />
-                  </div>
-                  <div hidden={selectedWineTool !== "WineTastingGrid"}>
-                      <img src={WineTastingGrid} alt="Wine Tasting Grid" width={395} />
-                  </div>                
-                  <div hidden={selectedWineTool !== "WineFlavorWheel"}>
-                      <img src={WineFlavorWheel} alt="Wine Flavor Wheel" width={397} />
-                  </div>
+                </Stack>
+                <div hidden={selectedWineTool !== "WineColorChart"}>
+                    <img src={WineColorChart} alt="Wine Color Chart" width={395} />
+                </div>
+                <div hidden={selectedWineTool !== "WineTastingGrid"}>
+                    <img src={WineTastingGrid} alt="Wine Tasting Grid" width={395} />
+                </div>                
+                <div hidden={selectedWineTool !== "WineFlavorWheel"}>
+                    <img src={WineFlavorWheel} alt="Wine Flavor Wheel" width={397} />
                 </div>
               </div>
               <div>

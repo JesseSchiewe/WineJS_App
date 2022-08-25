@@ -11,7 +11,8 @@ html, body {
   background-attachment: fixed;
   background-size: cover; */
   /* background by SVGBackgrounds.com */
-  height: 100vh;
+  
+  /* height: 100vh; */
   color: #ffffff;
 }
 
@@ -480,23 +481,28 @@ input[type="range"]::-webkit-slider-thumb {
 
   button.winetoolsbutton {
     color:white;
-    background-color: #950740;
-    /* font-family: sans-serif; */
-    /* float: right; */
+    background: #6f2232;
     margin-top: .1em;
-    /* margin-right: 15%; */
     padding: .5em;
-    /* padding-right: .8em; */
-    /* padding-left: .8em; */
     font-size: .5em;
-  }  
+    width: 100%;
+    border: 1px solid black;
+    border-radius: .3em;
+    position: relative;
+    width: 100%;
+  }
+  button.winetoolsbutton-big {
+    font-size: .6em;
+    background: #c3073f;
+    width: auto;
+    float: right;
+  }
+
   .error {
     color: crimson;
     font-size: 1.2em;
   }
-  button.winetoolsbutton-big {
-    font-size: .7em;
-  }
+
 
   button[type='submit'],
   input[type='submit'] {
@@ -672,27 +678,6 @@ input[type="range"]::-webkit-slider-thumb {
     z-index: 100000;
     position: relative;
   }
-  
-
-  /* .SiteHeader {
-    text-align: right;
-    vertical-align: top;
-    padding: 0em;
-    margin: 0em;
-    margin-right: 2%;
-    margin-top: 0em;
-    margin-bottom: 2em;
-  } */
-
-  /* .SiteMenu {
-    text-align: center;
-    vertical-align: top;
-    padding: 0em;
-    margin: 0em;
-    background: url(WineJS_Cork.png) no-repeat center ;
-    background-size: contain;
-    min-height: 5em;
-  } */
 
   .ReviewPage {
     margin: 0;
@@ -713,20 +698,11 @@ input[type="range"]::-webkit-slider-thumb {
   }
 
   form {
-    /* background: white;
-    opacity: .7; */     
-
-    /* background-image: url(zalto.jpg);
-    opacity: 80%;
-    background-position: center; */
     max-width: 400px;
     margin: 0 auto;
-    /* background: rgba(255, 255, 255, 0.7); */
   }
 
-
   .formbackground {
-    /* background: rgba(255, 255, 255, 0.2); */
     background: #1a1a1d;
     border-radius: 10px 20px;
   }
@@ -740,10 +716,8 @@ input[type="range"]::-webkit-slider-thumb {
     background-color: #000000;
   }
 
-
   textarea {
-    font-weight: 400;
-    /* background: whitesmoke; */
+    font-weight: 300;
     background: #000000;
     color: #ffffff;
     border-color: #1a1a1d;
@@ -771,12 +745,17 @@ input[type="range"]::-webkit-slider-thumb {
     /* display: inline-flex; */
     /* display: flex; */
     margin: 0em;
+
   }
   
   .WineToolsBox {
     border: 1px solid #4e4e50;
     margin: 0em;
     padding: 0em;
+
+    box-shadow: none;
+    display: inline;
+    width: 100%;
   }
 
   .sitepages {    
@@ -789,17 +768,19 @@ input[type="range"]::-webkit-slider-thumb {
     font-family: "Dosis", Helvetica, Arial, sans-serif; 
   }
 
-  /* .MenuChip {
-    color: #c3073f;
-    background: #ffffff;
+  .ResultsTable {
+    font-weight: 100;
   }
-  .MenuChip:hover {
-    background: #6f2232;
-    color: #6f2232;
-  } */
+  .wineReviewName {
+    font-weight: 100;
+  }
 
   .HorizontalStack {
     box-shadow: none;
+    display: inline;
+    width: 100%;
+    /* background: black; */
+    /* border: 1px solid black; */
   }
   .HorizontalMenuButton {
     color: #c3073f;
@@ -808,18 +789,23 @@ input[type="range"]::-webkit-slider-thumb {
     padding: .2em;
     border-radius: 0em;
     box-shadow: none;
-    font-size: 1em;
+    font-size: 1.2em;
+    outline: none;
+    border: 1px solid black;
+    position: relative;
+    width: 100%;
   }
   .HorizontalMenuButton:hover {
-    background: #000000;
+    background: black;
     color: crimson;
+    border-bottom: 2px solid crimson;
   }
   .HorizontalMenuButton:focus {
-    background: #000000;
+    background: black;
+    border-bottom: 2px solid crimson;
     color: crimson;
     outline: none;
   }
-
 
   h1, h2, h3, h4, h5, h6 {
       /* font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; */
@@ -830,7 +816,7 @@ input[type="range"]::-webkit-slider-thumb {
   }
 
   h1 {
-    font-weight: 600;
+    font-weight: 400;
     /* color: #000066; */
     color: #c3073f;
     /* text-shadow: 1px 1px hotpink; */
@@ -883,14 +869,14 @@ input[type="range"]::-webkit-slider-thumb {
     justify-self: right;
   }
   h6 {
-    color:black;
+    color:white;
     margin: 0px auto;
     /* padding: 1%; */
     /* font-weight: 200; */
     margin-left: 5%;
     margin-right: 5%;
     /* margin-bottom: -5%; */
-    font-weight: bold;
-    font-size: 2em;
+    font-weight: 200;
+    font-size: 1em;
     justify-self: right;
   }

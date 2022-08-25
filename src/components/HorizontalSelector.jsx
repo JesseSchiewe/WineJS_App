@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 
@@ -30,7 +30,7 @@ export default function HorizontalSelector(props) {
                         return(
                             <button key={title} className='HorizontalMenuButton' onClick={() => props.clickhandler(title)}>{title}</button>
                         )
-                    })}            
+                    })}
                 </Stack>        
             </Box>
         </div>

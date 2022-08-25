@@ -1,3 +1,4 @@
+import chroma from 'chroma-js';
 import React from 'react';
 
 const groupStyles = {
@@ -28,16 +29,60 @@ export const formatGroupLabel = data => (
 );
 
 export const colorStyles = {
-  control: styles => ({ ...styles, backgroundColor: 'black' }),
-  option: (styles, { data }) => ({...styles, backgroundColor: 'black', color:data.color}),
+  control: (styles) => ({ ...styles, backgroundColor: 'black' }),
+  menu: (styles) => ({ ...styles, backgroundColor: 'black' }),
+  input: (styles) => ({ ...styles, color: 'white'  }),
+  // group: ( styles, data ) => ({ ...styles, backgroundColor: 'black' }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    const color = chroma(data.color);
+    return {
+      ...styles,
+      backgroundColor: isDisabled
+        ? undefined
+        : isSelected
+        ? data.color
+        : isFocused
+        ? color.alpha(0.1).css()
+        : undefined,
+      color: isDisabled
+        ? '#ccc'
+        : isSelected
+        ? chroma.contrast(color, 'white') > 2
+          ? 'white'
+          : 'black'
+        : data.color,
+      cursor: isDisabled ? 'not-allowed' : 'default',
+
+      ':active': {
+        ...styles[':active'],
+        backgroundColor: !isDisabled
+          ? isSelected
+            ? data.color
+            : color.alpha(0.4).css()
+          : undefined,
+      },
+    };
+  },
+  singleValue: (styles, { data }) => {
+    return {
+      ...styles,
+      backgroundColor: 'black',
+      color: 'white',
+    };
+  },
+  multiValue: (styles, { data }) => {
+    const color = chroma(data.color);
+    return {
+      ...styles,
+      backgroundColor: color.alpha(0.2).css(),
+    };
+  },
   multiValueLabel: (styles, { data }) => ({
     ...styles,
     color: data.color,
-    backgroundColor: '#1a1a1d',
   }),
   multiValueRemove: (styles, { data }) => ({
     ...styles,
-    backgroundColor: '#1a1a1d',
     color: data.color,
     ':hover': {
       backgroundColor: data.color,
