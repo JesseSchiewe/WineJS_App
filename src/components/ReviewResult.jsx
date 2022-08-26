@@ -80,7 +80,7 @@ export const ReviewResult = () => {
   function SetWineArrayItems() { 
     useEffect(() => {
       var returnArrWineItems = []; 
-      var itemList = "";        
+      var itemList = "";     
       querywi.once("value").then(function (snapshotWI) {
         snapshotWI.forEach(function (childSnapshotWI) {
           var wName = childSnapshotWI.key 
@@ -101,13 +101,40 @@ export const ReviewResult = () => {
     ({label:category,value:category})
   );
 
+  // const defaultSort = "Total"
+  // const [sortedReviews, setSortedReviews] = useState(
+  //   wineitems.sort((a, b) => {
+  //   return b[defaultSort] - a[defaultSort]
+  // }));
+
+  // const preloadSort = [...wineitems].sort((a, b) => {
+  //   return b[defaultSort] - a[defaultSort]
+  // });
+  // console.log(preloadSort)
+
+  // const [sortedReviews, setSortedReviews] = useState(preloadSort);
+
+  // console.log(sortedReviews);
+  // console.log(wineitems);
+
   const [sortedReviews, setSortedReviews] = useState(wineitems);
-  function sortResults(sortColumn) {
+  function SortResults(sortColumn) {
     const sorted = [...sortedReviews].sort((a, b) => {
       return b[sortColumn] - a[sortColumn]
     });
     setSortedReviews(sorted);
   };
+
+
+  // function SetDefaultFavorites(sortBy) { 
+  //   useEffect(() => {
+  //     // SortResults(sortBy);
+  //     console.log("SetDefaultFavorites RAN AGAIN!!!");
+  //     console.log(wineitems);     
+  //     console.log(sortBy);
+  //   }, [wineitems]);
+  // }
+  // SetDefaultFavorites(defaultSort);
 
   return (
     <UserProvider>
@@ -134,7 +161,7 @@ export const ReviewResult = () => {
                   Sorted by {SortByCategory}
                 </h6>
                 <form>
-                  <Select options={ sortOptions } className="selectBox" placeholder="Sort By" isSearchable={true} styles={colorStyles} onChange={(e) => {sortResults(e.value); setSortByCategory(e.value) }}   />
+                  <Select options={ sortOptions } className="selectBox" placeholder="Sort By" isSearchable={true} styles={colorStyles} onChange={(e) => {SortResults(e.value); setSortByCategory(e.value) }}   />
                 </form>
                 <table className="ResultsTable" style={{textAlign: 'left'}}>
                   <tr key='tableLabels'>

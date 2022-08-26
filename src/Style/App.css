@@ -379,16 +379,16 @@ body {
 .value {
   /* border-bottom: 2px dashed #bdc3c7; */
   text-align: right;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 4em;
   /* color: #000066; */
   color: #c3073f;
-  width: 90%; 
+  width: 95%; 
   height: 30px;
   line-height: 0px;
   margin: 0px;
-  letter-spacing: -.07em;
-  text-shadow: white 1px 1px 1px;
+  letter-spacing: -.02em;
+  /* text-shadow: white 1px 1px 1px; */
 }
 input[type="range"] {
   display: block;

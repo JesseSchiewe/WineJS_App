@@ -9,14 +9,14 @@ export default function LoadingScreen() {
         setLoading(true);
         setTimeout(() => {
            setLoading(false)
-        }, 2000);
+        }, 300);
     }, []);
 
     return(
         <div>
             {loading ?
                 <div className="Loading">     
-                    <img src={spinningglass} alt="loading..." className="CenterImage" />                       
+                    {/* <img src={spinningglass} alt="loading..." className="CenterImage" />                        */}
                 </div>
                 :
                 <Navigate to={{ pathname:"/home" }} />

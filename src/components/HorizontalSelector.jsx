@@ -3,9 +3,6 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 
 export default function HorizontalSelector(props) {
-
-    console.log(props);
-
     return(
         <div>
             <Box

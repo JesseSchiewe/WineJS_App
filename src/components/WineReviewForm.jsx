@@ -119,7 +119,7 @@ export default function WineReviewForm({ preloadedValues }) {
                 )
               : (
                 <div>
-                  This is a past review. You may edit the review data and save the changes or delete the review from this page.             
+                  This is a past review. You may edit the review data and save the changes or delete the review from here.             
                   <h2>Review Date</h2>
                 </div>
               )}
