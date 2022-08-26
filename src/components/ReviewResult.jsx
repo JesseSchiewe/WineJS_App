@@ -40,7 +40,6 @@ export const ReviewResult = () => {
   }
   SetWineArray();
 
-  const [hideSortedResults, setHideSortedResults] = useState(true);
   var dbWineNamesWI = '/users/' + user.uid + "/"
   var querywi = firebase.database().ref(dbWineNamesWI).orderByKey();
 
@@ -151,7 +150,7 @@ export const ReviewResult = () => {
         <div className="FavoriteWines" hidden={hideResults} >
           <div hidden={menuBarOption !== "All"}>
             <form>
-              <Select options={ winearray } className="selectBox" isSearchable={true} placeholder="Select Review" styles={colorStyles} onChange={e => {handleChange(e.value); setHideReview(false); setHideSortedResults(true)} } />
+              <Select options={ winearray } className="selectBox" isSearchable={true} placeholder="Select Review" styles={colorStyles} onChange={e => {handleChange(e.value); setHideReview(false)} } />
             </form>
           </div>
           <div className="Center" hidden={hideResults} >
@@ -179,7 +178,7 @@ export const ReviewResult = () => {
                           {wineitem[SortByCategory]}
                         </td>
                         <td style={{borderBottom: 'solid 1px black'}}>
-                          <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); setHideSortedResults(true) ; setHideReview(false) }} >{wineitem.wine} </b>
+                          <b className="wineReviewName" value={wineitem.wine} onClick={() => {handleChange(wineitem.wine); setHideReview(false) }} >{wineitem.wine} </b>
                         </td>
                       </tr>
                     )})

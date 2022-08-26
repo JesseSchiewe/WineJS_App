@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
-import spinningglass from '../Style/spinningglass.gif'
+// import spinningglass from '../Style/spinningglass.gif'
 
 export default function LoadingScreen() {
     const [ loading, setLoading ] = useState(true);
