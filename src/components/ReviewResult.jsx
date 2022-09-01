@@ -9,7 +9,6 @@ import CreateReviewForm from './CreateReviewForm';
 import RadarChart from './RadarChart';
 import { colorStyles } from './SelectionBoxStyling';
 import HorizontalSelector from './HorizontalSelector';
-import EnhancedTable from './ResultsDataTable';
 import DataTable from './ResultsDataGrid';
 
 export const ReviewResult = () => {
@@ -124,7 +123,6 @@ export const ReviewResult = () => {
             {menuBarOption === "Favorites" &&
               <div style={{marginTop:'1em'}}>
                 <DataTable data={wineitems} />
-                {/* <EnhancedTable data={wineitems} /> */}
               </div>
             }
           </div>

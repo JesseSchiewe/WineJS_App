@@ -160,11 +160,6 @@ export default function WineReviewForm({ preloadedValues }) {
                   {...register("Producer")}
                 />
 
-                {/* <h2>Producer</h2>
-                <input type="text" name="Producer" ref={register} placeholder="Who makes the wine?" {...register("Producer")}/> */}
-
-                {/* <h2>Appellation</h2>
-                <input type="text" name="Appellation" placeholder="Where is the wine from? Ex: Napa Valley" {...register("Appellation")} /> */}
                 <TextField
                   id="Appellation"
                   label="Appellation"
@@ -363,24 +358,7 @@ export default function WineReviewForm({ preloadedValues }) {
                     {...register("WineValue")}
                   />
                 </div>
-                
-                {/* <div className="WineTools">
-                  <button type="button" className="winetoolsbutton" onClick={toggleColorChart} >Wine Colors</button>
-                  <div hidden={hideColorChart}>
-                      <img src={WineColorChart} alt="Wine Color Chart" width={400} />
-                  </div>
-
-                  <button type="button" className="winetoolsbutton" onClick={toggleTastingGrid} >Wine Tasting Grid</button>
-                  <div hidden={hideTastingGrid}>
-                      <img src={WineTastingGrid} alt="Wine Tasting Grid" width={400} />
-                  </div>
-
-                  <button type="button" className="winetoolsbutton" onClick={toggleWineFlavorWheel} >Wine Flavor Wheel</button>
-                  <div hidden={hideWineFlavorWheel}>
-                      <img src={WineFlavorWheel} alt="Wine Flavor Wheel" width={400} />
-                  </div>
-                </div> */}
-
+               
                 <div>
                   <button type="button" className="winetoolsbutton winetoolsbutton-big" onClick={toggleWineTools}>{hideWineTools ? "Show Wine Tools" : "Hide Wine Tools"}</button>
                 </div>
@@ -404,9 +382,7 @@ export default function WineReviewForm({ preloadedValues }) {
                 <div>
                   <h2>Tasting Notes</h2>
                   <textarea {...register("TastingNotes")} />
-                </div>
-
-                
+                </div>                
                 {hideResults ?
                   <div>
                       <input type="submit" onClick={handleSubmit(onSubmit)} data-testid="SubmitButton" />
