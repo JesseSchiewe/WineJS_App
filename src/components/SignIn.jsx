@@ -1,15 +1,13 @@
-// import React, {useState} from "react";
-// //import ReactDOM from 'react-dom';
-// //import { Link } from "@reach/router";
-import { Link } from "react-router-dom";
-// //import { signInWithGoogle } from "../Firebase";
-import { auth } from "../Firebase";
-// import { Redirect } from 'react-router-dom';
-
-
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router";
+import { Link } from "react-router-dom";
+import { auth } from "../Firebase";
+// //import { signInWithGoogle } from "../Firebase";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 
 export default function SignIn({ login }) {
   const { register, handleSubmit, formState: { errors }} = useForm();
@@ -29,57 +27,65 @@ export default function SignIn({ login }) {
   };
 
   return (
-    <div className="SignInPage" >
-      <h1>
-        Sign In
-      </h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email" className="signuplabel">Email:</label>
-        <div style={{marginBottom:'30px'}}>
-          <input
-            id="email"
-            {...register("email", {
-              required: "required",
-              pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: "Entered value does not match email format"
-              }
-            })}
-            type="email"
-            className="signinfield"
-          />
-        </div>
-        {errors.email && <span role="alert">{errors.email.message}</span>}
-        <label htmlFor="password" className="signuplabel">Password:</label>
-        <div style={{marginBottom:'30px'}} >          
-          <input
-            id="password"
-            data-testid="password"
-            {...register("password", {
-              required: "required",
-              minLength: {
-                value: 5,
-                message: "min length is 5"
-              }
-            })}
-            type="password"
-            className="signinfield"
-          />
-        </div>
-        {errors.password && <span role="alert">{errors.password.message}</span>}
-        <div>
-          <button type="SignIn" className="SignIn" >Sign In</button>
-        </div>
-      </form>
-      <div className="text">
-        <div>
-          <Link to="/signUp" className="StandardLink">Sign up here</Link>
-        </div>
-        <div>
-          <Link to = "/passwordReset" className="StandardLink">Forgot Password?</Link>
-        </div>
+    <form>
+      <div className="SignInPage" >
+        <Box
+          // component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1 },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <h1>
+            WineJS Sign In
+          </h1>
+            <TextField
+              id="email"
+              label="email"
+              name="email"
+              placeholder="Email Address"
+              // multiline
+              fullWidth
+              {...register("email", {
+                required: "required",
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Entered value does not match email format"
+                }
+              })}
+            />
+            {errors.email && <span role="alert">{errors.email.message}</span>}
+            <TextField
+              id="password"
+              label="password"
+              name="password"
+              placeholder="password"
+              fullWidth
+              {...register("password", {
+                required: "required",
+                minLength: {
+                  value: 5,
+                  message: "min length is 5"
+                }
+              })}
+            />
+            {errors.password && <span role="alert">{errors.password.message}</span>}
+
+            <Button variant="contained" type="submit" onClick={handleSubmit(onSubmit)} >Sign In</Button>
+
+          {/* </form> */}
+          <div className="text">
+            <div>
+              <Link to="/signUp" className="StandardLink">Sign up here</Link>
+            </div>
+            <div>
+              <Link to = "/passwordReset" className="StandardLink">Forgot Password?</Link>
+            </div>
+          </div>
+          { SignedIn ? <Navigate to={{ pathname:"/home" }} /> : ""}
+        </Box>
       </div>
-      { SignedIn ? <Navigate to={{ pathname:"/home" }} /> : ""}
-    </div>
+    </form>
   );
 }

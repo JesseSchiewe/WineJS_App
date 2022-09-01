@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/database";
-import UserProvider, { UserContext } from "../providers/UserProvider";
+import { UserContext } from "../providers/UserProvider";
 import Select from 'react-select';
 import { useEffect } from 'react';
 import CreateReviewForm from './CreateReviewForm';
@@ -94,21 +94,13 @@ export const ReviewResult = () => {
     setWineItems(returnArrWineItems);
   }, []);
 
-
-  console.log(wineitems);
-
-  const sortOptions = wineSortCategories.map((category) =>
-    ({label:category,value:category})
-  );
-
-
   return (
-    <UserProvider>
+    // <UserProvider>
       <div>
         <div hidden={!showResultsHeader}>
             <h1>
                 Results
-            </h1>                  
+            </h1>
         </div>
         <div className='Center'>
           <HorizontalSelector clickhandler={setMenuBarOption} options={["All","Favorites","Compare"]} style={{alignItems: "center"}} />
@@ -122,7 +114,7 @@ export const ReviewResult = () => {
           <div className="Center" hidden={hideResults} >
             {menuBarOption === "Favorites" &&
               <div style={{marginTop:'1em'}}>
-                <DataTable data={wineitems} />
+                <DataTable data={wineitems} clickhandler={setWineReviewName} hidesection={setHideReview}/>
               </div>
             }
           </div>
@@ -165,6 +157,6 @@ export const ReviewResult = () => {
           {hideReview ? "" : <CreateReviewForm ReviewName={wineReviewName} user={user} /> }
         </div>
       </div>
-    </UserProvider>
+    // </UserProvider>
   );
 }

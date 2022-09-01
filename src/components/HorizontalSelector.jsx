@@ -11,7 +11,7 @@ export default function HorizontalSelector(props) {
                     justifyContent: 'center',
                 //   width: 'fit-content',
                     border: (theme) => `1px solid ${theme.palette.divider}`,
-                    borderRadius: 2,
+                    borderRadius: 0,
                 //   bgcolor: 'background.paper',
                     color: 'text.secondary',
                     '& svg': {
@@ -22,7 +22,7 @@ export default function HorizontalSelector(props) {
                     },
                 }}
                 >
-                <Stack className="HorizontalStack" direction="row" spacing={0.1} >            
+                <Stack className="HorizontalStack" direction="row" spacing={0} >            
                     {props.options.map((title)=>{
                         return(
                             <button key={title} className='HorizontalMenuButton' onClick={() => props.clickhandler(title)}>{title}</button>

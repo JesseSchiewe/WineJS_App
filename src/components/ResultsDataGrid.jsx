@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 const columns = [
     {
@@ -86,19 +86,28 @@ const columns = [
 
 export default function DataTable(props) {
   const rows = props.data
+  const [pageSize, setPageSize] = React.useState(10);
 
   return (
     <div className='DataGrid' style={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={20}
+        pageSize={pageSize}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
         rowsPerPageOptions={[5, 10, 20, 50]}
+        components={{
+            Toolbar: GridToolbar,
+        }}
         // checkboxSelection
         getRowId={(row)=> row.wine}
         initialState={{
             sorting: { sortModel: [{ field: "Total", sort:"desc"}] }
         }}
+        // onCellClick={(e) => console.log(e)}
+        // onCellClick={(e) => console.log(e.row.wine)}
+        // onCellClick={(e) => props.clickhandler(e.row.wine)}
+        onCellClick={(e) => {props.clickhandler(e.row.wine); props.hidesection(false)} }
       />
     </div>
   );
