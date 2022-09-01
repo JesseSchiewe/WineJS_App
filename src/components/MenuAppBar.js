@@ -44,13 +44,8 @@ function HideOnScroll(props) {
 }
 
 export default function MenuAppBar(props) {
-  // const [auth, setAuth] = React.useState(true);
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
   const [anchorElMenu, setAnchorElMenu] = React.useState(null);
-
-  // const handleChange = (event) => {
-  //   setAuth(event.target.checked);
-  // };
 
   const handleMenu = (event) => {
     setAnchorElMenu(event.currentTarget);
@@ -105,7 +100,7 @@ export default function MenuAppBar(props) {
                   open={Boolean(anchorElMenu)}
                   onClose={handleCloseMenu}
                 >
-                <Paper variant="outlined" style={{color:"#ffffff",backgroundColor:"#4e4e50", marginTop:'-8px', marginBottom:'-8px'}}>
+                <Paper variant="outlined" style={{marginTop:'-8px', marginBottom:'-8px'}}>
                   <MenuItem onClick={handleCloseMenu} component={Link} to={'/home'}><HomeIcon/>Home</MenuItem>
                   <MenuItem onClick={handleCloseMenu} component={Link} to={'/review'}><WineBarIcon/>Review</MenuItem>
                   <MenuItem onClick={handleCloseMenu} component={Link} to={'/reviewresult'}><StarOutlineIcon/>Results</MenuItem>
@@ -151,7 +146,7 @@ export default function MenuAppBar(props) {
                   >
                     {user ? 
                       <div>
-                        <Paper variant="outlined" style={{backgroundColor:"#4e4e50", color:"#ffffff", marginTop:'-8px', marginBottom:'-8px'}}>
+                        <Paper variant="outlined" style={{marginTop:'-8px', marginBottom:'-8px'}}>
                           <MenuItem onClick={handleCloseProfile} component={Link} to={'/profilepage'}>Profile</MenuItem>
                           <MenuItem onClick={signOut}>Sign Out</MenuItem>
                         </Paper>
@@ -161,11 +156,9 @@ export default function MenuAppBar(props) {
                     }
                   </Menu>
                 </div>
-              {/* )}                   */}
             </Toolbar>
           </AppBar>
         </HideOnScroll>
-      {/* <MenuList />      */}
     </Box>
     </div>
   );
