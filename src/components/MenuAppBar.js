@@ -13,9 +13,9 @@ import Slide from '@mui/material/Slide';
 import Paper from '@mui/material/Paper';
 
 import WineJS_Cork from '../Style/WineJS_Cork.png';
-import {auth} from "../Firebase";
-import { useContext } from 'react';
-import { UserContext } from '../providers/UserProvider';
+// import {auth} from "../Firebase";
+// import { useContext } from 'react';
+// import { UserContext } from '../providers/UserProvider';
 // import MenuList from './MenuList';
 import { Link } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
@@ -25,6 +25,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import InfoIcon from '@mui/icons-material/Info';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { Version, ManualVersion } from './Application';
+// import { getAuth } from "firebase/auth";
+import { auth, useAuth } from '../providers/AuthContext';
 
 
 function HideOnScroll(props) {
@@ -47,6 +49,8 @@ export default function MenuAppBar(props) {
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
   const [anchorElMenu, setAnchorElMenu] = React.useState(null);
 
+  const { currentUser, signOut } = useAuth()
+
   const handleMenu = (event) => {
     setAnchorElMenu(event.currentTarget);
   };
@@ -61,11 +65,21 @@ export default function MenuAppBar(props) {
     setAnchorElProfile(null);
   };
 
-  const signOut = () => {
+  const handleSignOut = () => {
+    console.log("signing out");
     auth.signOut();
-  };
+  }
 
-  const user = useContext(UserContext);
+  // const signOut = () => {
+  //   // auth.signOut();
+  //   console.log("Sign Out");
+  // };
+
+
+
+  // const user = useContext(UserContext);
+  // const auth = getAuth();
+  // const user = auth.currentUser;
 
   return (  
     <div className="NavBar">   
@@ -144,11 +158,11 @@ export default function MenuAppBar(props) {
                     open={Boolean(anchorElProfile)}
                     onClose={handleCloseProfile}
                   >
-                    {user ? 
+                    {currentUser ? 
                       <div>
                         <Paper variant="outlined" style={{marginTop:'-8px', marginBottom:'-8px'}}>
                           <MenuItem onClick={handleCloseProfile} component={Link} to={'/profilepage'}>Profile</MenuItem>
-                          <MenuItem onClick={signOut}>Sign Out</MenuItem>
+                          <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
                         </Paper>
                       </div>
                       :

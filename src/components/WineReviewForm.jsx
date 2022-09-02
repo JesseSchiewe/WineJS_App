@@ -2,9 +2,11 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import useToggle from './useToggle';
 import { useLocation, Navigate } from 'react-router-dom';
-import firebase from 'firebase/compat/app';
-import "firebase/compat/database";
-import { UserContext } from "../providers/UserProvider";
+// import firebase from 'firebase/compat/app';
+// import "firebase/compat/database";
+import { getDatabase, ref, remove, set } from 'firebase/database';
+// import { UserContext } from "../providers/UserProvider";
+import { useAuth } from '../providers/AuthContext';
 import Select from 'react-select';
 import { RedWineFlavorOptions } from './WineFlavors';
 import { formatGroupLabel, colorStyles } from './WineFlavorSelectBox';
@@ -17,15 +19,19 @@ import TextField from '@mui/material/TextField';
 
 
 export default function WineReviewForm({ preloadedValues }) {
-  const user = useContext(UserContext);
+  // const user = useContext(UserContext);
+  const { currentUser } = useAuth();
+  const db = getDatabase();
+
   const RunType = useLocation().pathname;
   const [ deleteReviewRef, setDeleteReviewRef ] = useState();
 
   useEffect(() => {
     if ( RunType === "/reviewresult" ){
-      setDeleteReviewRef('users/' + user.uid + "/" + preloadedValues.Producer + " " + preloadedValues.WineName + " " + preloadedValues.ReviewDate)
+      // setDeleteReviewRef('users/' + currentUser.uid + "/" + preloadedValues.Producer + " " + preloadedValues.WineName + " " + preloadedValues.ReviewDate)
+      setDeleteReviewRef(db, 'users/' + currentUser.uid + "/" + preloadedValues.Producer + " " + preloadedValues.WineName + " " + preloadedValues.ReviewDate)
     };            
-  }, [RunType,preloadedValues,user]);
+  }, [RunType,preloadedValues,currentUser]);
 
 
   const [ hideResults, setHideResults ] = useState(false);
@@ -72,14 +78,20 @@ export default function WineReviewForm({ preloadedValues }) {
 
   const [selectedWineTool, setSelectedWineTool] = useState();
 
+  // function writeToDatabase(userId, data) {
+  //   firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + data.ReviewDate).set({
+  //     data    
+  //   });
+  // }
   function writeToDatabase(userId, data) {
-    firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + data.ReviewDate).set({
+    set(ref(db, 'users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + data.ReviewDate), {
       data    
     });
   }
 
   function deleteFromDatabase() {
-    firebase.database().ref(deleteReviewRef).remove();    
+    remove(ref(deleteReviewRef))
+    // firebase.database().ref(deleteReviewRef).remove();    
   }
 
   function onSubmit(data) {
@@ -91,14 +103,14 @@ export default function WineReviewForm({ preloadedValues }) {
     }
     data.Total = String(totalValue);
     alert("Successfully submitted form");
-    writeToDatabase(user.uid,data);
+    writeToDatabase(currentUser.uid,data);
     setToResults(true);
   }
 
   function onUpdate(data) {
     deleteFromDatabase();
     data.Total = String(totalValue);
-    writeToDatabase(user.uid,data);
+    writeToDatabase(currentUser.uid,data);
     alert("Successfully updated review");
     window.location.reload();
   }
@@ -116,7 +128,7 @@ export default function WineReviewForm({ preloadedValues }) {
           <div className="formbackground" >
             {hideResults ? (
               <div>
-                {/* <h1>WineJS Review</h1>                   */}
+                <h1>WineJS Review</h1>                  
               </div>
               )
             : (
@@ -131,7 +143,7 @@ export default function WineReviewForm({ preloadedValues }) {
             <Box
               // component="form"
               sx={{
-                '& .MuiTextField-root': { m: 1 },
+                '& .MuiTextField-root': { m: 1, width: '-webkit-fill-available' },
               }}
               noValidate
               autoComplete="off"

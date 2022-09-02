@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { auth } from "../Firebase";
+// import { auth } from "../Firebase";
 //import { UserContext } from "../providers/UserProvider";
 import { Link } from "react-router-dom";
+
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+
+const auth = getAuth();
+
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");
@@ -18,16 +23,16 @@ const PasswordReset = () => {
 
   const sendResetEmail = event => {
     event.preventDefault();
-    auth
-      .sendPasswordResetEmail(email)
+    sendPasswordResetEmail(auth, email)
       .then(() => {
-          setEmailHasBeenSent(true);
+        setEmailHasBeenSent(true);
         setTimeout(() => {setEmailHasBeenSent(false)}, 3000);
       })
       .catch(() => {
         setError("Error resetting password");
       });
   };
+
   return (
     <div className="mt-8">
       <h1 className="text">

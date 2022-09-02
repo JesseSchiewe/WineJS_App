@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 //import {signInWithGoogle} from "../Firebase";
-import { auth, generateUserDocument } from "../Firebase";
+// import { auth, generateUserDocument } from "../Firebase";
 import { Navigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors }} = useForm();
@@ -21,19 +22,64 @@ const SignUp = () => {
 
   // const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
   // const createUserWithEmailAndPasswordHandler = async (props) => {
+
+  const auth = getAuth();
   const onSubmit = async (props, event) => {
     // console.log(props);
     event.preventDefault();
     try{
-      const desiredDisplayName = props.displayName;
-      const {user} = await auth.createUserWithEmailAndPassword(props.email, props.password);
-      generateUserDocument(user, {desiredDisplayName});
-      setToHome(true)
+      createUserWithEmailAndPassword(auth, props.email, props.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        updateProfile(auth.currentUser, {
+          displayName: props.displayName
+        });
+        // console.log(user);
+        setToHome(true)
+      })
+      .catch((error) => {
+        // console.alert('Failure trying to create user.');
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        alert(error.message);
+        console.log(error.code, error.message);
+      });
+      // setToHome(true)
     }
     catch(error){
       console.warn('Error Signing up with email and password');
     }
   };
+
+
+    // createUserWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     // Signed in 
+    //     const user = userCredential.user;
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     // ..
+    //   });
+
+
+
+  // const onSubmit = async (props, event) => {
+  //   // console.log(props);
+  //   event.preventDefault();
+  //   try{
+  //     const desiredDisplayName = props.displayName;
+  //     const {user} = await auth.createUserWithEmailAndPassword(props.email, props.password);
+  //     generateUserDocument(user, {desiredDisplayName});
+  //     setToHome(true)
+  //   }
+  //   catch(error){
+  //     console.warn('Error Signing up with email and password');
+  //   }
+  // };
 
 
   // const [error, setError] = useState(null);
@@ -71,7 +117,7 @@ const SignUp = () => {
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1 },
+          '& .MuiTextField-root': { m: 1, width: '-webkit-fill-available' },
         }}
         noValidate
         autoComplete="off"
@@ -114,6 +160,7 @@ const SignUp = () => {
             name="userPassword"
             label="Password"
             placeholder="Password"
+            type="password"
             // multiline
             fullWidth
             id="userPassword"

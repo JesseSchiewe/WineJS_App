@@ -5,8 +5,9 @@ const columns = [
     {
         field: 'Producer',
         headerName: 'Producer',
-        // width: 60
-        hide: true,
+        // flex: 1,
+        minWidth: 120,
+        hide: false,
     },
     {
         field: 'WineName',
@@ -19,7 +20,7 @@ const columns = [
         field: 'Total',
         headerName: 'Total',
         type: 'number',
-        minWidth: 50,
+        // minWidth: 50,
     },
     {
         field: 'Vintage',
@@ -104,9 +105,6 @@ export default function DataTable(props) {
         initialState={{
             sorting: { sortModel: [{ field: "Total", sort:"desc"}] }
         }}
-        // onCellClick={(e) => console.log(e)}
-        // onCellClick={(e) => console.log(e.row.wine)}
-        // onCellClick={(e) => props.clickhandler(e.row.wine)}
         onCellClick={(e) => {props.clickhandler(e.row.wine); props.hidesection(false)} }
       />
     </div>
