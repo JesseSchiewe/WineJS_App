@@ -35,7 +35,7 @@ function Application() {
               <Route path="/review" exact element={<><MenuAppBar/><WineReviewForm /></>} />
               <Route path="/reviewresult" exact element={<><MenuAppBar/><ReviewResult /></>} />
               <Route path= "/signin" exact element={<><MenuAppBar/><Home /></>} />
-              <Route path= "/signUp" exact element={<><MenuAppBar/><SignUp /></>} />
+              <Route path= "/signUp" exact element={<><MenuAppBar/><Home /></>} />
               <Route path= "/passwordreset" exact element={<><MenuAppBar/><PasswordReset /></>} />
               <Route path= "/profilepage" exact element={<><MenuAppBar/><ProfilePage /></>} />    
             </Routes>
@@ -53,6 +53,7 @@ function Application() {
               <Route path= "/signin" exact element={<><MenuAppBar/><SignInUserNameandPassword /></>} />
               <Route path= "/signUp" exact element={<><MenuAppBar/><SignUp /></>} />
               <Route path= "/passwordreset" exact element={<><MenuAppBar/><PasswordReset /></>} />
+              <Route path= "/profilepage" exact element={<><MenuAppBar/><SignInUserNameandPassword /></>} />    
             </Routes>
           </Router>
       } 

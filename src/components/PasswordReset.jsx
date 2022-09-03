@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
+import { Stack } from '@mui/system';
 
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { TextField } from "@mui/material";
 
 const auth = getAuth();
 
@@ -32,11 +35,11 @@ const PasswordReset = () => {
   };
 
   return (
-    <div className="mt-8">
+    <div className="Center">
       <h1 className="text">
-        Reset your Password
+        Reset your password
       </h1>
-      <div className="border border-blue-300 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
+      <div>
         <form action="">
           {emailHasBeenSent && (
             <div className="text">
@@ -48,33 +51,39 @@ const PasswordReset = () => {
               {error}
             </div>
           )}
-          <label htmlFor="userEmail" className="w-full block">
-            Email:
-          </label>
-          <input
+
+          <Stack direction="column" spacing={2}>
+          <TextField
+            id="userEmail"
+            label="Email address"
             type="email"
             name="userEmail"
-            id="userEmail"
-            value={email}
-            placeholder="Input your email"
+            // InputLabelProps={{
+            //   shrink: true,
+            // }}
+            fullWidth
+            placeholder="Email address"
             onChange={onChangeHandler}
-            className="signupfield"
           />
-          <p/>
-          <button
+          <Button
+            variant="contained"
             className="text"
+            fullWidth
             onClick={event => {
               sendResetEmail(event);
             }}
           >
             Send me a reset link
-          </button>
+          </Button>
+
+          </Stack>
         </form>
-        
-        <p/>
-        <Link to="/" className="text" >
-          &larr; Back to sign in page
-        </Link>
+        <div style={{marginTop: "2em"}}>
+          <Link to = "/signIn" className="StandardLink">Sign in here</Link>
+        </div>
+        <div style={{marginTop: ".5em"}}>
+          <Link to="/signUp" className="StandardLink">Sign up here</Link>
+        </div>
       </div>
     </div>
   );

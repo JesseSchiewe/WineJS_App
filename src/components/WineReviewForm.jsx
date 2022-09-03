@@ -13,6 +13,7 @@ import WineFlavorWheel from '../Style/WineFlavorWheel.jpg';
 import { Stack } from '@mui/system';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 export default function WineReviewForm({ preloadedValues }) {
@@ -366,7 +367,16 @@ export default function WineReviewForm({ preloadedValues }) {
               </div>                
               {hideResults ?
                 <div>
-                    <input type="submit" onClick={handleSubmit(onSubmit)} data-testid="SubmitButton" />
+                  <Button 
+                    variant="contained"
+                    type="submit"
+                    onClick={handleSubmit(onSubmit)}
+                    data-testid="SubmitButton"
+                    fullWidth
+                  >
+                    Submit Review
+                  </Button>
+                  {/* <input type="submit" onClick={handleSubmit(onSubmit)} data-testid="SubmitButton" /> */}
                 </div>
                 :
                 <div>             

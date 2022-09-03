@@ -1,9 +1,9 @@
 import React from "react";
-import { useAuth } from "../providers/AuthContext";
+import { auth, useAuth } from "../providers/AuthContext";
 import Button from '@mui/material/Button';
 
 const ProfilePage = () => {
-  const { currentUser, signOut } = useAuth();
+  const { currentUser } = useAuth();
   const {displayName, email} = currentUser;
 
   return (
@@ -25,7 +25,7 @@ const ProfilePage = () => {
       </div>
 
       <div className="profilepagesignout">
-        <Button variant="contained" onClick = {() => {signOut()}}>Sign out</Button>
+        <Button variant="contained" onClick = {() => {auth.signOut()}}>Sign out</Button>
       </div>
     </div>
   ) 

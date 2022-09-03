@@ -13,10 +13,6 @@ import Slide from '@mui/material/Slide';
 import Paper from '@mui/material/Paper';
 
 import WineJS_Cork from '../Style/WineJS_Cork.png';
-// import {auth} from "../Firebase";
-// import { useContext } from 'react';
-// import { UserContext } from '../providers/UserProvider';
-// import MenuList from './MenuList';
 import { Link } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import WineBarIcon from '@mui/icons-material/WineBar';
@@ -25,7 +21,6 @@ import PersonIcon from '@mui/icons-material/Person';
 import InfoIcon from '@mui/icons-material/Info';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { Version, ManualVersion } from './Application';
-// import { getAuth } from "firebase/auth";
 import { auth, useAuth } from '../providers/AuthContext';
 
 

@@ -7,6 +7,9 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  signInWithRedirect,
+  getRedirectResult,
+  GoogleAuthProvider
 } from "firebase/auth";
 
 // Follow this pattern to import other Firebase services
@@ -27,7 +30,8 @@ const app = initializeApp(firebaseConfig);
 export const firestore = getFirestore(app);
 export const auth = getAuth(app);
 
-console.log(auth);
+const googleProvider = new GoogleAuthProvider();
+// console.log(auth);
 
 const AuthContext = createContext()
 
@@ -41,6 +45,10 @@ export function AuthProvider({ children }) {
 
   function signIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  function signInWithGoogle() {
+    signInWithRedirect(auth, googleProvider);
   }
 
   function signOut() {
@@ -79,7 +87,8 @@ export function AuthProvider({ children }) {
     getUser,
     signIn,
     signOut,
-    signUp
+    signUp,
+    signInWithGoogle,
   }
 
   return (

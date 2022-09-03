@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { Stack } from '@mui/system';
 
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
@@ -48,69 +49,77 @@ const SignUp = () => {
         }}
         noValidate
         autoComplete="off"
-    >
-      <h1>WineJS Sign Up</h1>
-      <div className="SignUpPage">
-          <TextField
-            id="displayName"
-            name="displayName"
-            label="Display Name"
-            placeholder="Ex: OnlyOnTheWeekends"
-            fullWidth
-            {...register("displayName", {
-              required: "Required",
-            })}
-          />
-          {errors.displayName && <span role="alert">{errors.displayName.message}</span>}
+      >
+        <h1>WineJS Sign Up</h1>
+        <div className="SignUpPage">
+          <Stack direction="column" spacing={2}>
+            <TextField
+              id="displayName"
+              name="displayName"
+              label="Display Name"
+              placeholder="Ex: OnlyOnTheWeekends"
+              type="displayName"
+              fullWidth
+              {...register("displayName", {
+                required: "Required",
+              })}
+            />
+            {errors.displayName && <span role="alert">{errors.displayName.message}</span>}
 
-          <TextField
-            name="userEmail"
-            label="Email"
-            placeholder="Email Address"
-            fullWidth
-            id="userEmail"
-            {...register("email", {
-              required: "required",
-              pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: "Entered value does not match email format"
-              }
-            })}
-          />
-          {errors.email && <span role="alert">{errors.email.message}</span>}
+            <TextField
+              name="userEmail"
+              label="Email"
+              placeholder="Email Address"
+              type="email"
+              fullWidth
+              id="userEmail"
+              {...register("email", {
+                required: "required",
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Entered value does not match email format"
+                }
+              })}
+            />
+            {errors.email && <span role="alert">{errors.email.message}</span>}
 
-          <TextField
-            name="userPassword"
-            label="Password"
-            placeholder="Password"
-            type="password"
-            // multiline
-            fullWidth
-            id="userPassword"
-            // reg={register}
-            {...register("password", {
-              required: "required",
-              minLength: {
-                value: 5,
-                message: "min length is 5"
-              }
-            })}
-          />
-          {errors.password && <span role="alert">{errors.password.message}</span>}
+            <TextField
+              name="userPassword"
+              label="Password"
+              placeholder="Password"
+              type="password"
+              fullWidth
+              id="userPassword"
+              autoComplete="current-password"
+              {...register("password", {
+                required: "required",
+                minLength: {
+                  value: 5,
+                  message: "min length is 5"
+                }
+              })}
+            />
+            {errors.password && <span role="alert">{errors.password.message}</span>}
 
-          <div>
-            <Button variant="contained" type="submit" onClick={handleSubmit(onSubmit, onError)}>
-              Sign up
-            </Button>
-          </div>
+            <div>
+              <Button
+                variant="contained"
+                type="submit"
+                fullWidth
+                onClick={handleSubmit(onSubmit, onError)}
+              >
+                Sign up
+              </Button>
+            </div>
 
-          {toHome ? <Navigate to={{ pathname:"/" }} /> : null}
-          <div className="text-center my-3">
-            Already have an account?{" "}
-            <Link to="/SignIn" className="StandardLink">
-              Sign in here
-            </Link>
-          </div>
+            {toHome ? <Navigate to={{ pathname:"/" }} /> : null}
+            <div>
+              Already have an account?{" "}
+              <Link to="/SignIn" className="StandardLink">
+                Sign in here
+              </Link>
+            </div>
+          </Stack>
         </div>
       </Box>
     </form>
