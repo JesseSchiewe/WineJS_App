@@ -1,11 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useToggle from './useToggle';
 import { useLocation, Navigate } from 'react-router-dom';
-// import firebase from 'firebase/compat/app';
-// import "firebase/compat/database";
 import { getDatabase, ref, remove, set } from 'firebase/database';
-// import { UserContext } from "../providers/UserProvider";
 import { useAuth } from '../providers/AuthContext';
 import Select from 'react-select';
 import { RedWineFlavorOptions } from './WineFlavors';
@@ -19,7 +16,6 @@ import TextField from '@mui/material/TextField';
 
 
 export default function WineReviewForm({ preloadedValues }) {
-  // const user = useContext(UserContext);
   const { currentUser } = useAuth();
   const db = getDatabase();
 
@@ -28,8 +24,7 @@ export default function WineReviewForm({ preloadedValues }) {
 
   useEffect(() => {
     if ( RunType === "/reviewresult" ){
-      // setDeleteReviewRef('users/' + currentUser.uid + "/" + preloadedValues.Producer + " " + preloadedValues.WineName + " " + preloadedValues.ReviewDate)
-      setDeleteReviewRef(db, 'users/' + currentUser.uid + "/" + preloadedValues.Producer + " " + preloadedValues.WineName + " " + preloadedValues.ReviewDate)
+      setDeleteReviewRef('users/' + currentUser.uid + "/" + preloadedValues.Producer + " " + preloadedValues.WineName + " " + preloadedValues.ReviewDate)
     };            
   }, [RunType,preloadedValues,currentUser]);
 
@@ -77,12 +72,7 @@ export default function WineReviewForm({ preloadedValues }) {
   const [toResults, setToResults] = useState(false);
 
   const [selectedWineTool, setSelectedWineTool] = useState();
-
-  // function writeToDatabase(userId, data) {
-  //   firebase.database().ref('users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + data.ReviewDate).set({
-  //     data    
-  //   });
-  // }
+ 
   function writeToDatabase(userId, data) {
     set(ref(db, 'users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + data.ReviewDate), {
       data    
@@ -90,8 +80,10 @@ export default function WineReviewForm({ preloadedValues }) {
   }
 
   function deleteFromDatabase() {
-    remove(ref(deleteReviewRef))
-    // firebase.database().ref(deleteReviewRef).remove();    
+    remove(ref(db, deleteReviewRef))
+    .catch((error) => {
+        alert(error.message);
+    })  
   }
 
   function onSubmit(data) {
@@ -148,8 +140,6 @@ export default function WineReviewForm({ preloadedValues }) {
               noValidate
               autoComplete="off"
             >
-
-              {/* <input type="text" name="ReviewDate" id="ReviewDate" defaultValue={today} {...register("ReviewDate")} /> */}
               <TextField
                 id="ReviewDate"
                 label="ReviewDate"
@@ -159,7 +149,6 @@ export default function WineReviewForm({ preloadedValues }) {
                 fullWidth
                 {...register("ReviewDate")}
               />
-
               <TextField
                 id="Producer"
                 label="Producer"
@@ -168,7 +157,6 @@ export default function WineReviewForm({ preloadedValues }) {
                 fullWidth    
                 {...register("Producer")}
               />
-
               <TextField
                 id="Appellation"
                 label="Appellation"
@@ -177,7 +165,6 @@ export default function WineReviewForm({ preloadedValues }) {
                 fullWidth
                 {...register("Appellation")}
               />
-
               <TextField
                 id="WineName"
                 label="WineName"
@@ -199,7 +186,6 @@ export default function WineReviewForm({ preloadedValues }) {
                 placeholder="What year was the wine produced?"
                 {...register("Vintage")}
               />
-
 
               <h3>Nose Intensity
                 <button type="button" className="infobutton" onClick={toggleNoseInfo} >info</button>
@@ -330,11 +316,6 @@ export default function WineReviewForm({ preloadedValues }) {
 
               <button type="button" className="reviewbutton" onClick={togglePurchase} value="" >Purchase Info</button>
               <div hidden={hidePurchase} >
-
-                {/* <h5>
-                  {hidePurchase ? "" : "How much DID you pay?"}
-                </h5> */}
-                {/* <input type="number" placeholder="$" {...register("ActualPrice")} hideit={hidePurchase ? "true" : "false"}  /> */}
                 <TextField
                   id="ActualPrice"
                   label="Actual Price"
@@ -346,10 +327,6 @@ export default function WineReviewForm({ preloadedValues }) {
                   placeholder="$"
                   {...register("ActualPrice")}
                 />
-                {/* <h5>
-                  {hidePurchase ? "" : "How much WOULD you pay?"}
-                </h5>
-                <input type="number" placeholder="$" {...register("WineValue")} hideit={hidePurchase ? "true" : "false"} /> */}
                 <TextField
                   id="WineValue"
                   label="How much would you pay?"

@@ -1,9 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-// import firebase from 'firebase/compat/app';
-// import "firebase/compat/database";
 import { getDatabase, ref, get, onValue } from 'firebase/database';
-// import { UserContext } from "../providers/UserProvider";
 import { useAuth } from '../providers/AuthContext';
 import Select from 'react-select';
 import { useEffect } from 'react';
@@ -14,7 +11,6 @@ import HorizontalSelector from './HorizontalSelector';
 import DataTable from './ResultsDataGrid';
 
 export const ReviewResult = () => {
-  // const user = useContext(UserContext);
   const { currentUser } = useAuth();
   const db = getDatabase();
 
@@ -25,8 +21,6 @@ export const ReviewResult = () => {
     setCompareList(obj);
   };
   var dbWineNames = '/users/' + currentUser.uid + "/"
-  // var query = firebase.database().ref(dbWineNames).orderByKey();
-  // var query = get(ref(db, dbWineNames));
 
   const [ winearray, setWinearray ] = useState();
 
@@ -36,9 +30,7 @@ export const ReviewResult = () => {
 
   function SetWineArray() {
     useEffect(() => {
-      var returnArr = [];         
-        // query.once("value").then(function (snapshot) {
-        // onValue(ref(db, dbWineNames)).then(function (snapshot) {
+      var returnArr = [];
         get(ref(db, dbWineNames)).then(function (snapshot) {  
           snapshot.forEach(function (childSnapshot) {
               returnArr.push({ label:childSnapshot.key, value:childSnapshot.key});
@@ -50,9 +42,7 @@ export const ReviewResult = () => {
   SetWineArray();
 
   var dbWineNamesWI = '/users/' + currentUser.uid + "/"
-  // var querywi = firebase.database().ref(dbWineNamesWI).orderByKey();
-  var querywi = get(ref(db, dbWineNamesWI))
-
+  
   var hideReviewToggleStart = ""
   var hideResultsStart = ""
   var showResultsHeader = ""
@@ -88,9 +78,7 @@ export const ReviewResult = () => {
   function SetWineArrayItems() {
     useEffect(() => {
       var returnArrWineItems = []; 
-      var itemList = "";     
-      // querywi.once("value").then(function (snapshotWI) {
-      // onValue(ref(db, dbWineNamesWI)).then(function (snapshotWI) {
+      var itemList = "";
       get(ref(db, dbWineNamesWI)).then(function (snapshotWI) {
         snapshotWI.forEach(function (childSnapshotWI) {
           var wName = childSnapshotWI.key 
@@ -106,27 +94,6 @@ export const ReviewResult = () => {
     }, []);
   };
   SetWineArrayItems();
-
-  // const [wineitems, setWineItems] = useState([]);
-  // function SetWineArrayItems() {
-  //   useEffect(() => {
-  //     var returnArrWineItems = []; 
-  //     var itemList = "";     
-  //     querywi.once("value").then(function (snapshotWI) {
-  //       snapshotWI.forEach(function (childSnapshotWI) {
-  //         var wName = childSnapshotWI.key 
-  //         itemList = ({ wine:wName })
-  //         wineSortCategories.forEach(function getCategoryData(category) {
-  //           var currentValue = childSnapshotWI.child("data").child(category).val();  
-  //           itemList = ({ ...itemList,[category]:currentValue});
-  //         });
-  //         returnArrWineItems.push({ ...itemList });
-  //       });
-  //     });
-  //     setWineItems(returnArrWineItems);
-  //   }, []);
-  // };
-  // SetWineArrayItems();
 
   return (
     <div>

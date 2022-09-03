@@ -1,6 +1,4 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-// import { auth } from '../Firebase';
-
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore/lite';
 import { 

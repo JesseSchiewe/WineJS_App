@@ -1,7 +1,5 @@
 
 import { Link } from "react-router-dom";
-// import React, { Fragment } from "react";
-
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,8 +8,6 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import DariusBottles from '../Style/darius_bottles.jpg';
 import DariusLineup from '../Style/darius_II_history_lineup.jpg';
-// import zalto from '../Style/zalto.jpg';
-// import WineJS_Cork from '../Style/WineJS_Cork.png';
 
 export default function Home() {
 
@@ -29,7 +25,7 @@ export default function Home() {
                             image={DariusBottles}
                             alt="Review"
                             />
-                            <CardContent sx={{background:"#4e4e50"}}>
+                            <CardContent>
                             <Typography gutterBottom variant="h5" component="div" sx={{color:"crimson"}}>
                                 New Review
                             </Typography>
@@ -50,7 +46,7 @@ export default function Home() {
                             image={DariusLineup}
                             alt="Review"
                             />
-                            <CardContent sx={{background:"#4e4e50"}}>
+                            <CardContent>
                             <Typography gutterBottom variant="h5" component="div" sx={{color:"crimson"}}>
                                 Results
                             </Typography>

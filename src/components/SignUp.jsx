@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-//import {signInWithGoogle} from "../Firebase";
-// import { auth, generateUserDocument } from "../Firebase";
 import { Navigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import Box from '@mui/material/Box';
@@ -13,15 +11,7 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors }} = useForm();
 
-  // const onSubmit = (data, e) => console.log(data, e);
-  const onError = (errors, e) => console.log(errors, e, "ERRORS PRESENT");
-
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [displayName, setDisplayName] = useState("");
-
-  // const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
-  // const createUserWithEmailAndPasswordHandler = async (props) => {
+  const onError = (errors, e) => console.log(errors, e);
 
   const auth = getAuth();
   const onSubmit = async (props, event) => {
@@ -31,85 +21,22 @@ const SignUp = () => {
       createUserWithEmailAndPassword(auth, props.email, props.password)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
+        // const user = userCredential.user;
         updateProfile(auth.currentUser, {
           displayName: props.displayName
         });
-        // console.log(user);
         setToHome(true)
       })
       .catch((error) => {
-        // console.alert('Failure trying to create user.');
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
         alert(error.message);
         console.log(error.code, error.message);
       });
-      // setToHome(true)
     }
     catch(error){
       console.warn('Error Signing up with email and password');
     }
   };
 
-
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // Signed in 
-    //     const user = userCredential.user;
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ..
-    //   });
-
-
-
-  // const onSubmit = async (props, event) => {
-  //   // console.log(props);
-  //   event.preventDefault();
-  //   try{
-  //     const desiredDisplayName = props.displayName;
-  //     const {user} = await auth.createUserWithEmailAndPassword(props.email, props.password);
-  //     generateUserDocument(user, {desiredDisplayName});
-  //     setToHome(true)
-  //   }
-  //   catch(error){
-  //     console.warn('Error Signing up with email and password');
-  //   }
-  // };
-
-
-  // const [error, setError] = useState(null);
-  // const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
-  //   event.preventDefault();
-  //   try{
-  //     const {user} = await auth.createUserWithEmailAndPassword(email, password);
-  //     generateUserDocument(user, {displayName});
-  //     setToHome(true)
-  //   }
-  //   catch(error){
-  //     setError('Error Signing up with email and password');
-  //   }
-
-  //   // setEmail("");
-  //   // setPassword("");
-  //   // setDisplayName("");
-  // };
-
-  // const onChangeHandler = event => {
-  //   const { name, value } = event.currentTarget;
-  //   if (name === "userEmail") {
-  //     setEmail(value);
-  //   } else if (name === "userPassword") {
-  //     setPassword(value);
-  //   } else if (name === "displayName") {
-  //     setDisplayName(value);
-  //     console.log(displayName);
-  //   }
-  // };
   const [toHome, setToHome] = useState(false);
   
   return (
@@ -129,9 +56,7 @@ const SignUp = () => {
             name="displayName"
             label="Display Name"
             placeholder="Ex: OnlyOnTheWeekends"
-            // multiline
             fullWidth
-            // reg={register}
             {...register("displayName", {
               required: "Required",
             })}
@@ -142,10 +67,8 @@ const SignUp = () => {
             name="userEmail"
             label="Email"
             placeholder="Email Address"
-            // multiline
             fullWidth
             id="userEmail"
-            // reg={register}
             {...register("email", {
               required: "required",
               pattern: {
@@ -180,11 +103,7 @@ const SignUp = () => {
               Sign up
             </Button>
           </div>
-          {/* {error !== null && (
-            <div className="error">
-              {error}
-            </div>
-          )} */}
+
           {toHome ? <Navigate to={{ pathname:"/" }} /> : null}
           <div className="text-center my-3">
             Already have an account?{" "}

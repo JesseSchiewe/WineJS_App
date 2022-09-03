@@ -1,10 +1,10 @@
-// import firebase from 'firebase';
-import firebase from 'firebase/compat/app';
+import { getDatabase, ref, get } from 'firebase/database';
 
 export const GetReviewData = (dbpathref) => {    
     let firebaseData = ''
+    const db = getDatabase();
 
-    firebase.database().ref(dbpathref).on('value', (snapshot) => {
+    get(ref(db, dbpathref)).then((snapshot) => {
         firebaseData = snapshot.val();
     });
 

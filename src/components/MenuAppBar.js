@@ -70,17 +70,6 @@ export default function MenuAppBar(props) {
     auth.signOut();
   }
 
-  // const signOut = () => {
-  //   // auth.signOut();
-  //   console.log("Sign Out");
-  // };
-
-
-
-  // const user = useContext(UserContext);
-  // const auth = getAuth();
-  // const user = auth.currentUser;
-
   return (  
     <div className="NavBar">   
       <Box sx={{ flexGrow: 1 }}>

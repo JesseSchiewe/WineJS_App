@@ -1,11 +1,12 @@
 import { ResponsiveRadar } from '@nivo/radar'
 import React, { useState, useEffect } from 'react';
-import firebase from 'firebase/compat/app';
+import { getDatabase, ref, get } from 'firebase/database';
 
 export const GetChartData = (dbpathref) => {
+    const db = getDatabase();
     let firebaseData = ''
 
-    firebase.database().ref(dbpathref).on('value', (snapshot) => {
+    get(ref(db, dbpathref)).then((snapshot) => {
         firebaseData = snapshot.val();
     });
 

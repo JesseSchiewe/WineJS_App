@@ -1,17 +1,11 @@
 import React from "react";
-// import { UserContext } from "../providers/UserProvider";
 import { useAuth } from "../providers/AuthContext";
-// import {auth} from "../Firebase";
 import Button from '@mui/material/Button';
 
 const ProfilePage = () => {
-  // const user = useContext(UserContext);
   const { currentUser, signOut } = useAuth();
-
-  console.log("Current User", currentUser);
   const {displayName, email} = currentUser;
 
-  // const {displayName, email} = user;
   return (
     <div className = "mx-auto w-11/12 md:w-2/4 py-8 px-4 md:px-8">
       <div className="flex border flex-col items-center md:flex-row md:items-start border-blue-400 px-3 py-4">
@@ -32,8 +26,6 @@ const ProfilePage = () => {
 
       <div className="profilepagesignout">
         <Button variant="contained" onClick = {() => {signOut()}}>Sign out</Button>
-        {/* <button type="login" onClick = {() => {auth.signOut()}}>Sign out</button> */}
-        {/* <a class="bn39" href="/"><span class="bn39span" onClick = {() => {auth.signOut()}}>Sign Out</span></a> */}
       </div>
     </div>
   ) 
