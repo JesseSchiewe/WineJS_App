@@ -3,6 +3,18 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import SignIn from '../components/SignIn';
 import { BrowserRouter } from "react-router-dom";
 
+jest.mock('../providers/AuthContext', () => ({
+  AuthProvider: ({ children }) => children,
+  useAuth: () => {
+    return {
+      loading: false,
+      currentUser: "TESTUSER123",
+      signIn: jest.fn(),
+      signInWithGoogle: jest.fn(),
+    }
+  },
+  auth: jest.fn()
+}));
 
 
 describe("SignIn", () => {

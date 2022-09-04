@@ -82,7 +82,11 @@ export default function SignInUserNameandPassword({ login }) {
           </Stack>
           
           <Stack direction="column" spacing={2}>
-            <Button variant="contained" type="submit">
+            <Button 
+              data-testid="SignInwithPasswordButton"
+              variant="contained"
+              type="submit"
+            >
               Sign In
             </Button>
             <div className="text">
@@ -97,6 +101,7 @@ export default function SignInUserNameandPassword({ login }) {
               - or -
             </Typography>
             <Button 
+              data-testid="SigninwithGoogleButton"
               variant="contained" 
               type="button"  
               startIcon={<GoogleIcon />} 
