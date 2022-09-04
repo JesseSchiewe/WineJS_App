@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getDatabase, ref, get, onValue } from 'firebase/database';
+import { getDatabase, ref, get } from 'firebase/database';
 import { useAuth } from '../providers/AuthContext';
 import Select from 'react-select';
 import { useEffect } from 'react';
@@ -42,7 +42,7 @@ export const ReviewResult = () => {
   SetWineArray();
 
   var dbWineNamesWI = '/users/' + currentUser.uid + "/"
-  
+
   var hideReviewToggleStart = ""
   var hideResultsStart = ""
   var showResultsHeader = ""

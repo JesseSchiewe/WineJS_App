@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Navigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useAuth } from '../providers/AuthContext';
-// //import { signInWithGoogle } from "../Firebase";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Stack } from '@mui/system';
@@ -14,13 +12,13 @@ import { Typography } from "@mui/material";
 
 export default function SignInUserNameandPassword({ login }) {
   const { register, handleSubmit, formState: { errors }} = useForm();
-  const [ SignedIn, setSignedIn ] = useState(false);
-  const { currentUser, signIn, signInWithGoogle } = useAuth();
+  // const [ SignedIn, setSignedIn ] = useState(false);
+  const { signIn, signInWithGoogle } = useAuth();
 
   const onSubmit = async (data) => {
     if (login) {
       await login(data.email, data.password);
-      setSignedIn(true);
+      // setSignedIn(true);
     } else {
       // signInWithEmailAndPassword(auth, data.email, data.password)
       console.log(data);
@@ -107,8 +105,6 @@ export default function SignInUserNameandPassword({ login }) {
             >
               Sign in With Google
             </Button>
-
-            {/* { SignedIn ? <Navigate to={{ pathname:"/home" }} /> : ""} */}
           </Stack>
         </Box>
       </div>

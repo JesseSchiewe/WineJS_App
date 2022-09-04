@@ -44,7 +44,7 @@ export default function MenuAppBar(props) {
   const [anchorElProfile, setAnchorElProfile] = React.useState(null);
   const [anchorElMenu, setAnchorElMenu] = React.useState(null);
 
-  const { currentUser, signOut } = useAuth()
+  const { currentUser } = useAuth()
 
   const handleMenu = (event) => {
     setAnchorElMenu(event.currentTarget);

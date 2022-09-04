@@ -5,10 +5,9 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
+  // sendPasswordResetEmail,
+  // signOut,
   signInWithRedirect,
-  getRedirectResult,
   GoogleAuthProvider
 } from "firebase/auth";
 
@@ -51,9 +50,9 @@ export function AuthProvider({ children }) {
     signInWithRedirect(auth, googleProvider);
   }
 
-  function signOut() {
-    return signOut();
-  }
+  // function signOut() {
+  //   return signOut();
+  // }
 
   function signUp(email, password) {
     return createUserWithEmailAndPassword(email, password);
@@ -85,8 +84,9 @@ export function AuthProvider({ children }) {
   const value = {
     currentUser,
     getUser,
+    isAdmin,
     signIn,
-    signOut,
+    // signOut,
     signUp,
     signInWithGoogle,
   }
