@@ -58,21 +58,23 @@ export default function WineReviewForm({ preloadedValues }) {
   } 
 
   const [hideNoseNotes, toggleNoseNotes] = useToggle();
+  const [hideNoseSelector, toggleNoseSelector] = useToggle(false);
   const [hideIntenseNotes, toggleIntenseNotes] = useToggle();
   const [hideCharNotes, toggleCharNotes] = useToggle();
+  const [hideFlavorSelector, toggleFlavorSelector] = useToggle(false);
   const [hideBalNotes, toggleBalNotes] = useToggle();
   const [hideLenNotes, toggleLenNotes] = useToggle();
-  const [hidePurchase, togglePurchase] = useToggle();
+  const [hidePurchase, togglePurchase] = useToggle(false);
   const [hideNoseInfo, toggleNoseInfo] = useToggle();
   const [hideFlavorIntensityInfo, toggleFlavorIntensityInfo] = useToggle();
   const [hideFlavorCharacteristicsInfo, toggleFlavorCharacteristicsInfo] = useToggle();
   const [hideBalanceInfo, toggleBalanceInfo] = useToggle();
   const [hideLengthInfo, toggleLengthInfo] = useToggle();
-  const [hideWineTools, toggleWineTools] = useToggle();
+  const [hideWineTools, toggleWineTools] = useToggle(false);
 
   const [toResults, setToResults] = useState(false);
 
-  const [selectedWineTool, setSelectedWineTool] = useState();
+  const [selectedWineTool, setSelectedWineTool] = useState("WineColorChart");
  
   function writeToDatabase(userId, data) {
     set(ref(db, 'users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + data.ReviewDate), {
@@ -198,17 +200,14 @@ export default function WineReviewForm({ preloadedValues }) {
               </h3>
               <div className="value">{watchNI}</div>
               <input type="range" name="NoseIntensity" id="NoseIntensity" {...register("NoseIntensity")} min="0" max="5" defaultValue="0" />
-              <button type="button" className="reviewbutton" onClick={toggleNoseNotes} value="" >Show/hide notes</button>
-              <textarea type="small" {...register("NoseIntensityNotes")} hideit={hideNoseNotes ? "true" : "false"} />
-            
-              <div name="AromaSelector" hidden={hideNoseNotes ? true : false} >
-                <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} value={watchAROMAS} />
 
+              <button type="button" className="reviewbutton" onClick={toggleNoseSelector} value="" >{hideNoseSelector ? "Show Aromas" : "Hide Aromas"}</button>
+              <div name="AromaSelector" hidden={hideNoseSelector ? true : false} >
+                <input type="hidden" name="Aromas" id="Aromas" {...register("Aromas")} value={watchAROMAS} />
                 <div className="selectedAromas">
                   Selected Aromas: {watchAROMAS}
-                </div>
-                
-                <Select
+                </div>                
+                <Select                  
                   closeMenuOnSelect={false}
                   isMulti
                   name="AromaSelector"
@@ -223,7 +222,9 @@ export default function WineReviewForm({ preloadedValues }) {
                 />
               </div>
               {errors.NoseIntensity && <p>Value must be at least 1</p> }
-
+              <button type="button" className="reviewbutton" onClick={toggleNoseNotes} value="" >{hideNoseNotes ? "Show Notes" : "Hide Notes"}</button>
+              <textarea type="small" {...register("NoseIntensityNotes")} hideit={hideNoseNotes ? "true" : "false"} />
+            
               <h3>Flavor Intensity
                 <button type="button" className="infobutton" onClick={toggleFlavorIntensityInfo} >info</button>
                 <div>
@@ -242,7 +243,7 @@ export default function WineReviewForm({ preloadedValues }) {
                 max="10"
                 defaultValue="0"
               />
-              <button type="button" className="reviewbutton" onClick={toggleIntenseNotes} value="" >Show/hide notes</button>
+              <button type="button" className="reviewbutton" onClick={toggleIntenseNotes} value="" >{hideIntenseNotes ? "Show Notes" : "Hide Notes"}</button>
               <textarea type="small" {...register("FlavorIntensityNotes")} hideit={hideIntenseNotes ? "true" : "false"} />
               {errors.FlavorIntensity && <p>Value must be at least 1</p> }
 
@@ -256,10 +257,9 @@ export default function WineReviewForm({ preloadedValues }) {
               </h3>              
               <div className="value">{watchFC}</div>
               <input type="range" name="FlavorCharacteristics" id="FlavorCharacteristics" {...register("FlavorCharacteristics")} min="0" max="25" defaultValue="0" />
-              <button type="button" className="reviewbutton" onClick={toggleCharNotes} value="" >Show/hide notes</button>
-              <textarea type="small" {...register("FlavorCharacteristicsNotes")} hideit={hideCharNotes ? "true" : "false"} />
 
-              <div name="FlavorSelector" hidden={hideCharNotes ? true : false} >
+              <button type="button" className="reviewbutton" onClick={toggleFlavorSelector} value="" >{hideFlavorSelector ? "Show Flavors" : "Hide Flavors"}</button>
+              <div name="FlavorSelector" hidden={hideFlavorSelector ? true : false} >
                 <input type="hidden" name="Flavors" id="Flavors" {...register("Flavors")} value={watchFLAVORS} />
 
                 <div className="selectedFlavors">
@@ -280,8 +280,10 @@ export default function WineReviewForm({ preloadedValues }) {
                   styles={colorStyles}
                 />
               </div>
-
               {errors.FlavorCharacteristics && <p>Value must be at least 1</p> }
+
+              <button type="button" className="reviewbutton" onClick={toggleCharNotes} value="" >{hideCharNotes ? "Show Notes" : "Hide Notes"}</button>
+              <textarea type="small" {...register("FlavorCharacteristicsNotes")} hideit={hideCharNotes ? "true" : "false"} />
 
               <h3>Balance
                 <button type="button" className="infobutton" onClick={toggleBalanceInfo} >info</button>
@@ -293,7 +295,7 @@ export default function WineReviewForm({ preloadedValues }) {
               </h3>
               <div className="value">{watchBAL}</div>
               <input type="range" name="Balance" id="Balance" {...register("Balance")} min="0" max="5" defaultValue="0" />
-              <button type="button" className="reviewbutton" onClick={toggleBalNotes} value="" >Show/hide notes</button>
+              <button type="button" className="reviewbutton" onClick={toggleBalNotes} value="" >{hideBalNotes ? "Show Notes" : "Hide Notes"}</button>
               <textarea type="small" {...register("BalanceNotes")} hideit={hideBalNotes ? "true" : "false"} />
               {errors.Balance && <p>Value must be at least 1</p> }
 
@@ -307,7 +309,7 @@ export default function WineReviewForm({ preloadedValues }) {
               </h3>
               <div className="value">{watchLEN}</div>
               <input type="range" name="Length" id="Length" {...register("Length")} min="0" max="5" defaultValue="0" />
-              <button type="button" className="reviewbutton" onClick={toggleLenNotes} value="" >Show/hide notes</button>
+              <button type="button" className="reviewbutton" onClick={toggleLenNotes} value="" >{hideLenNotes ? "Show Notes" : "Hide Notes"}</button>
               <textarea type="small" {...register("LengthNotes")} hideit={hideLenNotes ? "true" : "false"} />
               {errors.Length && <p>Value must be at least 1</p> }
 
@@ -315,7 +317,7 @@ export default function WineReviewForm({ preloadedValues }) {
               <div className="value">{totalValue.toString()}</div>
               <input type="hidden" className="hidethis" name="Total" id="Total" {...register("Total")} value={totalValue.toString()} />
 
-              <button type="button" className="reviewbutton" onClick={togglePurchase} value="" >Purchase Info</button>
+              <button type="button" className="reviewbutton" onClick={togglePurchase} value="" >{hidePurchase ? "Show Purchase Info" : "Hide Purchase Info"}</button>
               <div hidden={hidePurchase} >
                 <TextField
                   id="ActualPrice"
@@ -340,25 +342,26 @@ export default function WineReviewForm({ preloadedValues }) {
                   {...register("WineValue")}
                 />
               </div>
-              
-              <div>
-                <button type="button" className="winetoolsbutton winetoolsbutton-big" onClick={toggleWineTools}>{hideWineTools ? "Show Wine Tools" : "Hide Wine Tools"}</button>
-              </div>
-              <div className="WineToolsSection" hidden={hideWineTools}>
-                <Stack className="HorizontalStack" direction="row" spacing={0.1}>
-                  <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineColorChart")} >Colors</button>
-                  <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineTastingGrid")} >Tasting Grid</button>
-                  <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineFlavorWheel")} >Flavor Wheel</button>
-                  <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("EMPTY")}>Clear Wine Tools</button>
-                </Stack>
-                <div hidden={selectedWineTool !== "WineColorChart"}>
-                    <img src={WineColorChart} alt="Wine Color Chart" width={395} />
+              <div className='WineToolsBox'>
+                <div>
+                  <button type="button" className="winetoolsbutton winetoolsbutton-big" onClick={toggleWineTools}>{hideWineTools ? "Show Wine Tools" : "Hide Wine Tools"}</button>
                 </div>
-                <div hidden={selectedWineTool !== "WineTastingGrid"}>
-                    <img src={WineTastingGrid} alt="Wine Tasting Grid" width={395} />
-                </div>                
-                <div hidden={selectedWineTool !== "WineFlavorWheel"}>
-                    <img src={WineFlavorWheel} alt="Wine Flavor Wheel" width={397} />
+                <div className="WineToolsSection" hidden={hideWineTools} >
+                  <Stack className="HorizontalStack" direction="row" spacing={0.1}>
+                    <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineColorChart")} >Colors</button>
+                    <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineTastingGrid")} >Tasting Grid</button>
+                    <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("WineFlavorWheel")} >Flavor Wheel</button>
+                    <button type="button" className="winetoolsbutton" onClick={() => setSelectedWineTool("EMPTY")}>Clear Wine Tools</button>
+                  </Stack>
+                  <div hidden={selectedWineTool !== "WineColorChart"}>
+                      <img src={WineColorChart} alt="Wine Color Chart" width={395} />
+                  </div>
+                  <div hidden={selectedWineTool !== "WineTastingGrid"}>
+                      <img src={WineTastingGrid} alt="Wine Tasting Grid" width={395} />
+                  </div>                
+                  <div hidden={selectedWineTool !== "WineFlavorWheel"}>
+                      <img src={WineFlavorWheel} alt="Wine Flavor Wheel" width={397} />
+                  </div>
                 </div>
               </div>
               <div>

@@ -6,14 +6,14 @@ const columns = [
         field: 'Producer',
         headerName: 'Producer',
         // flex: 1,
-        minWidth: 120,
+        // minWidth: 120,
         hide: false,
     },
     {
         field: 'WineName',
         label: 'Wine Name',
         flex: 1,
-        minWidth: 100,
+        // minWidth: 100,
         maxWidth: 300,
     },
     {
@@ -26,13 +26,13 @@ const columns = [
         field: 'Vintage',
         headerName: 'Vintage',
         type: 'number',
-        minWidth: 70,
+        // minWidth: 70,
     },
     {
         field: 'NoseIntensity',
         headerName: 'Nose Intensity',
         type: 'number',
-        width: 60,
+        // width: 60,
         hide: true,
     },
     {
@@ -87,11 +87,12 @@ const columns = [
 
 export default function DataTable(props) {
   const rows = props.data
-  const [pageSize, setPageSize] = React.useState(10);
+  const [pageSize, setPageSize] = React.useState(20);
 
   return (
-    <div className='DataGrid' style={{ height: 400, width: '100%' }}>
+    <div className='DataGrid' style={{ height: '70vh', width: '100%' }}>
       <DataGrid
+        density='compact'
         rows={rows}
         columns={columns}
         pageSize={pageSize}

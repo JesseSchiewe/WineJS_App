@@ -16,7 +16,7 @@ import LoadingScreen from './LoadingScreen';
 import { useAuth } from '../providers/AuthContext';
 
 export const Version = process.env.REACT_APP_VERSION;
-export const ManualVersion = "3.0.4";
+export const ManualVersion = "3.0.5";
 
 function Application() {
   const { currentUser } = useAuth();

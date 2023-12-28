@@ -403,6 +403,10 @@ input[type="range"]::-webkit-slider-thumb {
     position: relative;
     width: 100%;
   }
+  button.winetoolsbutton:hover {
+    background: crimson;
+  }
+
   button.winetoolsbutton-big {
     font-size: .6em;
     background: #c3073f;
@@ -536,7 +540,8 @@ input[type="range"]::-webkit-slider-thumb {
     margin: .1em;
   }
   button[type='StandardButton']:hover {
-    background: crimson;
+    /* background: crimson; */
+    background: yellow;
   }
 
   .Center {
@@ -639,18 +644,19 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: .6em;
   }
 
-  .WineTools {
+  /* .WineTools {
     padding: 0em;
     margin: 0em;
-  }
+  } */
   
   .WineToolsBox {
     border: 1px solid #4e4e50;
     margin: 0em;
     padding: 0em;
 
-    box-shadow: none;
-    display: inline;
+    /* box-shadow: none; */
+    /* display: inline; */
+    display: inline-block;
     width: 100%;
   }
 
