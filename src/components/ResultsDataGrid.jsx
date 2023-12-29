@@ -87,7 +87,7 @@ const columns = [
 
 export default function DataTable(props) {
   const rows = props.data
-  const [pageSize, setPageSize] = React.useState(20);
+  const [pageSize, setPageSize] = React.useState(100);
 
   return (
     <div className='DataGrid' style={{ height: '70vh', width: '100%' }}>
@@ -97,7 +97,7 @@ export default function DataTable(props) {
         columns={columns}
         pageSize={pageSize}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-        rowsPerPageOptions={[5, 10, 20, 50]}
+        rowsPerPageOptions={[5, 10, 20, 50, 100]}
         components={{
             Toolbar: GridToolbar,
         }}

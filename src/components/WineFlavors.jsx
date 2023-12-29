@@ -7,6 +7,8 @@ const RedWineDarkFruit = [
     { value: 'Prune', label: 'Prune', color: 'purple', isFixed: true },
     { value: 'Blueberry', label: 'Blueberry', color: 'purple', isFixed: true },
     { value: 'Boysenberry', label: 'Boysenberry', color: 'purple', isFixed: true },
+    { value: 'Fig', label: 'Fig', color: 'purple', isFixed: true },
+    { value: 'Raisin', label: 'Raisin', color: 'purple', isFixed: true },
 ];
 
 const RedWineRedFruit = [
@@ -16,10 +18,13 @@ const RedWineRedFruit = [
     { value: 'Raspberry', label: 'Raspberry', color: 'red', isFixed: true },
     { value: 'Red Currant', label: 'Red Currant', color: 'red', isFixed: true },
     { value: 'Pomegranate', label: 'Pomegranate', color: 'red', isFixed: true },
+    { value: 'Fruit Punch', label: 'Fruit Punch', color: 'red', isFixed: true },
 ];
 
 const TreeFruit = [
-    { value: 'Apple', label: 'Apple', color: 'lime', isFixed: true },
+    { value: 'Red Apple', label: 'Red Apple', color: 'lime', isFixed: true },
+    { value: 'Green Apple', label: 'Green Apple', color: 'lime', isFixed: true },
+    { value: 'Yellow Apple', label: 'Yellow Apple', color: 'lime', isFixed: true },
     { value: 'Pear', label: 'Pear', color: 'lime', isFixed: true },
     { value: 'Peach', label: 'Peach', color: 'lime', isFixed: true },
     { value: 'Apricot', label: 'Apricot', color: 'lime', isFixed: true },
@@ -31,6 +36,7 @@ const TropicalFruit = [
     { value: 'Mango', label: 'Mango', color: '#e6ae25', isFixed: true },
     { value: 'Kiwi', label: 'Kiwi', color: '#e6ae25', isFixed: true },
     { value: 'Melon', label: 'Melon', color: '#e6ae25', isFixed: true },
+    { value: 'Passionfruit', label: 'Passionfruit', color: '#e6ae25', isFixed: true },
     { value: 'Bubblegum', label: 'Bubblegum', color: '#e6ae25', isFixed: true },
 ];
 
@@ -49,12 +55,16 @@ const RedWineSpice = [
     { value: 'Black Tea', label: 'Black Tea', color: '#858585', isFixed: true },
     { value: 'Fennel', label: 'Fennel', color: '#858585', isFixed: true },
     { value: 'Anise', label: 'Anise', color: '#858585', isFixed: true },
+    { value: 'Clove', label: 'Clove', color: '#858585', isFixed: true },
+    { value: 'Allspice', label: 'Allspice', color: '#858585', isFixed: true },
     { value: 'Licorice', label: 'Licorice', color: '#858585', isFixed: true },
 ];
 
 const RedWineHerbs = [
     { value: 'Dried Herbs', label: 'Dried Herbs', color: 'green', isFixed: true },
     { value: 'Mint', label: 'Mint', color: 'green', isFixed: true },
+    { value: 'Rosemary', label: 'Rosemary', color: 'green', isFixed: true },
+    { value: 'Oregano', label: 'Oregano', color: 'green', isFixed: true },
     { value: 'Eucalyptus', label: 'Eucalyptus', color: 'green', isFixed: true },
     { value: 'Sage', label: 'Sage', color: 'green', isFixed: true },
 ];
@@ -63,6 +73,7 @@ const Vegetable = [
     { value: 'Tomato', label: 'Tomato', color: '#b4c04c', isFixed: true },
     { value: 'Grass', label: 'Grass', color: '#b4c04c', isFixed: true },
     { value: 'Bell Pepper', label: 'Bell Pepper', color: '#b4c04c', isFixed: true },
+    { value: 'Cucumber', label: 'Cucumber', color: '#b4c04c', isFixed: true },
     { value: 'Jalapeno', label: 'Jalapeno', color: '#b4c04c', isFixed: true },
 ];
 
@@ -79,8 +90,14 @@ const RedWineSecondary = [
     { value: 'Butter', label: 'Butter', color: 'orange', isFixed: true },
     { value: 'Truffle', label: 'Truffle', color: 'orange', isFixed: true },
     { value: 'Nuts', label: 'Nuts', color: 'orange', isFixed: true },
+    { value: 'Limestone', label: 'Limestone', color: 'orange', isFixed: true },
+    { value: 'Salt', label: 'Salt', color: 'orange', isFixed: true },
     { value: 'Gasoline', label: 'Gasoline', color: 'orange', isFixed: true },
+    { value: 'Pastry', label: 'Pastry', color: 'orange', isFixed: true },
+    { value: 'Honey', label: 'Honey', color: 'orange', isFixed: true },
     { value: 'Clay Pot', label: 'Clay Pot', color: 'orange', isFixed: true },
+    { value: 'Potting Soil', label: 'Potting Soil', color: 'orange', isFixed: true },
+    { value: 'Beeswax', label: 'Beeswax', color: 'orange', isFixed: true },
     { value: 'Tar', label: 'Tar', color: 'orange', isFixed: true },
 ];
 
@@ -91,11 +108,11 @@ const RedWineFlower = [
     { value: 'Violet', label: 'Violet', color: 'hotpink', isFixed: true },
     { value: 'Lavender', label: 'Lavender', color: 'hotpink', isFixed: true },
     { value: 'Honeysuckle', label: 'Honeysuckle', color: 'hotpink', isFixed: true },
+    { value: 'Hibiscus', label: 'Hibiscus', color: 'hotpink', isFixed: true },
 ];
 
 const RedWineOak = [    
     { value: 'Vanilla', label: 'Vanilla', color: 'brown', isFixed: true },
-    { value: 'Tobacco', label: 'Tobacco', color: 'brown', isFixed: true },
     { value: 'Coffee', label: 'Coffee', color: 'brown', isFixed: true },
     { value: 'Cocoa', label: 'Cocoa', color: 'brown', isFixed: true },
     { value: 'Dark Chocolate', label: 'Dark Chocolate', color: 'brown', isFixed: true },
@@ -103,6 +120,8 @@ const RedWineOak = [
     { value: 'Nutmeg', label: 'Nutmeg', color: 'brown', isFixed: true },
     { value: 'Cinnamon', label: 'Cinnamon', color: 'brown', isFixed: true },
     { value: 'Cola', label: 'Cola', color: 'brown', isFixed: true },
+    { value: 'Cigar Box', label: 'Cigar Box', color: 'brown', isFixed: true },
+    { value: 'Tobacco', label: 'Tobacco', color: 'brown', isFixed: true },
     { value: 'Cedar', label: 'Cedar', color: 'brown', isFixed: true },
     { value: 'Brown Sugar', label: 'Brown Sugar', color: 'brown', isFixed: true },
     { value: 'Coconut', label: 'Coconut', color: 'brown', isFixed: true },
@@ -114,6 +133,7 @@ const RedWineFaults = [
     { value: 'Wet Newspaper', label: 'Wet Newspaper', color: 'tan', isFixed: true },
     { value: 'Wet Dog', label: 'Wet Dog', color: 'tan', isFixed: true },
     { value: 'Burnt Rubber', label: 'Burnt Rubber', color: 'tan', isFixed: true },
+    { value: 'Garlic', label: 'Garlic', color: 'tan', isFixed: true },
     { value: 'Metal', label: 'Metal', color: 'tan', isFixed: true },
     { value: 'Band Aid', label: 'Band Aid', color: 'tan', isFixed: true },
     { value: 'Burnt Match', label: 'Burnt Match', color: 'tan', isFixed: true },

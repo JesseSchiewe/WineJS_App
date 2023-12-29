@@ -6,14 +6,14 @@ const groupStyles = {
   alignItems: 'center',
   justifyContent: 'space-between',
   color: '#ffffff',
-  backgroundColor: '#000000'
+  backgroundColor: '#000000',
 };
 const groupBadgeStyles = {
   backgroundColor: '#000000',
   borderRadius: '0em',
   color: '#ffffff',
   display: 'inline-block',
-  fontSize: 12,
+  fontSize: 10,
   fontWeight: 'normal',
   lineHeight: '1',
   minWidth: 1,
@@ -61,6 +61,8 @@ export const colorStyles = {
             : color.alpha(0.4).css()
           : undefined,
       },
+      margin: '0px',
+      padding: '0px',
     };
   },
   singleValue: (styles, { data }) => {

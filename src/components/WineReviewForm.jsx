@@ -74,7 +74,7 @@ export default function WineReviewForm({ preloadedValues }) {
 
   const [toResults, setToResults] = useState(false);
 
-  const [selectedWineTool, setSelectedWineTool] = useState("WineColorChart");
+  const [selectedWineTool, setSelectedWineTool] = useState("");
  
   function writeToDatabase(userId, data) {
     set(ref(db, 'users/' + userId + '/' + data.Producer + ' ' + data.WineName + ' ' + data.ReviewDate), {

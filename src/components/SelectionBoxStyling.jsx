@@ -1,7 +1,7 @@
 export const colorStyles = {
   control: (styles) => ({ ...styles, backgroundColor: 'black' }),
   menu: (styles) => ({ ...styles, backgroundColor: 'black' }),
-  input: (styles) => ({ ...styles, color: 'white'  }),
+  input: (styles) => ({ ...styles, color: 'white' }),
   dropdownIndicator: (styles) => ({ ...styles, color: 'white'  }),
   // group: ( styles, data ) => ({ ...styles, backgroundColor: 'black' }),
   option: (styles) => {
@@ -13,6 +13,7 @@ export const colorStyles = {
       ':active': {
         color: 'white',
       },
+      padding: "1px",
     };
   },
   singleValue: (styles, { data }) => {
