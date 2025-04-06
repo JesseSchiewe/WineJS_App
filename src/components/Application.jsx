@@ -15,9 +15,10 @@ import {ReviewResult} from './ReviewResult';
 import LoadingScreen from './LoadingScreen';
 import Dashboard from './Dashboard';
 import { useAuth } from '../providers/AuthContext';
+import WineTastingGridForm from './WineGridReviewForm';
 
 export const Version = process.env.REACT_APP_VERSION;
-export const ManualVersion = "3.0.7";
+export const ManualVersion = "3.0.8";
 
 function Application() {
   const { currentUser } = useAuth();
@@ -40,6 +41,7 @@ function Application() {
               <Route path= "/passwordreset" exact element={<><MenuAppBar/><PasswordReset /></>} />
               <Route path= "/profilepage" exact element={<><MenuAppBar/><ProfilePage /></>} />
               <Route path= "/dashboard" exact element={<><MenuAppBar/><Dashboard /></>} />
+              <Route path= "/gridreview" exact element={<><MenuAppBar/><WineTastingGridForm /></>} />
             </Routes>
           </Router>
         :
@@ -56,7 +58,8 @@ function Application() {
               <Route path= "/signUp" exact element={<><MenuAppBar/><SignUp /></>} />
               <Route path= "/passwordreset" exact element={<><MenuAppBar/><PasswordReset /></>} />
               <Route path= "/profilepage" exact element={<><MenuAppBar/><SignInUserNameandPassword /></>} />
-              <Route path= "/dashboard" exact element={<><MenuAppBar/><SignInUserNameandPassword /></>} />  
+              <Route path= "/dashboard" exact element={<><MenuAppBar/><SignInUserNameandPassword /></>} />
+              <Route path= "/gridreview" exact element={<><MenuAppBar/><SignInUserNameandPassword /></>} />  
             </Routes>
           </Router>
       } 

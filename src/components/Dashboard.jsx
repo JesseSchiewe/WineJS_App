@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Card, CardContent, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { getDatabase, ref, get } from 'firebase/database';
 import { useAuth } from '../providers/AuthContext';
+import { useTheme } from '@mui/material/styles';
+import { ScatterChart } from '@mui/x-charts/ScatterChart';
 
 
 export default function WineJSDashboard() {
+  const theme = useTheme();
   const [wineScores, setWineScores] = useState([]);
 
   const db = getDatabase();
@@ -15,19 +18,19 @@ export default function WineJSDashboard() {
   const [ wineitems, setWineItems ] = useState([]);
 
   const wineSortCategories = [
-    // "ActualPrice",
-    // "Appellation",
-    // "Balance",
-    // "FlavorCharacteristics",
-    // "FlavorIntensity",
-    // "Length",
-    // "NoseIntensity",
-    // "Producer",
-    // "ReviewDate",
+    "ActualPrice",
+    "Appellation",
+    "Balance",
+    "FlavorCharacteristics",
+    "FlavorIntensity",
+    "Length",
+    "NoseIntensity",
+    "Producer",
+    "ReviewDate",
     "Total",
     "Vintage",
     "WineName",
-    // "WineValue"
+    "WineValue"
   ];
 
   // function SetWineArray() {
@@ -81,6 +84,11 @@ export default function WineJSDashboard() {
   //   }, []);
   // };
   // SetWineArrayItems();
+
+
+  
+
+
 
   useEffect(() => {
     const fetchWineArrayItems = async () => {
@@ -174,6 +182,17 @@ export default function WineJSDashboard() {
         </Card>
       </Grid>
 
+      <ScatterChart
+        width={600}
+        height={300}
+        series={[
+          {
+            label: 'Wine Scores by Vintage',
+            data: wineitems.map((v) => ({ x: v.Vintage, y: v.Total, id: v.WineName })),
+          }
+        ]}
+      />
+
       {/* Wine Scores Table */}
       <Grid item xs={12}>
         <TableContainer component={Paper}>
@@ -189,8 +208,9 @@ export default function WineJSDashboard() {
               {wineitems.map((wine, index) => (
                 <TableRow key={index}>
                   <TableCell>{wine.wine}</TableCell>
-                  <TableCell>{wine.vintage}</TableCell>
+                  <TableCell>{wine.Vintage}</TableCell>
                   <TableCell>{wine.Total}</TableCell>
+                  <TableCell>{wine.ReviewDate}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

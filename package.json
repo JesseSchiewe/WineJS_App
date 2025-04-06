@@ -1,6 +1,6 @@
 {
   "name": "winejs",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "private": true,
   "dependencies": {
     "@emotion/styled": "^11.10.0",

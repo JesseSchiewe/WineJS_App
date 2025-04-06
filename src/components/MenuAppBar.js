@@ -5,6 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -100,6 +101,7 @@ export default function MenuAppBar(props) {
                 >
                 <Paper variant="outlined" style={{marginTop:'-8px', marginBottom:'-8px'}}>
                   <MenuItem onClick={handleCloseMenu} component={Link} to={'/home'}><HomeIcon/>Home</MenuItem>
+                  <MenuItem onClick={handleCloseMenu} component={Link} to={'/dashboard'}><DashboardIcon/>Dashboard</MenuItem>
                   <MenuItem onClick={handleCloseMenu} component={Link} to={'/review'}><WineBarIcon/>Review</MenuItem>
                   <MenuItem onClick={handleCloseMenu} component={Link} to={'/reviewresult'}><StarOutlineIcon/>Results</MenuItem>
                   <MenuItem onClick={handleCloseMenu} component={Link} to={'/profilepage'}><PersonIcon/>Profile</MenuItem>
