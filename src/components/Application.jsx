@@ -13,6 +13,7 @@ import Home from './Home';
 import MenuAppBar from "./MenuAppBar";
 import {ReviewResult} from './ReviewResult';
 import LoadingScreen from './LoadingScreen';
+import Dashboard from './Dashboard';
 import { useAuth } from '../providers/AuthContext';
 
 export const Version = process.env.REACT_APP_VERSION;
@@ -37,7 +38,8 @@ function Application() {
               <Route path= "/signin" exact element={<><MenuAppBar/><Home /></>} />
               <Route path= "/signUp" exact element={<><MenuAppBar/><Home /></>} />
               <Route path= "/passwordreset" exact element={<><MenuAppBar/><PasswordReset /></>} />
-              <Route path= "/profilepage" exact element={<><MenuAppBar/><ProfilePage /></>} />    
+              <Route path= "/profilepage" exact element={<><MenuAppBar/><ProfilePage /></>} />
+              <Route path= "/dashboard" exact element={<><MenuAppBar/><Dashboard /></>} />
             </Routes>
           </Router>
         :
@@ -53,7 +55,8 @@ function Application() {
               <Route path= "/signin" exact element={<><MenuAppBar/><SignInUserNameandPassword /></>} />
               <Route path= "/signUp" exact element={<><MenuAppBar/><SignUp /></>} />
               <Route path= "/passwordreset" exact element={<><MenuAppBar/><PasswordReset /></>} />
-              <Route path= "/profilepage" exact element={<><MenuAppBar/><SignInUserNameandPassword /></>} />    
+              <Route path= "/profilepage" exact element={<><MenuAppBar/><SignInUserNameandPassword /></>} />
+              <Route path= "/dashboard" exact element={<><MenuAppBar/><SignInUserNameandPassword /></>} />  
             </Routes>
           </Router>
       } 

@@ -15,12 +15,12 @@ export const ReviewResult = () => {
   const db = getDatabase();
 
   const RunType = useLocation().pathname;
-  const [ wineReviewName, setWineReviewName ] =useState(null);
+  const [ wineReviewName, setWineReviewName ] = useState(null);
   const [ compareList, setCompareList ] = useState([]);
   const handleChangeCompare = (obj) => {
     setCompareList(obj);
   };
-  var dbWineNames = '/users/' + currentUser.uid + "/"
+  const dbWineNames = '/users/' + currentUser.uid + "/"
 
   const [ winearray, setWinearray ] = useState();
 
